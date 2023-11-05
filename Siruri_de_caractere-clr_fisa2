@@ -1,0 +1,76 @@
+//Problema 1
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[151];
+    cin.getline(s,150);
+    char *p=strtok(s," ");
+    int c=0;
+    while(p!=NULL)
+    {
+        while(p){
+                if(strchr("aeiouAEIOU",p[0]) && strchr("aeiouAEIOU",p[strlen(p)-1]))
+                    c++;
+                p = strtok(NULL," ");
+            }
+    }
+    cout<<c;
+}
+
+
+//Problema 2
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main(){
+    char s[256], t[256];
+    cin.getline(s,256);
+    for(char * p = s+strlen(s)-2; p>=s;--p)
+        if(strchr("aeiou",p[0]) && strchr("aeiou",p[1]))
+            if(p>s && strchr("aeiou",p[-1]))
+            {
+                strcpy(t, p + 1);
+                strcpy(p, t);
+            }
+            else
+            {
+                strcpy(t, p + 2);
+                strcpy(p, t);
+            }
+    cout << s << endl;
+    return 0;
+}
+
+//Problema 3
+
+
+//Problema 4
+
+
+//Problema 5
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+     char s[101];
+     cin.get(s, 100);
+     int i, n = strlen(s);
+     for (i = 0; i < n; i++)
+     {
+           if (s[i] == '<')
+              while (s[i] != '>')
+             {
+                          if (isalpha(s[i]))
+                                s[i] = toupper(s[i]);
+                          i++;
+              }
+      }
+      cout << s;
+      return 0;
+}

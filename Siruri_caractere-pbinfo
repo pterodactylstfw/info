@@ -1,0 +1,97 @@
+//#BacNume #4184
+
+ void FNume(char s[], char id[])
+{
+     char *p=strchr(s,' ');
+     strcpy(id,p+1);
+     strcat(id,"2022");
+}
+
+// Pozitii #972
+//cate vocale sunt cuprinse intre 2 consoane
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    char s[256],voc[6]={'a','e','i','o','u'};
+    cin.getline(s,255);
+    int ct=0;
+    
+    for(int i=0;i<strlen(s)-2;i++)
+    {
+        if((isalpha(s[i])&&strchr(voc,s[i])==NULL)&&(isalpha(s[i+2])&&strchr(voc,s[i+2])==NULL))
+            if(strchr(voc,s[i+1])) ct++;
+    }
+    cout<<ct;
+}
+
+// Vocale #11
+//inlocuieste vocala mica cu vocala mare
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    char s[256],voc[6]={'a','e','i','o','u'};
+    cin.getline(s,255);
+    int dif='a'-'A';
+    
+    for(int i=0;i<strlen(s);i++)
+    {
+        if(strchr(voc,s[i])!=NULL)
+            s[i]-=dif;
+    }
+    
+    cout<<s;
+    
+    
+}
+
+// Initiale #12
+//prima si ultima litera sa fie mari
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    
+    cin.getline(s, 256);
+    for (int i = 0; i < strlen(s); i++)
+    {
+        if (i == 0|| !s[i + 1]) s[i] -= 32;
+        else if (s[i] >= 'a' && (s[i - 1] == ' ' || s[i + 1] == ' ')) s[i] -= 32;
+
+    }
+    cout << s;
+}
+
+// prosir #1866
+// inlocuim fiecare ultima litera din cuv cu '5'
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    char s[256];
+        
+        cin.getline(s, 256);
+        for (int i = 0; i < strlen(s); i++)
+        {
+            
+             if (s[i] >= 'a' && (s[i - 1] == ' ' || s[i + 1] == ' ')) s[i] ='5';
+
+        }
+        cout << s;
+    
+    
+}
+
+
