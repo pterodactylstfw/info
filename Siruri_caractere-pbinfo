@@ -95,4 +95,133 @@ int main()
 }
 
 
-/Users/raul/Info-acasa
+// Cuvant #1456
+//verifica daca sirul are alta vocala decat i si afiseaza nu, 
+//altfel daca e format din consoane+-i afiseaza da
+
+#include <bits/stdc++.h>
+using namespace std;
+char ch[256];
+int main()
+{
+    cin.getline(ch , 256);
+    int i = 0;
+    int cnt1=0;
+    bool da = true;
+    while(ch[i]!='\0')
+    {
+        if(ch[i]=='a' || ch[i]=='e' || ch[i]=='o' || ch[i]=='u')
+            da=false;
+        else if(ch[i]!='i')
+            cnt1++;
+        i++;
+    }
+    if(da && cnt1)
+        cout << "DA";
+    else
+        cout << "NU";
+    return 0;
+}
+
+// Acronim #2828
+// scrie acronim
+
+#include <cstring>
+#include <iostream>
+using namespace std;
+int main()
+{
+    char s[256],acr[11];
+    cin.getline(s,255);
+    for(int i=0;i<strlen(s);i++)
+    {
+        if((s[i]>='A'&&s[i]<='Z')&&(i==0||s[i-1]==' ')) cout<<s[i];
+        
+    }
+}
+
+// Nr vocale #890
+// Vocala cu ap max, program ineficient
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int cta = 0, cte = 0,cti=0,cto=0,ctu=0,mx=0;
+int i;
+char s[256];
+int main()
+{
+    cin.getline(s, 255);
+    for (int i = 0; i < strlen(s); i++) {
+        if (strchr("aA", s[i])) cta++;
+        if (strchr("eE", s[i])) cte++;
+        if (strchr("iI", s[i])) cti++;
+        if (strchr("oO", s[i])) cto++;
+        if (strchr("uU", s[i])) ctu++;
+        if (mx < cta) mx=cta;
+        if (mx < cte) mx=cte;
+        if (mx < cti) mx=cti;
+        if (mx < cto) mx=cto;
+        if (mx < ctu) mx=ctu;
+    }   
+    if (mx == cta) cout << "A";
+    if (mx == cte) cout << "E";
+    if (mx == cti) cout << "I";
+    if (mx == cto) cout << "O";
+    if (mx == ctu) cout << "U";   
+}
+
+// InterschimbLitere #84
+//schimb ultima consoana cu prima vocala si reciproc
+#include <iostream>
+#include <cstring>
+using namespace std;
+ 
+int main()
+{
+    char v , c; // vocala si consoana cautate
+    
+    int ic , // pozitia consoanei cautate
+        iv , // pozitia vocalei cautate
+        ct=0;// numarul de vocale - il vom folosi pentru a cazul specia
+    
+    char s[11];
+    
+    // citim sirul
+    cin>>s;
+    
+    // numaram cate vocale contine
+    for(int i=0;s[i];i++)
+        if(strchr("aeiouAEIOU",s[i]))
+            ct++;
+    
+    // daca nu contine vocale sau contine doar vocale (nu contine consoane)
+    if(ct==0 || ct==strlen(s))
+        cout << "IMPOSIBIL";
+    else
+    {
+        //  sirul contine si vocale, si consoane
+        for(int i=0;s[i];i++)   //caut prima vocala
+            if(strchr("aeiouAEIOU",s[i]))
+            {   
+                v=s[i];
+                iv=i;
+                break;
+            }
+        for(int i=0;s[i];i++)   // caut ultima consoana
+            if(!strrchr("aeiouAEIOU",s[i]))
+            {
+                c=s[i];
+                ic=i;
+            }
+        // le interschimb
+        s[iv]=c;
+        s[ic]=v;
+        //afisez sirul modificat
+        cout<<s;
+    }
+    return 0;
+}
+
+// SFARSIT PAGINA 1 SIRURI DE CARACTERE- PBINFO
+
