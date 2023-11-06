@@ -1,0 +1,103 @@
+//Classroom-siruri de caractere
+
+//Problema 1
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[21][21];
+    int n,lg,ct=0;
+    cin>>n;
+    cin.get();
+    cin.getline(s[0],20);
+    lg=strlen(s[0])-1;
+    for(int i=1;i<n;i++)
+    {
+        cin.getline(s[i],20);
+        if(strncmp(s[i],s[0],lg)==0) ct++;
+    }
+    
+    cout<<ct;
+    
+}
+
+
+//Problema 2
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n,k,mn=21,vf[20]={0};
+    char s[21][21];
+    cin>>n;
+    cin.get();
+    for(int i=0;i<n;i++)
+    cin.getline(s[i],20);
+
+    cin>>k;
+    
+    int ok=0,ct=0;
+    
+        for(int i=0;i<n;i++)
+        {
+            if(strlen(s[i])==k&&vf[i]==0) {cout<<s[i]<<" ";
+                vf[i]++;
+                }
+        }
+    for(int i=0;i<n;i++)
+        if(vf[i]==0)
+            cout<<s[i]<<" ";
+    
+}
+
+//PROBLEMA 3
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[101];
+    int ok=0;
+    char note[7][4]={"DO","RE","MI","FA","SOL","LA","SI"};
+    cin.getline(s,100);
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        for(int i=0;i<7;i++)
+            if(strstr(p,note[i])) {cout<<p<<endl;
+                break;}
+        ok++;
+        p=strtok(NULL," ");
+    }
+    if(ok==0) cout<<"Nu exista";
+    return 0;
+    
+}
+
+
+//PROBLEMA 4
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[101];
+    cin.getline(s,100);
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        for(int i=0;i<strlen(p);i++)
+            for(int j=strlen(p)-1;j>=0;j--)
+                if (strcmp(p[i],p[j])!=0)
+                    cout<<s;
+        
+    }
+}
+
+

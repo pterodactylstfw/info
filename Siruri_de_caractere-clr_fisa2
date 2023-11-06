@@ -47,10 +47,38 @@ int main(){
 }
 
 //Problema 3
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s1[31],s2[31],aux[31];
+    cin.getline(s1,31);
+    cin.getline(s2,31);
+    int i=0,j=strlen(s1)-1,ok=0;
+    while(i<strlen(s2)-1&&j>=0)
+    {
+        strcpy(aux,s2);
+        aux[i+1]=NULL;
+        if(strcmp(s2+1+j,aux)==0)
+        {
+            cout<<aux<<" ";
+            ok=1;
+        }
+        i++,j--;
+    }
+    if(ok==0) cout<<"nu exista";
+    return 0;
+    
+}
+
 
 
 //Problema 4
+//cam la fel ca 3
 
+strcpy(a,b);
+a[strlen(b)/2]=NULL;
 
 //Problema 5
 #include <iostream>

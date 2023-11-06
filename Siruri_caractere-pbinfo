@@ -225,3 +225,29 @@ int main()
 
 // SFARSIT PAGINA 1 SIRURI DE CARACTERE- PBINFO
 
+//PAGINA 2
+
+//85 InserareAsterisc
+//ins * dupa fiecare vocala
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256],aux[101],voc[6]={"aeiou"};
+    cin.getline(s,255);
+    int ok=0;
+    for(int i=0;i<strlen(s);i++)
+    {
+        if(strchr(voc,s[i])!=NULL)
+        {strcpy(aux,s+i+1);
+            s[i+1]='*';
+            s[i+2]=NULL;
+            strcat(s,aux);
+            ok=1;}
+    }
+    if(ok)
+    cout<<s;
+    else cout<<"FARA VOCALE";
+}
