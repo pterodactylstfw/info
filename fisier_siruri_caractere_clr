@@ -1,0 +1,163 @@
+// din fisierul Siruri de caractere, subfisier siruri_caractere
+
+//ex 1- tamara
+
+c=tamara
+i=0,6
+p=amara
+af p-c=c+1-c=1 // af 1
+i=1,6
+p=amara
+af 1 //11
+...
+se afiseaza 1 de 6 ori
+
+// ex 2
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    cin.get();
+    char s[35],cuv[35];
+    int lgmax=0;
+    for(int i=1;i<=n;i++)
+    {cin.getline(s,35);
+        if(lgmax<strlen(s)-1) {lgmax=strlen(s)-1;
+            strcpy(cuv,s);
+        }
+    }
+    cout<<cuv;
+}
+
+
+//ex 3
+
+//cu vect de cuvinte
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n,mx=0;
+    char s[11][35];
+    cin>>n;
+    cin.get();
+    for(int i=1;i<=n;i++)
+    {  cin.getline(s[i],35);
+        if(strlen(s[i])>mx) mx=strlen(s[i]);
+    }
+    
+    for(int i=1;i<=n;i++)
+        if(strlen(s[i])==mx) cout<<s[i]<<'\n';
+    return 0;
+}
+
+
+//pb 4
+
+//cu vect cuv si strncmp
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n;
+    char s[50][31],lst[31];
+    cin>>n;
+    cin.get();
+    for(int i=1;i<n;i++)
+        cin.getline(s[i],31);
+    cin.getline(lst,31);
+    for(int i=1;i<n;i++)
+    if(strncmp(s[i], lst, strlen(lst))==0)
+        cout<<s[i]<<'\n';    
+}
+
+//pb 5
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n,ct=0;
+    char s[50][31],lst[31];
+    cin>>n;
+    cin.get();
+    for(int i=1;i<n;i++)
+        cin.getline(s[i],31);
+    cin.getline(lst,31);
+    for(int i=1;i<n;i++)
+        if(strcmp(lst,(s[i]+strlen(s[i])-strlen(lst)))==0)
+           ct++;
+    cout<<ct;
+    
+}
+
+
+//pb 6
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+
+{
+    char s[256],cuv[256];
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    int mx=0;
+    while(p!=NULL)
+    {
+        if(strlen(p)>=mx) mx=strlen(p),strcpy(cuv,p);
+        p=strtok(NULL, " ");
+    }
+    
+    cout<<cuv;
+}
+
+
+//pb 7
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256],cuv[25][25];
+    cin.getline(s,256);
+    char *p=strtok(s," ");
+    int n=1;
+    while(p!=NULL)
+    {
+        strcpy(cuv[n],p);
+        
+        p=strtok(NULL, " ");
+        n++;
+    }
+    
+    int ok;
+    do {
+        ok=1;
+        for(int i=1;i<n;i++)
+            if(strlen(cuv[i])>strlen(cuv[i+1]))
+            {
+                ok=0;
+                char aux[30];
+                         strcpy(aux, cuv[i]);
+                         strcpy(cuv[i],cuv[i+1]);
+                         strcpy(cuv[i+1],aux);
+            }
+    } while (ok==0);
+                         for(int i=1;i<n;i++)
+                         cout<<cuv[i]<<" ";
+                         
+    return 0;
+    
+    
+}
