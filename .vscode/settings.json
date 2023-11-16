@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.embeddedhtml": "html",
-        "siruri_caractere-pbinfo": "c"
+        "siruri_caractere-pbinfo": "c",
+        "fstream": "cpp"
     }
 }

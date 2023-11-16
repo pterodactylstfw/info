@@ -77,19 +77,84 @@ int main()
 using namespace std;
 int main()
 {
-    char s[101];
+    char s[101],aux[101];
     cin.getline(s,100);
-    for(int i=0;i<strlen(s);i++)
-    { int ct=0;
-        if(s[i]=='-'&&isdigit(s[i+1]))
-        {while(s[i]!=' ') strcpy(s+i,s+i+1);
+    char*p=strtok(s," ");
+    while(p!=NULL)
+    {
         
-        }
-        
+        if(p[0]!='-') strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
     }
     
-    cout<<s;
+    cout<<aux;
 }
 
-
 3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+   int x,a,b,c,ok=0,ok1=0,ok2=0;
+   while(fin>>x)
+   {
+       if(x%100==20)
+       {
+       if(ok2==0)
+       {if(ok==0)
+           {a=x;
+           ok=1;
+           }
+       else
+       if(ok1==0)
+       {
+           if(a<x)
+           {
+           b=a;
+           a=x;
+           }
+           else
+               b=x;
+               ok1=1;
+       }
+       else
+       {
+           if(b<x)
+           {
+               c=b;
+               b=x;
+           }
+           else
+                c=x;
+               ok2=1;
+       }
+}
+       else
+       {
+           if(a<=x)
+           {
+           c=b;
+           b=a;
+           a=x;
+           }
+           else
+           {
+if(b<=x)
+               {
+               c=b;
+               b=x;
+               }
+               else
+                   if(c<x)
+                   c=x;
+           }
+       }
+       }
+   }
+   cout<<c<<" "<<b<<" "<<a;
+   return 0;
+}
