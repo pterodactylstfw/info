@@ -1,0 +1,130 @@
+// test antrenament 1 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe caiet
+
+//Sub I
+
+1. a)
+2. c)
+3. d)
+4. b)
+5. c)
+
+//Sub II
+//1a) pe caiet
+1. a) 2020
+    b)9,7 sau 9,0
+    c) e clar
+    d)
+
+2. struct triunghi
+{
+    struct coord
+    {
+        float x,y;
+    }A,B,C;
+}t;
+
+3. 8viCtORIe
+
+//Sub III
+
+//EX 1 void putere- desc fact primi
+
+#include <iostream>
+using namespace std;
+
+void putere(int n, int &d, int &p)
+{
+    int dmax=0,pmax=0;
+    d=2,p=0;
+    while(n%d==0)
+    {p++;
+        n/=d;}
+    if(p!=0)
+    { pmax=p;
+        dmax=d;}
+    
+    for(d=3;d*d<=n&&n>1;d++)
+    {
+        p=0;
+        while(n%d==0)
+        {p++;
+            n/=d;}
+        if(p>=pmax){ pmax=p;
+            dmax=d;}
+    }
+    if(n!=1) if(1>pmax) { pmax=p;
+        dmax=d;}
+    
+    d=dmax;
+    p=pmax;
+}
+
+int main()
+
+{
+    int n,d,p;
+    cin>>n;
+    putere(n,d,p);
+    
+    cout<<d<<" "<<p;
+}
+
+
+//EX 2- matrice
+
+/*
+1 1 1 2 2 2 3 3 3 4 4 4 
+2 2 2 3 3 3 4 4 4 5 5 5 
+3 3 3 4 4 4 5 5 5 6 6 6 
+4 4 4 5 5 5 6 6 6 7 7 7 
+*/
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,k,ct,ind=1;
+    cin>>n>>k;
+    int a[21][21]={0};
+    for(int i=1;i<=n*k;i++)
+    {
+        a[1][i]=ind;
+        ct++;
+        if(ct==k) {ind++;ct=0;}
+    }
+    for(int i=2;i<=n;i++)
+        for(int j=1;j<=n*k;j++)
+            a[i][j]=a[i-1][j]+1;
+    
+    for(int i=1;i<=n;i++)
+    { for(int j=1;j<=n*k;j++)
+        cout<<a[i][j]<<" ";
+        cout<<endl;
+        }
+        
+}
+
+//EX 3 eficienta recursiv
+
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,y;
+    fin>>x>>y;
+    cout<<y<<" "<<x<<" ";
+    while(y>1)
+    {
+        y=x*3-y;
+        cout<<y<<" ";
+        swap(x, y);
+    }
+    
+}
+
+
+
+
