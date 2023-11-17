@@ -1,0 +1,120 @@
+// test antrenament 3 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe caiet
+
+//Sub I
+
+1. d)
+2. b)
+3. c)
+4. a)
+5. b)
+
+//Sub II
+//pseudocod pe caiet
+
+1. a) => 1 275
+    b) 6789, 321
+    c)
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,c1,c2,s;
+    cin>>n;
+    c1=n%10;
+    n/=10;
+    c2=n%10;
+    if(c1==c2) s=0;
+    else if(c1>c2) s=1;
+    else s=-1;
+    do
+    {
+        c1=n%10;
+        n/=10;
+        c2=n%10
+    }while((c1-c2)*s>0)
+    cout<<s<<" "<<n;
+}
+
+2.
+struct cerc
+{
+    struct coord
+    {
+        float x, y;
+    }centru;
+    float raza;
+}fig;
+
+3.
+for(int i=0;i<strlen(s);i++)
+{
+    if(s[i]=='A'&&s[i+1]=="I") 
+    {s[i]="I";
+    strcpy(s+i+1,s+i+2);
+    }
+    else if(s[i]="I"&&s[i]=='A') strcpy(s+i,s+i+1);
+}
+
+cout<<s;
+
+//Sub III
+
+//1 factori
+
+1.
+int factori(int n, int m)
+{
+    int d=2,p1=0,p2=0,ct=0;
+    while(n%d==0&&m%d==0)
+    {
+        p1++,p2++;
+        n/=d;
+        m/=d;
+        if(p1*p2!=0) {
+            ct++;
+            break;
+        }
+    }
+    
+    for(d=3;d<=min(n,m)&&(n>1||m>1);d++)
+    {
+        p1=p2=0;
+        while(n%d==0&&m%d==0)
+        {p1++,p2++;
+            n/=d;
+            m/=d;
+            if(p1*p2!=0) {
+                ct++;
+                break;
+            }
+        }}
+        
+        if(n>1&&m>1&&m%n==0) ct++;
+        return ct;
+        
+    }
+
+
+//2 matrice
+
+#include<iostream>
+using namespace std;
+int a[21][21];
+int main()
+{  int n,i,j;
+cin>>n;
+   for(i=1;i<=n;i++)
+      for(j=1;j<=n;j++)
+             a[i][j]=abs(i-j);  //modulul dintre scaderea indicilor.
+  for(i=1;i<=n;i++)
+      { for(j-1;j<=n;j++)
+          cout<<a[i][j]<<" ";
+               cout<<'\n';
+      }
+return 0;
+}
+
+
+//3
+?
