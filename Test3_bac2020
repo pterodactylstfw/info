@@ -117,4 +117,25 @@ return 0;
 
 
 //3
-?
+//tinem cont doar de 2 secvente: cea care incepe cu nr nrgativ si cea care se termin
+// apoi le comparam
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x;
+    int n=0,pozp=0,pozu=0;
+    while(fin>>x)
+    {
+        n++;
+        if(x<0)
+            if(pozp==0) pozp=n;
+        pozu=n;
+    }
+    
+    if(n-pozp+1>pozu) cout<<n-pozp+1;
+    else cout<<pozu;
+    return 0;
+}
