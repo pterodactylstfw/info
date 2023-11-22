@@ -1,0 +1,112 @@
+// test antrenament 5 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe caiet
+
+//Sub I
+
+1. c)
+2. c)
+3. a)
+4. 
+5. 
+
+// Sub II
+
+1. a)
+    b)
+     c)
+     d)
+
+2. 
+
+3. 
+for(int i=4;i>=1;i--)
+for(int j=1;j<=5;j++)
+a[i]
+
+// Sub III
+
+1.
+void prodprim(int n, int &p)
+{
+    int d=2,pu=0;
+    p=1;
+    while(n%d==0)
+    {
+        pu++;
+        n/=d;
+    }
+    if(pu>0) {p*=d;
+        
+    }
+    for(d=3;d*d<=n&&n>1;d++)
+    {
+        pu=0;
+        while(n%d==0)
+        {
+            pu++;
+            n/=d;
+        }
+        if(pu>0) {p*=d;
+            }
+        
+    }
+    if(n>1) {p*=n;
+        }
+}
+
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[101];
+    cin.getline(s,101);
+    char voc[6]="aeiou";
+    int ctv,ctc,ok;
+    ok=0;
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        ctc=ctv=0;
+        for(int i=0;i<strlen(p);i++)
+        {
+            if(strchr(voc,p[i])!=NULL) ctv++;
+            else ctc++;
+        }
+        if(ctv<ctc) {cout<<p<<'\n'
+        ok++};
+        p=strtok(NULL, " ");
+            
+    }
+    if(ok==0) cout<<"nu exista";
+    return 0;
+}
+
+3.#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+ofstream fout("numere.out");
+int main()
+{
+
+    int p1,p2;
+    cin>>p1>>p2;
+    int x1,y1,x2,y2;
+    for(int x1=9;x1>=1;x1--)
+    {y1=p1/x1;
+        if(x1==y1) {fout<<x1<<y1;
+            for(int z=9;z>=0;z--)
+                cout<<z<<z<<z;
+            for(x2=9;x2>=0;x2--)
+                y2=p2/x2;
+            if(x2*y2==p2) fout<<x2<<y2<<" ";}
+    }
+            
+    
+    
+}
+
+
