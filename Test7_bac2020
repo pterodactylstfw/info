@@ -1,0 +1,109 @@
+// test antrenament 5 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+1. d)
+2. a)
+3. b)
+4. c)
+5. c)
+
+//Sub II
+
+1. 
+    a) 7533- //algoritmul selecteaza doar cifrele impare si le scrie in ord cresc
+//valorii lor
+        b) 20 si 88
+        c)...
+        d) pentru i<-1, 10, 2
+
+
+2.
+struct biblio
+{
+    int numar;
+    struct 
+    {
+        char titlu[21];
+        char autor[21];
+    }carte[100];
+}c;
+
+3. ou rosu
+
+// Sub III
+
+1.
+int putere(int n, int p)
+{
+    int d=2,pd=0;
+    while(n%d==0)
+    {
+        pd++;
+        n/=d;
+    }
+    if(d==p)
+    {
+        return pd;
+    }
+    
+    for(int d=3;d*d<=n;d++)
+    {
+        pd=0;
+        while(n%d==0)
+        {
+            
+            pd++;
+            n/=d;
+        }
+        if(d==p)
+        {
+            return pd;
+        }
+    }
+    return -1;
+    }
+
+2.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,m,a[101][101],vf[21]={0};
+    cin>>m>>n;
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=n;j++)
+            cin>>a[i][j];
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=m;j++)
+            if(a[j][1]==a[i][n])
+            {
+                if(vf[a[j][1]]==0) {vf[a[j][1]]++;
+                    cout<<a[j][1]<<" ";
+                }
+            }
+}
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream f("numere.in");
+int main()
+{
+    int x,s,smin=10000;
+    s=0;
+    f>>x;
+    s=smin=x;
+    while(f>>x)
+    {
+        if(s<0)
+           s=s+x;
+        else
+           s=x;
+        if(s<smin)
+           smin=s;
+    }
+    cout<<smin;
+}

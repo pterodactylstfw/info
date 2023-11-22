@@ -1,0 +1,97 @@
+// test antrenament 5 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+1. b)
+2. a)
+3. c)
+4. d)
+5. b)
+
+//Sub II
+
+1. a) 202888
+    b) 101, 900
+    c)...
+    d) cat timp x!=0
+
+2. foaie
+3. ou rosu
+
+
+//Sub III
+
+1.int suma(int n)
+{
+    int d=2,p=0,s=0;
+    while(n%d==0)
+    {
+        p++,n/=d;
+    }
+    if(p>0) s+=d;
+    
+    for(int d=3;d*d<=n&&n>1;d++)
+    {
+        p=0;
+        while(n%d==0)
+        {
+            p++,n/=d;
+        }
+        if(p>0) s+=d;
+    }
+    if(n>1) s+=n;
+    return s;
+}
+
+
+2.#include <iostream>
+using namespace std;
+int main()
+{
+   int i,j,a[21][21],n,k,aux;
+   cin>>n>>k;
+   for(i=1;i<=n;i++)
+       for(j=1;j<=n;j++)
+           cin>>a[i][j];
+           cout<<endl;
+   for(j=1;j<=n/2;j++)
+       if(i>j){aux=a[k][j];
+               a[k][j]=a[k][n/2-1];
+               a[k][n/2-1]=aux;
+              };
+   for(i=1;i<=n;i++)
+   {
+       for(j=1;j<=n;j++)
+       cout<<a[i][j]<<' ';
+       cout<<endl;
+   }
+return 0;
+}
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,maxim=0;
+    int vf[10]={0},poz[21]={0};
+    int i=0;
+    while(fin>>x)
+    {
+        i++;
+        vf[x%10]++;
+        poz[x%10]=i;
+        if(vf[x%10]>maxim)
+                    maxim=vf[x%10];
+            }
+            for(i=0;i<=9;i++)
+            {
+                if(vf[i]==maxim)
+                    cout<<poz[i]<<" ";
+            }
+    }
+    
+    
+
