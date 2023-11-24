@@ -1,0 +1,90 @@
+// test antrenament 5 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+1. d)
+2. b)
+3. a)
+4. c)
+5. 
+
+//Sub II
+1.
+
+2. f(0)=0;
+    f(2020)=0+f(101)=1+f(5)=5+f(0) =>6
+
+3.  3 componente conexe
+        comp conexa cu cele mai putine noduri e formata din nodurile 4,7;
+
+//Sub III
+
+1.int suma(int n)
+{
+    int v[10]={0},s;
+    while(n!=0)
+    {
+        int c=n%10;
+        if(c%2==1&&v[c]==0)
+        {
+            s+=c;
+            v[c]=1;
+        }
+        n/=10;}
+    return s;
+}
+
+2.
+#include <iostream>
+using namespace std;
+int main()
+{
+    char s[21][21];
+    bool ok=false;
+    int n;
+    cin>>n;
+    cin.get();
+    for(int i=0;i<n;i++)
+        cin.getline(s[i],21);
+    char cuv[21];
+    cin.getline(cuv,21);
+    cout<<endl;
+    int nr=strlen(cuv);
+    for(int i=0;i<n;i++)
+        if(strncmp(s[i],cuv,nr)==0) {cout<<s[i]<<" ";
+            ok=true;
+        }
+    if(ok==false) cout<<"nu exista"<<endl;
+    
+}
+
+3.
+#include <iostream>
+#include <fstream>
+std::ifstream fin("numere.in");
+
+int main()
+{
+    int x;
+    int k;
+    fin>>k;
+    int lg=0,lgmax=0,nr=0;
+    while(fin>>x)
+    {
+        if(x%k==0) lg++;
+        else 
+        { if(lgmax<lg) {lgmax=lg;
+            nr=1;}
+        else if(lg==lgmax){nr++;}
+            lg=0;
+        }
+            
+    }
+    if(lg>lgmax)
+    {
+        lgmax=lg;
+        nr=1;
+    }
+    if(lg==lgmax) nr++;
+    std::cout<<lgmax<<" "<<nr;
+}

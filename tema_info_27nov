@@ -1,0 +1,104 @@
+1.#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[21][21];
+    int n,lg,ct=0;
+    cin>>n;
+    cin.get();
+    cin.getline(s[0],20);
+    lg=strlen(s[0])-1;
+    for(int i=1;i<n;i++)
+    {
+        cin.getline(s[i],20);
+        if(strncmp(s[i],s[0],lg)==0) ct++;
+    }
+    
+    cout<<ct;
+    
+}
+
+2.
+
+
+3.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s1[31],s2[31],aux[31];
+    cin.getline(s1,31);
+    cin.getline(s2,31);
+    int i=0,j=strlen(s1)-1,ok=0;
+    while(i<strlen(s2)-1&&j>=0)
+    {
+        strcpy(aux,s2);
+        aux[i+1]=NULL;
+        if(strcmp(s1+j,aux)==0)
+        {
+            cout<<aux<<" ";
+            ok=1;
+        }
+        i++,j--;
+    }
+    if(ok==0) cout<<"nu exista";
+    return 0;
+    
+}
+
+4. 
+
+
+5.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    char aux[256];
+    while(p!=NULL)
+    {
+        strcat(aux,p);
+        strcat(aux, " ");
+        p=strtok(NULL," ");
+        
+    }
+    
+    cout<<aux;
+}
+
+6.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    bool ok=false;
+    cin.getline(s,255);
+    char *p=strtok(s, " ");
+    char aux[10];
+    char sf[256];
+    while(p!=NULL)
+    {
+        strcpy(aux,p);
+        if(strlen(aux)>=3&&strlen(aux)%2==1)
+        {
+            ok=true;
+            strcpy(aux+(strlen(aux)/2-1)+1,aux+(strlen(aux)/2-1)+2);
+        }
+        strcat(sf,aux);
+        strcat(sf," ");
+        p=strtok(NULL, " ");
+    }
+    cout<<sf;
+}
+
+7.
+
