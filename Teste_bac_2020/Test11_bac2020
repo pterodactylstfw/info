@@ -1,0 +1,85 @@
+// test antrenament 11 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+
+//Sub II
+
+
+//Sub III
+
+1.
+#include <iostream>
+using namespace std;
+void patrate(int x, int y)
+{
+    int s=0;
+    
+    for(int i=x;i<=y;i++)
+    {
+        int d=(sqrt(float(i)));
+        if(d*d==i) {s+=(d*d);
+            cout<<d*d<<"+";
+        }
+        
+    }
+    cout<<"="<<s;
+        
+}
+int main()
+{
+    int x, y;
+    cin>>x>>y;
+    patrate(x,y);
+}
+
+2.
+#include <cstring>
+#include <iostream>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char aux[255];
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        cout<<p<<endl;
+        for(int i=0;i<strlen(p);i++)
+            if(isupper(p[i])) p[i]+=32;
+        if(islower(p[0]))p[0]-=32;
+        cout<<p<<endl;
+        strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    strcpy(s,aux);
+    cout<<aux;
+}
+
+3. 
+#include <fstream>
+#include <iostream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,y;
+    int ap=0;
+    fin>>x;
+    ap=1;
+    while(fin>>y)
+    {
+        if(x==y) {ap++;
+            x=y;}
+        else
+        {cout<<x<<" "<<ap<<" ";
+            ap=1;
+            x=y;
+        }
+    }
+    if(x==y) {
+        cout<<x<<" "<<ap;}
+        }

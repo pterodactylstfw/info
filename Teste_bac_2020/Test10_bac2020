@@ -1,0 +1,86 @@
+// test antrenament 10 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+1. d)
+2. b)
+3. c)
+4. a)
+5. c)
+
+//Sub II
+
+1. a)
+    b)
+    c) 
+    d)
+
+2. 
+
+3. 
+
+//Sub III
+
+1.
+#include <iostream>
+using namespace std;
+void produs(int n, int&p)
+{
+    bool ok=false;
+    int v[9]={0};
+    while(n!=0)
+    {
+        if(n%2==0)
+           if(v[n%10]==0)
+        {p*=n%10;
+            v[n%10]++;
+        }
+        
+        n/=10;
+        ok=true;
+    }
+    if(ok==false) p=-1;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int p=1;
+    produs(n, p);
+    cout<<p;
+    
+}
+
+
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+char s[103], t[501] = "";
+cin.getline(s, 103);
+ 
+char *p = strtok(s, " "), c = '\0';
+ 
+while (p != NULL)
+{
+ if (p[strlen(p) - 1] == c)
+  strcat(t, "succes ");
+ strcat(t, p);
+ strcat(t, " ");
+ c = p[strlen(p) - 1];
+ p = strtok(NULL, " ");
+}
+ 
+cout << t;
+ 
+return 0;
+}
+
+
+
+3.

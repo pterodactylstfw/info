@@ -2,6 +2,7 @@
     "files.associations": {
         "*.embeddedhtml": "html",
         "siruri_caractere-pbinfo": "c",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "test10_bac2020": "cpp"
     }
 }

@@ -1,0 +1,67 @@
+// test antrenament 12 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+
+//Sub II
+
+
+//Sub III
+
+1. 
+int pdoi(int n)
+{
+    int x;
+    for(float i=n;i>=1;i--)
+        if(float(sqrt(i))==int(sqrt(i)))
+        {x=i;
+            break;}
+    
+    return x;
+}
+
+2. 
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    char voc[6]="aeiou";
+    cin.getline(s,255);
+    for(int i=strlen(s)-1;i>=0;i--)
+        if(strchr(voc,s[i])!=NULL)
+        {int j=(strlen(s)-(strlen(s)-i));
+                strcpy(s+j,s+j+1);
+                       break;}
+    cout<<s;
+              
+}
+
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    while(n >= 10)
+    {
+        cout<<n<<" ";
+        if(n == 10)
+        {
+            break;
+        }
+         n = n / 2;
+    }
+    
+    while(n > 1)
+    {
+        cout<<n - 1<<" ";
+        n --;
+    }
+}
