@@ -1,0 +1,134 @@
+// test model bac 2024 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+1.c)
+2.d)
+3.a)
+4.b)
+5.b)
+
+
+//Sub II
+
+1. a) 2024
+    b) 10,100;
+    c) pe foaie/classroom
+    d) pentru i, 1, -1 .....
+
+2. struct telefon
+{
+    char producator[2];
+    unsigned frecventa;
+    float dimensiune[3];
+}t;
+
+
+3.
+for(int i=0;i<4;i++)
+for(int j=0;j<24;j++)
+{
+    if(a[i][0]==2024&&a[i][23]==2024) cout<<j<<" ";
+}
+
+
+//Sub III
+
+
+1.
+int produs(int a, int b)
+{
+    int p=1;
+    for(int i=1;i<=min(a,b);i++)
+        if(a%i==0&&b%i==0) p*=i;
+    
+    return p;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[101];
+    int n,ok1,ok2;
+    ok1=ok2=0;
+    cin>>n;
+    cin.get();
+    cin.getline(s,101);
+    char aux1[101],aux2[101];
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        if(strlen(p)<n) {strcat(aux1,p);
+            strcat(aux1," ");
+            ok1=1;}
+        else if(strlen(p)>n)
+        {strcat(aux2,p);
+            strcat(aux2," ");
+            ok2=1;}
+        
+        p=strtok(NULL," ");
+        
+    }
+    if(ok1==1&&ok2==1) cout<<aux1<<'\n'<<aux2;
+    else cout<<"nu exista";
+    
+}
+
+3.
+
+a) algoritmul introduce valorile intr-un vector de frecventa si apoi se cauta o valoare maxima
+care apare in vector de minim maximuk dintre n1,n2 si n3.
+ulterior, parcurgem valorile incepand cu maximul gasit si ne folosim de n1, n2 si n3
+pentru oprirea eficienta a algoritmului.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n1,n2,n3;
+    int mx=0;
+    fin>>n1>>n2>>n3;
+    int v[1000]={0};
+    int x;
+    while(fin>>x)
+    {
+        
+        v[x]++;
+        if(mx<x&&v[x]>max(max(n1,n2),n3)) mx=x;
+    }
+    for(int i=mx;i>=0&&n1+n2+n3!=0;i--)
+    {
+        if(n1!=0)
+        if(v[i]>n1)
+        {
+            cout<<i<<" ";
+            n1=0;
+            continue;
+        }
+        if(n2!=0)
+            if(v[i]>=n2)
+            {
+                cout<<i<<" ";
+                n2=0;
+                continue;
+            }
+        if(n3!=0)
+            if(v[i]>=n3)
+            {
+                cout<<i<<" ";
+                n3=0;
+                continue;
+            }
+    }
+    if(n1+n2+n3!=0) cout<<"nu exista";
+    return 0;
+}
+
+
