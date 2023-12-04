@@ -1,0 +1,133 @@
+// test antrenament 13 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+1. a)
+2. c)
+3. b)
+4. c)
+5. a)
+
+//Sub II
+
+1. a)
+    b)
+    c)
+    d)
+
+2. struct rasa
+{
+    int cod;
+    int nrExemplare;
+    int varsta[10];
+}r[20];
+
+3.
+for(int i=1;i<=7;i++)
+for(int j=1;j<=5;j++)
+{
+    if(i==1||j==5) a[i][j]=5;
+    else a[i][j]=(a[i-1][j]+a[i][j+1])%10;
+}
+
+
+//Sub III
+
+
+1.
+void perechi(int n)
+{
+    for(int i=n;i>=1;i--)
+        for(int j=1;j<=n/2;j++)
+            if(i*j==n&&i%2!=j%2&&j<i) cout<<'['<<i<<" "<<j<<']'<<" ";
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    char *p=strtok(s," ");
+    char aux[256];
+    while(p)
+    {
+        if(p[0]=='-') strcat(aux, p+1);
+        else strcat(aux,p);
+        strcat(aux, " ");
+        p=strtok(NULL," ");
+    }
+    strcpy(s, aux);
+    cout<<s;
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream f("bac.in");
+int main()
+{
+   int x,a,b,c,ok=0,ok1=0,ok2=0;
+   while(f>>x)
+   {
+       if(x%100==20)
+       {
+       if(ok2==0)
+       {if(ok==0)
+           {a=x;
+           ok=1;
+           }
+       else
+       if(ok1==0)
+       {
+           if(a<x)
+           {
+           b=a;
+           a=x;
+           }
+           else
+               b=x;
+               ok1=1;
+       }
+       else
+       {
+           if(b<x)
+           {
+               c=b;
+               b=x;
+           }
+           else
+                c=x;
+               ok2=1;
+       }
+}
+       else
+       {
+           if(a<=x)
+           {
+           c=b;
+           b=a;
+           a=x;
+           }
+           else
+           {
+if(b<=x)
+               {
+               c=b;
+               b=x;
+               }
+               else
+                   if(c<x)
+                   c=x;
+           }
+       }
+       }
+   }
+   cout<<c<<" "<<b<<" "<<a;
+   return 0;
+}

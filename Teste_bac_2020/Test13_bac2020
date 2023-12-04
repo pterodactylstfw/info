@@ -1,0 +1,87 @@
+// test antrenament 13 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+1. a)
+2. d)
+3. a)
+4. c)
+5. b)
+
+//Sub II
+
+1. a) 10375
+    b)1280, 1208,
+    c)...
+    d)cat timp n!=0 si apoi x impartim cu 10*pdoi
+
+2. struct cerc
+{
+    float raza;
+    struct
+    {
+        float x, y;
+    }centru;
+}c;
+
+3.
+ou
+rosu
+
+
+//Sub III
+
+1. una asemanatoare la un test cu numar inferior
+
+2.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,k;
+    int x=1,ct=1;
+    cin>>n>>k;
+    int a[441][21]={0};
+    for(int i=1;i<=n*k;i++)
+    {
+        if(ct>k) x++,ct=1;
+        a[i][1]=x,ct++;
+    }
+    
+    for(int i=1;i<=n*k;i++)
+        for(int j=2;j<=n;j++)
+            a[i][j]=a[i][j-1]+1;
+    
+    for(int i=1;i<=n*k;i++)
+    {  for(int j=1;j<=n;j++)
+        cout<<a[i][j]<<" ";
+        cout<<endl;
+        }
+}
+
+
+3.
+fn=3*fn-1-2*fn-2
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ofstream fout("numere.out");
+int main()
+{
+int n,x;
+cin>>n;
+x=2;
+if(n<2)
+   fout<<n;
+else
+{while(x<=n/2)
+x=x*2;
+while(x)
+{
+fout<<x<<" ";
+x/=2;
+}}
+return 0;
+}
