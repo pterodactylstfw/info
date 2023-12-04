@@ -2,10 +2,31 @@
 //Rezolvari pseudocod/sub 1 pe foaie
 
 //Sub I
-
+1. d)
+2. a)
+3. b)
+4. b)
+5. c)
 
 //Sub II
 
+1. a) 952
+    b)2002, 2022, 2020;
+    c)...
+    d) pentru c=9, 0, -1
+
+2.
+
+struct flori
+{
+    int cod;
+    int nrVarietati;
+    int nrExemplare[10];
+}f[20];
+
+3.
+
+12456 13456 23456
 
 //Sub III
 
