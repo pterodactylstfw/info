@@ -1,0 +1,113 @@
+// test antrenament 13 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+1. 
+2. 
+3. 
+4. 
+5. 
+
+//Sub II
+
+1. a)
+    b)
+    c)
+    d)
+
+2. 
+
+3.
+
+
+//Sub III
+
+
+1.
+
+#include <iostream>
+using namespace std;
+void putere(int n, int &p)
+{
+    int d=2,pu=0;
+    while(n%d==0)
+    {
+        n/=d;
+        pu++;
+    }
+    if(pu!=0) if(p<d) d=p;
+    
+    for(int d=3;d*d<=n&&n>1;d++)
+    {
+        pu=0;
+        while(n%d==0)
+        {
+            n/=d;
+            pu++;
+        }
+        if(pu!=0) if( p<d) p=d;
+    }
+    if(n!=1) if(n>p) p=n;
+}
+
+int main()
+{
+    int n;
+    int p=0;
+    cin>>n;
+    putere(n,p);
+    
+    cout<<p;
+}
+
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256],voc[6]="aeiou";
+    cin.getline(s,256);
+    int ct=0;
+    char *p=strtok(s," ");
+    while(p)
+    {
+        int ctv=0,ctc=0;
+        for(int i=0;i<strlen(p);i++)
+            if(strchr(voc,p[i])!=NULL) ctv++;
+            else ctc++;
+        if(ctc==ctv) ct++;
+        
+        p=strtok(NULL, " ");
+        
+    }
+    
+    cout<<ct;
+    
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ofstream fout("numere.out");
+
+int main()
+{
+    int p1,p2;
+    cin>>p1>>p2;
+    
+    for(int i=1;i<=p1;i++)
+        if(p1%i==0)
+            for(int j=1;j<=p2;j++)
+                if(p2%j==0)
+                    for(int k=0;k<=9;k++)
+                        if(k!=j&&k!=i&&p1/i<10&&i/p1<10&&p2/j<10&&j/p2<10)
+                            fout<<i<<p1/i<<k<<k<<k<<j<<p2/j<<" ";
+    
+    return 0;
+}
