@@ -1,24 +1,33 @@
-// test antrenament 13 bac 2020 info 
+// test antrenament 15 bac 2020 info 
 //Rezolvari pseudocod/sub 1 pe foaie
 
 //Sub I
 
-1. 
-2. 
-3. 
-4. 
-5. 
+1. b)
+2. c)
+3. a)
+4. c)
+5. b)
 
 //Sub II
 
-1. a)
-    b)
-    c)
-    d)
+1. a) 2
+    b) 28, 29
+    c) ...
+    d) cat timp i>=n
 
 2. 
 
-3.
+x1=4, x2=10
+
+3. prea greu
+
+for(int i=0;i<4;i++)
+a[i][0]=i+1;
+for(int i=1;i<4;i++)
+for(int j=0;j<5;j++)
+a[i][j]=a[i-1][j];
+
 
 
 //Sub III
