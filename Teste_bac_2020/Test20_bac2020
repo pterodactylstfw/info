@@ -1,0 +1,86 @@
+// test antrenament 20 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+
+//Sub II
+
+
+//Sub III
+
+1.
+
+int transformareBaza10(int n,int b)
+{
+    int s=0;
+    int p=1;
+    while(n!=0)
+    {
+        
+        s=s+n%10*p;
+        p=p*b;
+        n/=10;
+    }
+    return s;
+}
+
+2.
+
+#include <cstring>
+#include <iostream>
+using namespace std;
+int main()
+{
+    char s[101],num[11]="0123456789";
+    cin.getline(s,101);
+    char aux[101];
+    char *p=strtok(s," ");
+    
+    while(p!=NULL)
+    { char aj[2];
+        int i=0;
+        if(isdigit(p[0]))
+        {
+            strncpy(aj,p,1);
+            strcat(aux,aj);
+            strcat(aux," ");}
+        
+        else
+        {
+            strcat(aux,p);
+            strcat(aux," ");
+        }
+        p=strtok(NULL," ");
+    }
+    strcpy(s,aux);
+    cout<<s;
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main()
+{
+    int x, s = 0, max_s = 0;
+    ifstream f("numere.in");
+    while(f>>x)
+    {
+        if(x % 2 == 0)
+        {
+            s = s + x;
+            if(s > max_s)
+            {
+                max_s = s;
+            }
+        }
+        else
+        {
+            s = 0;
+        }
+    }
+    cout<<max_s;
+
+}

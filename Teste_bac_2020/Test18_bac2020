@@ -1,0 +1,69 @@
+// test antrenament 18 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+
+//Sub II
+
+
+//Sub III
+
+1.
+#include <iostream>
+using namespace std;
+void suma(int n, int&s)
+{
+    int v[9]={0};
+    while(n)
+    {
+        if(n%10%2==0&&v[n%10]==0) {s+=n%10;
+            v[n%10]++;}
+        n/=10;
+    }
+    
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int s=0;
+    suma(n, s);
+    cout<<s;
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+   char cuvinte[21][20]{ '\0' };
+   int n, k;
+   cin >> n >> k;
+   cin.ignore();
+   for (int index = 1; index <= n; index++)
+       cin.getline(cuvinte[index], 20);
+   bool există = false;
+   for (int index = 1; index <= n; index++) {
+       if (index == k) continue;
+       int index_prefix = strlen(cuvinte[k]) - 1;
+       for (int index_aux = strlen(cuvinte[index]) - 1; index_aux >= 0 && index_prefix >= 0; index_aux--, index_prefix--)
+           if (cuvinte[index][index_aux] != cuvinte[k][index_prefix])
+               break;
+       if (index_prefix == -1) {
+           există = true;
+           for (int index_aux = 0; index_aux < strlen(cuvinte[index]); index_aux++)
+               cout << cuvinte[index][index_aux];
+           cout << ' ';
+       }
+   }
+   if (!există)
+       cout << "nu exista";
+   return 0;
+}
+
+3.
+lungime maxima- ma mai gandesc

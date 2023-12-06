@@ -1,0 +1,93 @@
+// test antrenament 17 bac 2020 info 
+//Rezolvari pseudocod/sub 1 pe foaie
+
+//Sub I
+
+
+//Sub II
+
+
+//Sub III
+
+1.
+#include <iostream>
+using namespace std;
+int maxim(int n)
+{
+    int mx=0;
+    while(n!=0)
+    {
+        if(n%10>mx&&n%10%2==1) mx=n%10;
+        n/=10;
+    }
+    return mx;
+    
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    cout<<maxim(n);
+}
+
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[202],aux[202],voc[6]="aeiou";
+    int fin=0;
+    cin.getline(s,202);
+    char *p=strtok(s," ");
+    while(p)
+    {
+        int ok=1;
+        for(int i=0;i<strlen(p);i++)
+            if(strchr(voc,p[i])==NULL) ok=0;
+        if(ok==1) {
+            fin++;
+            strcat(aux,p);
+            strcat(aux," ");
+            strcat(aux,p);
+            strcat(aux," ");}
+        else{ strcat(aux, p);
+            strcat(aux," ");}
+        p=strtok(NULL," ");
+    }
+    
+    strcpy(s,aux);
+    if(fin!=0)
+    cout<<s;
+    else cout<<"nu exista";
+}
+
+
+3.
+
+#include <fstream>
+#include <iostream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n;
+    int v[1000];
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        fin>>v[i];
+    }
+    int ct=0;
+    int x,y;
+    while(fin>>x>>y)
+    {
+        for(int i=1;i<=n;i++)
+            if(x<=v[i]&&v[i]<=y) {ct++;
+                break;}
+    }
+    cout<<ct;
+}
