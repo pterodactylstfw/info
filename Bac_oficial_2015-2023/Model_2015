@@ -1,0 +1,22 @@
+matrice
+
+
+
+subprogram
+
+void subperfect(int a, int b)
+{
+    int ok=0;
+    for(int i=b;i>=a;i--)
+    { int s=0;
+        int d=2;
+        for(d;d<i;d++)
+        {
+            if(i%d==0) s=s+d;
+        }
+        if(s>i) {cout<<i<<" ";
+            ok=1;}
+    }
+    if(ok==0) cout<<"nu exista";
+    
+}
