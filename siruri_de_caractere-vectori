@@ -100,5 +100,138 @@ int main()
     }
 }
 
+problema codificare
 
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[105], c[105];
+    cin >> s >> c;
+    int lungime_totala = 0;
+    char cuvant_initial[105];
+    char cuvant_final[105];
+    for(int i = strlen(c) - 1; i >= 0; i--)
+    {
+        int cifra_curenta = c[i] - 48;
+        if(cifra_curenta % 2 == 1)
+        {
+            cuvant_initial[lungime_totala] = s[i];
+            lungime_totala++;
+        }
+    }
+    cuvant_initial[lungime_totala] = s[0];
+    lungime_totala++;
+    for(int i = 1; i < strlen(c); i++)
+    {
+        int cifra_curenta = c[i] - 48;
+        if(cifra_curenta % 2 == 0)
+        {
+            cuvant_initial[lungime_totala] = s[i];
+            lungime_totala++;
+        }
+    }
+    for(int i = 0; i < lungime_totala; i++)
+        cuvant_final[i] = cuvant_initial[lungime_totala - 1 - i];
+    cout << cuvant_final;
+    return 0;
+}
+
+
+problema nuci si castane
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[101],numar[100],maxim[100];
+    cin.getline(s,101);
+    char *p=strtok(s," ");
+    int mx=0;
+    while(p)
+    {
+        
+        
+            int nr=atoi(p);
+            
+            strcpy(numar,p);
+            while(nr>9)
+                nr/=10;
+            if(mx<nr) {nr=mx;
+                strcpy(maxim,numar);}
+            p=strtok(NULL," ");
+        
+            
+    }
+    if(strlen(maxim)>0)cout<<maxim;
+    else cout<<"nu exista";
+}
+
+
+problema cuvinte cu n litere
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n;
+    char s[101];
+    cin.getline(s,101);
+    cin>>n;
+    cin.ignore();
+    char *p=strtok(s," ");
+    int ok=0;
+    while(p)
+    {
+        if(strlen(p)==n) {cout<<p<<endl;
+            ok=1;}
+        p=strtok(NULL, " ");
+    }
+    if(ok==0) cout<<"nu exista";
+    
+}
+
+cuvinte in oglinda etamina animate
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+int EstePalindrom(char *k)///verificam daca sirul de caractere separat (cuvantul) este palindrom
+{
+   int n=strlen(k); ///n reprezinta lungimea cuvantului
+   for(int i=0;i<n;i++) ///sirurile de caractere sunt indexate de la 0, asadar pornim cu for-ul de la 1 si ne oprim la pozitia n-1
+       if(k[i]!=k[n-i-1]) return 0;
+   return 1;
+}
+int main()
+{
+   char a[101],aux[101],rezultat[101];
+   aux[0]=0;///eliminam valorile reziduale
+   rezultat[0]=0;
+   int n,gasit=0;
+   cin.getline(a,101);
+   char *p=strtok(a," "); ///separam sirul de caractere in cuvinte
+   while(p)
+   {
+       strcpy(aux,p);
+       n=strlen(p);
+       if(n%2==1) ///verificam daca lungimea cuvantului este numar impar
+           if(!EstePalindrom(p)) ///verificam daca nu este palindrom
+           {
+               gasit=1; ///am gasit un cuvant de indeplineste conditia, asadar nu vom afisa "NU EXISTA"
+               for(int i=0;i<n;i++)
+                   aux[n-i-1]=p[i];///facem oglinditul
+               aux[n]=0;///eliminam valorile reziduale
+           }
+       strcat(rezultat,aux);///depunem toate cuvintele intr-un alt sir de caractere
+       strcat(rezultat," ");
+       p=strtok(NULL," ");
+   }
+   if(gasit==0) cout<<"NU EXISTA";///un reper pentru desene
+   else cout<<rezultat;///era o selectie reper de desene animate prezenta
+}
 
