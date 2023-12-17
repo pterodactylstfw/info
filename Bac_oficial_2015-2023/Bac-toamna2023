@@ -1,0 +1,108 @@
+Subiectul I
+ 1. b)
+ 2. c)
+ 3. a)
+ 4. b)
+ 5. d)
+
+ Subiectul II
+
+ 1. a) 2
+    b) 5,0,4,0
+    c)...
+    d) pentru i<-1, n executa
+
+2. nodurile 2,3
+
+3.
+
+Subiectul III
+
+1.
+
+void DNPI(int n)
+{
+    int ok;
+    for(int d=1;d<=n;d++)
+    { ok=1;
+        if(n%d==0&&d%2==1)
+        {
+            if(d==0||d==1) ok=0;
+            else if(n!=2&&n%2==0) ok=0;
+            else
+                for(int div=3;div*div<=d;d+=2)
+                    if(d%div==0) ok=0;
+        }
+        if(ok==0) cout<<d<<" ";
+    }
+}
+
+2. 
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,m,a[21][21];
+    cin>>m>>n;
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=n;j++)
+            cin>>a[i][j];
+    int mxf=0;
+    for(int i=1;i<m;i++)
+        for(int j=1;j<n;j++)
+        {
+        int mx=a[i][j]+a[i][j+1]+a[i+1][j]+a[i+1][j];
+            if(mx>mxf) {mxf=mx;
+            }
+    }
+    cout<<mxf;   
+}
+
+3.
+
+#include<iostream>
+#include <fstream>
+std::ifstream inp("date in");
+void quicksort(int D[], int s, int d)
+{
+if (s < d)
+{
+int m = (s+d) / 2;
+int t = D[s];
+D[s] = D[d];
+D[d] = t;
+int i=s, j=d, S=0;
+while (i < j) {
+if (D[i] > D[j]) {
+int temp = D[i];
+D[i] = D[j];
+D[j] = temp;
+S = 1-S;
+}
+i += S;
+j -= 1-S;
+}
+quicksort(D, s, i-1);
+quicksort(D, i+1, d);
+}
+}
+int main()
+{
+int n, m;
+inp >> n >> m;
+int l=0;
+int *A = new int[n];
+int *B = new int[m];
+for (int i=0; i<n; i++)
+inp >> A[i];
+for (int j=0; j<m; j++)
+inp >> B[j];
+quicksort(A, 0, n-1);
+quicksort(B, 0, m-1);
+for (int i=0; i<m; i++)
+if (A[i] == B[i])
+l++;
+std::cout << l;
+delete[] A, B;
+return 0;
+}
