@@ -1,0 +1,95 @@
+FISIER SIRURI DE CARACTERE 9 IANUARIE 2024!!
+
+// Problema 3
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256],zi[5][10]={"luni","marti","miercuri","joi","vineri"};
+    cin.getline(s,256);
+    int a[5]={0};
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        for(int i=0;i<5;i++)
+            if(strcmp(p,zi[i])==0&&a[i]==0) {cout<<p<<endl;
+                a[i]++;}
+        
+        p=strtok(NULL," ");
+        
+    }
+}
+
+
+//Problema 4
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[20][11],aux[20][11];
+    int k,n;
+    cin>>n>>k;
+    cin.ignore();
+    for(int i=0;i<n;i++)
+        cin.getline(s[i],10);
+    cout<<endl;
+    int ct=0;
+    for(int i=0;i<n&&k>0;i++)
+    {
+        
+        if(strchr("aeiou",s[i][strlen(s[i])-1])!=NULL)
+        { strcpy(aux[ct],s[i]);
+            ct++;
+            k--;}
+        
+    }
+    
+    if(k>0) cout<<"nu exista";
+    else
+        for(int i=0;i<ct;i++)
+            cout<<aux[i]<<endl;
+    
+    
+}
+
+// Problema 5
+
+s=examen
+ s[0]='E' => s= Examen 
+ s[strlen(s)-1]='A' => s=ExameA
+ s[2]=N => s=ExNmeA
+ s[3]=M => s=ExNMeA
+
+
+ // Problema 6
+
+ c=tamara
+ for i=0, i<6;i++
+ p=strchr(c,'a') 
+
+ af 111111
+
+ //Problema 8
+
+ #include <iostream>
+ #include <cstring>
+ using namespace std;
+ int main()
+ {
+    char s[256],t[256],aux[256];
+    cin.getline(s,256);
+    cin.getline(t,256);
+    char *p=strstr(s,t);
+    while(p)
+    {
+        strcpy(aux,p+strlen(t));
+        strcpy(p,aux);
+        p=strstr(s,t);
+    }
+
+    cout<<s;
+ }
