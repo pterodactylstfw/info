@@ -93,3 +93,110 @@ s=examen
 
     cout<<s;
  }
+
+ // Problema 9
+
+ #include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[50][31];
+    int n,lg=0;
+    cin>>n;
+    cin.ignore();
+    for(int i=0;i<n;i++)
+    {
+        cin.getline(s[i],31);
+        if(lg<strlen(s[i])) lg=strlen(s[i]);
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        if(strlen(s[i])==lg){
+            cout<<s[i];
+            break;
+        }
+    }
+    
+}
+
+
+// Problema 10
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[50][31];
+    int n,lg=0;
+    cin>>n;
+    cin.ignore();
+    for(int i=0;i<n;i++)
+    {
+        cin.getline(s[i],31);
+        if(lg<strlen(s[i])) lg=strlen(s[i]);
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        if(strlen(s[i])==lg){
+            cout<<s[i]<<endl;
+            
+        }
+    }
+    
+}
+
+
+// Problema 11
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[49][31],cuv[31];
+    int n,lg=0;
+    cin>>n;
+    cin.ignore();
+    for(int i=0;i<n-1;i++)
+    {
+        cin.getline(s[i],31);
+    }
+    cout<<endl;
+    cin.getline(cuv,31);
+    
+    for(int i=0;i<n-1;i++)
+    {
+        if(strstr(s[i],cuv)!=NULL) cout<<s[i]<<endl;
+    }
+}
+
+// Problema 12
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[49][31],cuv[31];
+    int n,lg=0;
+    cin>>n;
+    cin.ignore();
+    for(int i=0;i<n-1;i++)
+    {
+        cin.getline(s[i],31);
+    }
+    cout<<endl;
+    int ct=0;
+    cin.getline(cuv,31);
+    
+    for(int i=0;i<n-1;i++)
+    {
+        if(strstr(s[i],cuv)==s[i]+(strlen(s[i]))-strlen(cuv)) ct++;
+    }
+    
+    cout<<ct;
+}
