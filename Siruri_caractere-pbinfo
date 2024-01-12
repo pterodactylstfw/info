@@ -410,6 +410,50 @@ int main()
 
 
 
+// #2794 Codificare
 
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    char num[256];
+    cin.getline(num,256);
+    char aux[256];
+    int a[strlen(num)];
+    strncat(aux,s,1);
+    if(strlen(s)!=strlen(num)) cout<<"cod incorect";
+    for(int i=1;i<strlen(num);i++)
+    {
+        char lit[2];
+        strncpy(lit,num+i,1);
+        a[i]=atoi(lit);
+    }
+    for(int i=1;i<strlen(num);i++)
+    {
+        if(a[i]%2==0)
+        {
+            char lit[2];
+            lit[0]=s[i];
+            
+            char aux2[256];
+            strcpy(aux2,aux);
+            strcpy(aux,lit);
+            strcat(aux,aux2);
+        }
+        else if(a[i]%2==1)
+        {
+            char lit[2];
+            lit[0]=s[i];
+            strcat(aux,lit);
+        }
+    }
+    
+    strcpy(s,aux);
+    cout<<s;
+}
 
 
