@@ -285,5 +285,131 @@ int main()
 
 
 
-// #
+// #2346 ParitateSiruri
+
+#include <fstream>
+#include <cstring>
+using namespace std;
+ifstream fin("paritatesiruri.in");
+ofstream fout("paritatesiruri.out");
+int main()
+{
+    char s[101][10001];
+    int k;
+    fin>>k;
+    fin.ignore();
+    for(int i=0;i<k;i++)
+    {
+        fin.getline(s[i],10000);
+        
+        
+    }
+    
+    for(int i=0;i<k;i++)
+    {
+        for(int j=1;j<strlen(s[i]);j++)
+            if(j%2==1) fout<<s[i][j];
+        
+        
+        fout<<" ";
+        for(int j=0;j<strlen(s[i]);j++)
+            if(j%2==0) fout<<s[i][j];
+        fout<<endl;
+    }
+}
+
+
+// #2680 Poezie
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    char s[255],sep[]=".,!?";
+    int n;
+    cin>>n;
+    cin.get();
+    for(int i=1;i<=n;i++)
+    {
+        cin.getline(s,sizeof(s));
+        for(int j=0;j<strlen(s);j++)
+        if(strchr(sep,s[j]) && s[j+1]!=NULL)
+        {
+            char aux[255];
+            strcpy(aux,s+j+1);
+            strcpy(s+j,aux);
+            j--;
+        }
+        cout<<s<<'\n';
+    }
+    return 0;
+}
+
+//2804 strncat
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n,x;
+    char s[1001],aux[1001];
+    cin.getline(s,1001);
+    cin>>n;
+    cin.ignore();
+    strcpy(aux,s);
+    
+    char rev[1001];
+    int i=0,j=strlen(s)-1;
+    while(i<strlen(s))
+    {
+        rev[j]=s[i];
+        i++;j--;
+    }
+    
+    for(int i=1;i<=n;i++)
+    {
+        cin>>x;
+        if(x%2==0){
+            
+            strncat(aux,s,x);}
+        else{
+            
+            strncat(aux,rev+strlen(rev)-x-1,x);
+            
+        }
+    }
+    cout<<aux;
+}
+
+//rev=anila
+
+// #133 NumePrenume
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    char a[250] , b[250];
+    cin >> a >> b;
+    int i = 0;
+    while(b[i]!='\0')
+    {
+        if(b[i]=='a' || b[i]=='e' || b[i]=='i' || b[i]=='o' || b[i]=='u' || b[i]=='A' || b[i]=='E' || b[i]=='I' || b[i]=='O' || b[i]=='U')
+        {}
+        else
+            cout << b[i];
+        i++;    
+    }
+    cout << ' ';
+    cout << a;
+    return 0;    
+}
+
+
+
+
+
 
