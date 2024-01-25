@@ -1,0 +1,63 @@
+// Subiectul I
+
+
+//Subiectul II
+
+
+//Subiectul III
+
+1.
+#include<iostream>
+#include<cstring>
+using namespace std;
+char s[201],t[1001];
+int i;
+int main()
+{
+
+    cin.getline(s,201);
+    for(i=0;s[i];i++)
+    {
+        t[strlen(t)]=s[i];
+        if(strchr("aceiouAEIOU",s[i]))
+            strcat(t,"STOP");
+    }
+    cout<<t;
+}
+
+
+2.
+int duplicat(int a[],int n)
+{
+    int v[1001]={0};
+    for(int i=1;i<=n;i++)
+    {
+        if(v[a[i]]==1) return a[i];
+        else if(v[a[i]]==0) v[a[i]]=1;
+    }
+    return 0;
+}
+
+
+3.
+#include<fstream>
+#include<iostream>
+using namespace std;
+ifstream fin("info.txt");
+int v[82],n,i,k,s;
+int main()
+{
+fin>>n;
+while(n--)
+{
+
+fin>>i;
+s=0;
+while(i)
+s=s+i%10,i=i/10;
+v[s]++;
+}
+for(i=0;i<82;i++)
+k=k+v[i]*(v[i]-1)/2;
+cout<<k;
+}

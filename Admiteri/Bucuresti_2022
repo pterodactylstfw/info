@@ -1,0 +1,66 @@
+//ex 1
+
+#include <iostream>
+using namespace std;
+void QuickSort(int v[], int st, int dr)
+{
+    if(st < dr)
+    {
+        //pivotul este inițial v[st]
+        int m = (st + dr) / 2;
+        int aux = v[st];
+        v[st] = v[m];
+        v[m] = aux;
+        int i = st , j = dr, d = 0;
+        while(i < j)
+        {
+            if(v[i] < v[j])
+            {
+                aux = v[i];
+                v[i] = v[j];
+                v[j] = aux;
+                d = 1 - d;
+            }
+            i += d;
+            j -= 1 - d;
+        }
+        QuickSort(v, st , i - 1);
+        QuickSort(v, i + 1 , dr);
+    }
+}
+
+int main(){
+    int cazane[1000], pacatosi[1000];
+    int n, m;
+    cin >> n >> m;
+    for(int i=0; i < n; i++)
+        cin >> cazane[i];
+    for(int i=0; i < m; i++)
+        cin>> pacatosi[i];
+    
+    QuickSort(cazane, 0, n-1);
+    
+    int nrc=1, nrp=0;
+    int c=cazane[0];
+    
+    int i=0,j=0;
+    while(i<n&&j<m)
+    {
+        nrp+=pacatosi[j];
+        
+        if(nrp>c) {nrc++;
+            c+=cazane[++i];}
+        
+        j++;
+        cout<<nrc<<" ";
+    }
+    
+    
+        
+    
+    
+}
+
+
+
+//ex 2
