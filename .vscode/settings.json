@@ -3,6 +3,7 @@
         "*.embeddedhtml": "html",
         "siruri_caractere-pbinfo": "c",
         "fstream": "cpp",
-        "test10_bac2020": "cpp"
+        "test10_bac2020": "cpp",
+        "bac-vara2022": "cpp"
     }
 }

@@ -1,0 +1,81 @@
+1.
+void secventa(int &n)
+{
+    char v[9];
+    int i=0;
+    while(n!=0)
+    {
+        v[i]=n%10;
+        n/=10;
+        i++;
+    }
+    
+    for(int k=0;k<i;k++)
+    {
+        if(v[k]==2&&v[k+1]==2)
+            v[k]=0;
+    }
+    
+    for(int k=i-1;k>=0;k--)
+        n=n*10+v[k];
+    
+}
+
+2.
+///bac_eroziune - 4183
+///IRM
+#include <iostream>
+using namespace std;
+short L,C,i,j,mic;
+int S;
+int main()
+{
+    cin>>L>>C;
+    short a[L+1][C+1];
+    for(i=1; i<=L; i++)
+        for(j=1; j<=C; j++)
+            cin>>a[i][j];
+    for(i=1; i<=L; i++)
+        for(j=1; j<=C; j++)
+        {
+            mic=32767;
+            if(i-1>=1 && a[i-1][j]<=mic)
+                mic = a[i-1][j];
+            if(i+1<=L && a[i+1][j]<=mic)
+                mic = a[i+1][j];
+            if(j-1>=1 && a[i][j-1]<=mic)
+                mic = a[i][j-1];
+            if(j+1<=C && a[i][j+1]<=mic)
+                mic = a[i][j+1];
+            if(a[i][j]<mic)
+                S+=mic-a[i][j];
+        }
+    cout<<S;
+    return 0;
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,y;
+    fin>>x>>y;
+    int n;
+    int m;
+    fin>>m;
+    int ct=0;
+    if(n>=x&&n<=y)ct++;
+    while(fin>>n)
+    {
+        if(n>=x&&n<=y&&n!=m) ct++;
+        m=n;
+    }
+    
+    cout<<ct;
+    
+}
