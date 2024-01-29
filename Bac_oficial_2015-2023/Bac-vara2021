@@ -1,0 +1,83 @@
+1.
+
+void divPrim(int n, int &s)
+{
+    int p=0;
+    int d=2;
+    
+        while(n%d==0)
+    {n/=d;
+        p++;}
+    
+    if(p%2==1) s+=d;
+    
+    for(d=3;d*d<=n&&n>1;d++)
+    {
+        p=0;
+        while(n%d==0)
+        {
+            p++;
+            n/=d;
+        }
+        if(p%2==1) s+=d;
+            
+        
+    }
+    
+    if(n>1) s+=n;
+    
+    cout<<s;
+}
+
+2.
+
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main(){
+    char voc[6]="aeiou";
+    int aux;
+    char s[20][11];
+    int n;
+    cin>>n;
+    int k;
+    cin>>k;
+    aux=k;
+    cin.ignore();
+    for(int i=0;i<n;i++)
+        cin.getline(s[i],10);
+    for(int i=0;i<n&&k!=0;i++)
+    {
+        if(strchr(voc,s[i][strlen(s[i])-1])!=NULL&&strchr(voc,s[i][strlen(s[i])-2])!=NULL) {k--;
+            cout<<s[i]<<endl;}
+    }
+    
+    if(k==aux) cout<<"nu exista";
+}
+
+3.
+
+#include    <iostream>
+#include    <fstream>
+using namespace std;
+ifstream fin("bac.txt");
+int main()
+{
+    unsigned int sufix, nr_1, nr_2, ultim = -1, precedent = -1;
+    fin >> sufix >> nr_1;
+    while(fin >> nr_2)
+    {
+        if(nr_1 % 1000 == sufix && nr_2 % 1000 == sufix)
+        {
+            ultim = nr_2;
+            precedent = nr_1;
+        }
+        nr_1 = nr_2;
+    }
+    if(ultim != -1)
+        cout << precedent << " " << ultim;
+    else
+        cout << "nu exista";
+    return 0;
+}
+
