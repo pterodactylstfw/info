@@ -1,0 +1,31 @@
+1.
+
+mai incearca!
+
+2.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int ns,np,a[101][51];
+    cin>>ns>>np;
+    for(int i=1;i<=ns;i++)
+        for(int j=1;j<=np;j++)
+            cin>>a[i][j];
+    
+    for(int i=1;i<=ns;i++)
+    {int mx=0,poz=0;
+        for(int j=1;j<=np;j++)
+        {
+            
+            if(a[i][j]>mx){mx=a[i][j];
+                poz=j;}
+               }
+        cout<<i<<":"<<poz<<" ";
+    }
+}
+
+
+3.
+
+2 vectori, 1 prefix si 1 sufix
