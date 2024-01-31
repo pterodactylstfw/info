@@ -1,0 +1,21 @@
+1.
+int armstrong(int n){
+    int k, aux, s, i, p;
+    k = s = 0;
+    aux = n;
+    while(aux!=0){
+        k++;
+        aux=aux/10;
+    }
+    aux=n;
+    while(aux!=0){
+        p=1;
+        for(i=1;i<=k;i++)
+            p=p*(aux%10);
+        s=s+p;
+        aux=aux/10;
+    }
+    return n==s;
+}
+
+2.

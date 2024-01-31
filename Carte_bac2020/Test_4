@@ -1,0 +1,83 @@
+1.
+int nrmax(int a, int b)
+{
+    int v[9]={0};
+    while(a!=0)
+    {
+        if(a%2==1&&v[a%10]==0)
+            v[a%10]++;
+        a/=10;
+    }
+    while(b!=0)
+    {
+        if(b%2==1&&v[b%10]==1)
+            v[b%10]++;
+        b/=10;
+    }
+    
+    int nr=0;
+    
+    for(int i=9;i>=1;i-=2)
+        if(v[i]==2)
+            nr=nr*10+i;
+    
+    return nr;
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[251];
+    cin.getline(s,250);
+    char aux[251];
+    char * p=strtok(s, " ");
+    
+    while(p!=NULL)
+    {
+        
+        
+        if(strlen(p)%2==0){
+            char cuv[15];
+            strcpy(cuv,p+strlen(p)/2);
+            strncat(cuv,p,strlen(p)/2);
+            strcat(aux,cuv);
+            strcat(aux," ");
+            
+        }
+        
+        else
+    { strcat(aux,p);
+        strcat(aux," ");
+        
+    }
+        p=strtok(NULL," ");
+    }
+    
+     aux[strlen(aux)-1]=NULL;
+    
+    if(strcmp(aux,s)==0) cout<<"TEXT NEMODIFICAT";
+    else cout<<aux;
+}
+
+3.
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+int v[1000];
+ifstream fin ("numere.in");
+int main()
+{
+    long x, ok=0;
+    while (fin>>x) if (x<1000)v[x]++;
+    x=999;
+    while (x>=100&&ok==0)
+        if (v[x]==0 && v[1000-x]!=0) ok=1;
+        else x--;
+    if (ok) cout<<x;
+    else cout<<"NU EXISTA";
+    return 0;
+}

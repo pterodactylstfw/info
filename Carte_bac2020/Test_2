@@ -1,13 +1,6 @@
-//Sub I
 
-
-//Sub II
-
-
-
-//Sub III
-
-1.void perechi(int n, int v[],int &p)
+1.
+void perechi(int n, int v[],int &p)
 {
     for(int i=1;i<n;i++)
     {
