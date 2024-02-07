@@ -1,0 +1,134 @@
+Subiectul I
+
+1. c)
+2. a) 46402
+    b)  1040, 1041, 1050, 1051, 1140, 1141, 1150, 1151
+    c)  citeste n (numar natural)
+                     m<-0
+                     p<-1
+                 - repeta
+                 |       -daca n%2<>0 atunci
+                 |       |        n<-n-1
+                 |       |_
+                 |
+                 |   m<-m+(n%10)*p
+                 |   n<-[n/10]
+                 |   p<-p*10
+                 | pana cand n<=0
+                 |_
+                scrie m
+
+    d)
+    #include <iostream>
+using namespace std;
+int main()
+{
+    unsigned int m,n,p;
+    cin>>n;
+    m=0;
+    p=1;
+    while(n>0)
+    {
+        if(n%2!=0)
+            n=n-1;
+        m=m+(n%10)*p;
+        n=n/10;
+        p=p*10;
+    }
+    cout<<m;
+    return 0;
+}
+
+Subiectul II
+
+1. b)
+
+2. b)
+
+3.
+cout<<(s.A.x-s.B.x)*(s.A.x-s.B.x)+(s.A.y-s.B.y)*(s.A.y-s.B.y);
+
+4. 
+a[i][j]=(i+j)%5;
+
+5.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s1[30],pref[30],suf[30];
+    cin.getline(s1,30);
+    char s2[30];
+    cin.getline(s2,30);
+    int l1=strlen(s1),l2=strlen(s2);
+    for(int i=0;i<min(l1,l2);i++)
+    {
+        strncpy(pref,s2,i);
+        pref[i]='\0';
+        strcpy(suf,s1+l1-i);
+        if(strcmp(suf,pref)==0)
+        cout<<suf<<endl;
+    }
+}
+
+
+Subiectul III
+
+1. c)
+
+2. 94*2*10
+
+3.
+
+void dublu(int &n, int a[50])
+{
+    int i,j;
+    for(i=0;i<n;i++)
+    {
+        if (a[i]>0)
+        {
+            n++;
+            for(j=n-1;j>i+1;j--)
+                a[j]=a[j-1];
+            a[i+1]=a[i];
+            i++;
+        }
+    }
+}
+
+4.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ int cifre( int n,int k)
+{
+   int aux,a[10],i=0,t=0,p=1;
+    aux=n;
+    while(aux)
+        {
+            a[i]=aux%10;
+            aux=aux/10;
+            i++;
+            t++;
+        }
+    for(i=0;i<t-1;i++)
+       if(!((a[i]-a[i+1])==k))
+            p=0;
+    return p;
+}
+int main()
+{
+    ofstream g("numere.in");
+    unsigned int x;
+    long i;
+    do
+    {
+       cin>>x;
+    }while(x<1 || x>8);
+   for(i=10;i<=123456789;i++)
+    if(cifre(i,x))
+        g<<i<<endl;
+    return 0;
+}
+
