@@ -1,0 +1,122 @@
+1.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+ifstream fin("numere.in");
+ofstream fout("numere.out");
+char n1[51], n2[51];
+int rez[55], k;
+int main()
+{
+    fin.getline(n1,51);
+    fin.getline(n2,51);
+    
+    if(strlen(n1)<strlen(n2))
+    {
+        char aux[51]="";
+        for(int i=1;i<=strlen(n2)-strlen(n1);i++)
+            strcat(aux,"0");
+        strcat(aux,n1);
+        strcpy(n1,aux);
+    }
+    
+    else if(strlen(n1)>strlen(n2))
+    {
+        char aux[51]="";
+        for(int i=1;i<=strlen(n1)-strlen(n2);i++)
+            strcat(aux,"0");
+        strcat(aux,n2);
+        strcpy(n2,aux);
+    }
+    
+    int t=0;
+    k=1;
+    for(int i=strlen(n1)-1;i>=0;i--)
+    {
+        int s=t+(n1[i]-'0')+(n2[i]-'0');
+        rez[k++]=s%10;
+        t=s/10;
+    }
+    if(t!=0) rez[k]=t;
+    
+    for(int i=k;i>=1;i--)
+        fout<<rez[i];    
+}
+
+2.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+ofstream fout("numere.out");
+float a[51];
+float b[51];
+int n,m;
+int main()
+{
+    
+    fin>>n>>m;
+    for(int i=0;i<=n;i++)
+    {
+        float x;
+        fin>>x;
+        a[i]=x;
+    }
+    for(int i=0;i<=m;i++)
+    {
+        float x;
+        fin>>x;
+        b[i]=x;
+    }
+    int gm=max(n,m);
+    fout<<gm<<endl;
+    for(int i=0;i<=gm;i++)
+        fout<<fixed<<setprecision(2)<<a[i]+b[i]<<" ";
+    
+        
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+ofstream fout("numere.out");
+float a[51];
+float b[51],c[52];
+int n,m;
+int main()
+{
+    
+    fin>>n>>m;
+    for(int i=0;i<=n;i++)
+    {
+        float x;
+        fin>>x;
+        a[i]=x;
+    }
+    for(int i=0;i<=m;i++)
+    {
+        float x;
+        fin>>x;
+        b[i]=x;
+    }
+    int gm=n+m;
+    fout<<gm<<endl;
+    
+    for(int i=0;i<=n;i++)
+        for(int j=0;j<=m;j++)
+        {
+            int grd=i+j;
+            c[grd]+=a[i]*b[j];
+        }
+    
+    for(int i=0;i<=gm;i++)
+        fout<<c[i]<<" ";
+    
+        
+}
+

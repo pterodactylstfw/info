@@ -1,0 +1,61 @@
+1.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int a[15][15];
+    for(int i=1;i<=n;i++)
+    { a[n][i]=i;
+        a[i][1]=1;}
+    
+    for(int i=n-1;i>=1;i--)
+        for(int j=1;j<=n;j++)
+            a[i][j]=a[i+1][j]+a[i][j-1];
+    
+    for(int i=1;i<=n;i++)
+    {for(int j=1;j<=n;j++)
+        cout<<a[i][j]<<" ";
+        cout<<endl;}
+}
+
+2.
+void zero(int v[],int n)
+{
+    for(int i=1;i<=(2*n)-1;i++)
+        for(int j=i+1;j<=2*n;j++)
+        {
+            if(v[i]%2!=i%2&&v[j]%2!=j%2)
+                swap(v[i],v[j]);
+        }
+}
+APROAPE CORECT
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream f("numere.in");
+int main()
+{
+    int n,x,i,max=-1,nrap,t;
+       f>>n;
+      while(f>>x)
+           {   i++;
+               if(x>max)
+                   {max=x;
+                    nrap=0;
+                    t=i-1;
+                    };
+               if(max>x)
+                   nrap++;
+           }
+           nrap=nrap+t;
+       if(nrap>n/2)
+           cout<<"Da";
+       else
+           cout<<"Nu";
+         f.close();
+       return 0;
+   }

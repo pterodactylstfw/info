@@ -1,0 +1,14 @@
+1.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[100];
+    cin.getline(s,100);
+    char a[50];
+    strncpy(a,s,strlen(s)/2);
+    cout<<a;
+}
+
+2.
