@@ -1,0 +1,48 @@
+1.
+
+long long conversie(int n, int b1, int b2) {
+//formarea numarului din baza b1 in baza 10
+long long x=0,p=1,m; while(n)
+{
+x=x+(n%10)*p;
+n=n/10;
+}
+
+while(x)
+{
+m=m+(x%b2)*p;
+p=p*10;
+x=x/b2;
+}
+return m;
+}
+
+2.
+
+#include<iostream> #include<cstring> using namespace std; char s[202];
+int i,p1,p2,l,j,ok;
+int main()
+{
+cin.get(s,201,'\n'); l=strlen(s); for(i=0;i<l;i++)
+{
+p2=i;
+///parcurgem intervalul [p1,p2] si calculam vocalele/consoanele
+ok=0;
+(30 de puncte)
+ ///delimitam cuvintele-inceput
+if ((i==0 or s[i-1]==' ') and s[i]!=' ') p1=i;
+///finalul de cuvant
+if ((i==l-1 or s[i+1]==' ') and s[i]!=' ') {
+48
+BACALAUREAT 2020     INFORMATICA
+for(j=p1;j<=p2;j++)
+if (strchr("aeiou",s[j])!=NULL) ok++;
+if (ok*2==p2-p1+1) {
+///dublul numarului de vocale este lungimea cuvantului, facem inversarea
+while(p1<p2) {
+///interchimbare literele de la capete, spre mijlocul cuvantului
+swap(s[p1],s[p2]); p1++;
+p2--;
+} }
+} }
+cout<<s; }
