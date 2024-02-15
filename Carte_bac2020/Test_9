@@ -1,0 +1,28 @@
+1.
+int comune(int a, int b)
+{
+    int v[9]={0},nr=0;
+    while(a)
+    {
+        if(v[a%10]==0)
+            v[a%10]++;
+        a/=10;
+    }
+    while(b)
+    {
+        if(v[b%10]<2)
+            v[b%10]++;
+        b/=10;
+    }
+    
+    for(int i=9;i>=0;i--)
+        if(v[i]==2) nr=nr*10+i;
+    
+    
+    if(nr!=0) return nr;
+    
+    
+    return -1;
+}
+
+2.

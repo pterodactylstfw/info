@@ -1,0 +1,76 @@
+1.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    char aux[255];
+    while(p)
+    {
+        strcat(aux,p);
+        strcat(aux, " ");
+        p=strtok(NULL," ");
+        
+    }
+    
+    strcpy(s,aux);
+    cout<<s;
+    
+}
+
+2.
+
+int sub(int n, int v[], int k)
+{
+    int s=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(k!=0)
+        if(v[i]%2==1)
+        {
+            s+=v[i];
+            k--;
+        }
+    }
+    if(k>0) return -1;
+    return s;
+    
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+
+int nr_cif(int n)
+{
+    int c=1;
+    while(n!=0)
+    {
+        c*=10;
+        n/=10;    }
+    return c;
+}
+
+int main()
+{
+    int n;
+    fin>>n;
+    int x;
+    int nr=0;
+    int c=nr_cif(n);
+    while(fin>>x)
+    {
+        int aux=x;
+        if(x%c==n) nr=aux;
+    }
+    
+    cout<<nr;
+    fin.close();
+}

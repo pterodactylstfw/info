@@ -1,0 +1,40 @@
+1.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int m,n,a[101][101];
+    int nr=2;
+    cin>>m>>n;
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=n;j++)
+        {
+            if(nr%5==0) {nr+=2;
+                a[i][j]=nr;}
+            else a[i][j]=nr;
+            nr+=2;
+        }
+    
+    for(int i=1;i<=m;i++)
+    {for(int j=1;j<=n;j++)
+        cout<<a[i][j]<<" ";
+        cout<<endl;
+        }
+}
+
+2.
+
+void triplete(int n)
+{
+    for(int i=0;i<=n-2;i++)
+        for(int j=0;j<=n-1;j++)
+            for(int k=0;k<=n;k++)
+                if(i<j&&j<k)
+                    if((i*j+j*k)==n)
+                        cout<<"("<<i<<", "<<j<<", "<<k<<")"<<endl;
+}
+
+3.
+
+

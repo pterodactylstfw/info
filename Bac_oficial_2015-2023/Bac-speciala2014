@@ -1,0 +1,78 @@
+1.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256],aux[256];
+    int ok=0;
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    
+    while(p)
+    {
+        if(strlen(p)%2==1&&strlen(p)>1)
+        {
+            strcpy(p+(strlen(p)/2),p+(strlen(p)/2+1));
+            ok=1;
+        }
+        strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    if(ok==1)
+    {strcpy(s,aux);
+        cout<<s;}
+    else cout<<"nu exista";
+}
+
+2.
+void perfect(int a, int b)
+{
+    int ok=0;
+    for(int i=b;i>=a;i--)
+    {
+        
+        int sd=0;
+        for(int d=1;d<i;d++)
+            if(i%d==0) sd+=d;
+        if(sd==i) { ok=1;
+            cout<<i<<" ";}
+    }
+    if(ok==0) cout<<"nu exista";
+    
+}
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,y;
+    int lg=0,lgmax=0,ct=0,nr;
+    fin>>y;
+    while(fin>>x)
+    {
+        if(x==y)
+        {
+            lg++;
+            
+        }
+        else
+            if(lg>lgmax)
+            {
+                ct=lg;
+                lgmax=lg;
+                nr=y;
+                lg=0;
+            }
+        y=x;
+    }
+    cout<<ct<<endl;
+    for(int i=1;i<=ct;i++)
+        cout<<nr<<" ";
+        
+}

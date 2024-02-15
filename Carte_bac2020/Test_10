@@ -1,0 +1,82 @@
+1.
+int comune(int a, int b)
+{
+    int v[9]={0};
+    while(a!=0)
+    {
+        v[a%10]=1;
+        a/=10;
+        
+    }
+    while(b!=0)
+    {
+        if(v[b%10]==1) v[b%10]=2;
+        b/=10;
+    }
+    int nr=0;
+    for(int i=9;i>=0;i--)
+       if(v[i]==2)
+           nr=nr*10+i;
+    
+    return nr;
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int nrvoc(char s[])
+{
+    char voc[6]="aeiou";
+    int ct=0;
+    for(int i=0;i<strlen(s);i++)
+        if(strchr(voc,s[i])!=NULL) ct++;
+    
+    return ct;
+    
+}
+
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char v[15][20];
+    char *p=strtok(s," ,.");
+    int n=1;
+    while(p!=NULL)
+    {
+        strcpy(v[n],p);
+        n++;
+        p=strtok(NULL," ");
+    }
+    
+    char ucuv[20];
+    strcpy(ucuv,v[n-1]);
+    
+    for(int i=1;i<n-1;i++)
+        if(nrvoc(v[i])==nrvoc(ucuv)) cout<<v[i]<<endl;
+}
+
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("bac.txt");
+int a[100],b[100],x,maxi, ok;
+int main() {
+while(fin>>x) {
+if(x>9&&x<100) a[x]++;
+else if(x>99)
+{
+while(x>99)
+x=x/10; b[x]++;
+} }
+for(x=10;x<100;x++) if(a[x]&&b[x]) if(a[x]>maxi) maxi=a[x];
+for(x=10;x<100;x++) if(a[x]&&b[x]) if(a[x]==maxi)
+{
+cout<<x<<' '; ok=1;
+} if(!ok)
+cout<<"nici o valoare";
+return 0; }

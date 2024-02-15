@@ -1,0 +1,42 @@
+1.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int v[15][15];
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+        cin>>v[i][j];
+    for(int j=1;j<=n;j++)
+    {
+        int ok=1;
+        for(int i=1;i<=n;i++)
+        {
+            int x=v[1][j];
+            if(x!=v[i][j]) ok=0;
+                }
+        if(ok==1) cout<<v[1][j]<<" ";
+    }
+}
+
+2.
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    while(n > 1){
+        cout << n << ' ';
+        if(n % 2 == 1)
+            n = n / 2 + 1;
+        else
+            n--;
+    }
+    cout << 1 << ' ';
+    return 0;
+}

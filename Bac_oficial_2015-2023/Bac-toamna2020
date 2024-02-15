@@ -1,0 +1,71 @@
+1.
+int kpn(int a,int b, int k)
+{
+    int ct=0;
+    for(int i=a;i<=b;i++)
+    {
+        int sd=0;
+        for(int d=1;d<=i;d++)
+            if(i%d==0) sd+=d;
+        
+        if(i%2==sd%2) ct++;
+        if(ct==k)
+            return i;
+        
+    }
+    
+    return -1;
+}
+
+2.
+#include <iostream>
+using namespace std;
+int main()
+{
+    char s[101],aux[101];
+    int ok=0;
+    cin.getline(s,101);
+    char *p=strtok(s," ");
+    while(p)
+    {
+        int l=strlen(p);
+        if(l%2==1)
+        {
+            if(l==1) {strcat(aux,p);
+            }
+            else{     
+                char rev[101];
+                for(int i=0,j=l-1;i<l,j>=0;i++,j--)
+                    rev[j]=p[i];
+                if(strcmp(p,rev)!=0)
+                {   ok++;
+                    strcat(aux,rev);
+                }
+                else strcat(aux, p);
+                
+            }}
+            else strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    strcpy(s, aux);
+    cout<<s;   
+}
+
+3.
+#include <iostream>
+#include <fstream>
+#include <climits>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,mx=0,mn=INT_MAX;
+    while(fin>>x)
+    {
+        if(x>=10&&x<=99)
+        {if(x<mn) mn=x;
+            if(x>mx) mx=x;}
+    }
+    cout<<mn-1<<" "<<mx+1;
+}
