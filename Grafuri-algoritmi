@@ -1,0 +1,155 @@
+--Citire grafuri--
+
+for(int i=1;i<=n;i++)
+    for(int j=1;j<=n;j++)
+        cin>>a[i][j];
+
+
+int c[51],viz[51],p[51];
+
+
+void BFS (int x) -> nod de start -- parcurgere in LATIME
+
+    st=dr=0;
+    c[st]=x;
+    p[x]=0;
+    viz[x]=1;
+    while(st<=dr)
+    {
+        int nod=c[st];
+        st++;
+        for(int i=1;i<=n;i++)
+            if(a[nod][i]==1&&viz[i]==0)
+            {
+                dr++;
+                c[dr]=i;
+                viz[i]=1;
+                p[i]=nod;
+            }
+    }
+}
+
+
+int v[21], a[21][21],n;
+
+
+void DFS(int x)nod de start -- parcurgere in ADANCIME
+{
+    cout<<x<<" ";
+    v[x]=1;
+    for(int i=1;i<=n;i++)
+        if(a[x][i]==1&&v[i]==0)
+            DFS(i);
+}
+
+
+
+Algoritmul lui Prim -> arbore partial de cost minim
+
+{
+    for(int i=1;i<=n;i++)
+    {
+        D[i]=c[x][i];
+        T[i]=x;
+    }
+    use[x]=1;
+    while(1)
+    {
+        int mn=1000,nod=-1;
+        for(int i=1;i<=n;i++)
+        
+            if(D[i]<mn&&use[i]==0)
+            {
+                min=D[i];
+                nod=i;
+            }
+        if(mn==1000) break;
+        else
+        {
+            cost+=D[nod];
+            cout<<T[nod]<<" "<<nod<<endl;
+            use[nod]=1;
+        }
+        for(int i=1;i<=n;i++)
+        
+            if(D[i]>c[nod][i])
+            {
+                D[i]=c[nod][i];
+                T[i]=nod;
+            }
+    }
+        cout<<"cost arbore"<<cost<<endl;
+    }
+
+
+
+`Algoritmul lui Kruskal
+
+void Kruskal()
+{
+    for(int i=1;i<=m;i++)
+    {
+        int x1,y1;
+        x1=a[i].x,y1=a[i].y;
+        if(T[x1]==T[y1]) continue;
+        a[i].ok=1;
+        cost+=a[i].c;
+        reuneste(x1,y1);
+    }
+}
+
+void reuneste(int x, int y)
+{
+    int mn,mx;
+    mn=min(T[x],T[y]);
+    mx=max(T[x],T[y]);
+    for(int i=1;i<=n;i++)
+        if(T[i]==mx) T[i]=mn;
+}
+
+int main()
+{
+    fin>>n>>m;
+    for(int i=1;i<=m;i++)
+    fin>>a[i].x>>a[i].y;
+}
+
+--END--
+
+
+--Algoritmul lui Dijkstra--
+
+void dijkstra(int x)
+{
+    for(int i=1;i<=n;i++)
+        {
+            d[i]=a[x][i];
+            p[i]=x;
+        }
+    p[x]=0;
+    int ok=1;
+    while(ok)
+    {
+        int nod=-1;
+        mn=1000;
+        for(int i=1;i<=n;i++)
+            if(viz[i]==0&&d[i]<mn)
+                {
+                    nod=i;
+                    mn=d[i];
+                }
+        if(nod==-1||mn=1000)
+            break,ok=0;
+
+        else
+        {
+            viz[nod]=1;
+            for(int i=1;i<=n;i++)
+                if(viz[i]&&d[nod]+a[nod][i]<d[i])
+                {
+                    d[i]=d[nod]+a[nod][i];
+                    p[i]=nod;
+                }
+        }
+    }        
+}
