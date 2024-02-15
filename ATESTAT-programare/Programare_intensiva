@@ -120,3 +120,127 @@ int main()
         
 }
 
+8.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+ofstream fout("numere.out");
+int n, v[51];
+void citire()
+{
+    fin>>n;
+    for(int i=1;i<=n;i++)
+        fin>>v[i];
+}
+
+int main()
+{
+    citire();
+    for(int i=1;i<n;i++)
+        for(int j=i+1;j<=n;j++)
+            if(v[i]==v[j])
+            {
+                cout<<"nu";
+                return 0;
+                
+            }
+            else {cout<<"da";
+                return 0;}
+            
+}
+
+
+12.
+
+#include <fstream>
+#include <iostream>
+using namespace std;
+ifstream fin("numere.in");
+int cmmdc(int a, int b)
+{
+    if (b==0) return a;
+    else return cmmdc(b,a%b);
+}
+
+int main()
+{
+    int n,v[51],rez=0;
+    fin>>n;
+    for(int i=0;i<n;i++)
+        fin>>v[i];
+    
+    for(int i=0;i<n-1;i++)
+        rez=cmmdc(rez,v[i+1]);
+    
+    cout<<rez;
+}
+
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n,ant=0,ct=0;
+    int v[51];
+    fin>>n;
+    for(int i=1;i<=n;i++)
+        fin>>v[i];
+    for(int i=1;i<=n;i++)
+    {
+        int sd=0;
+        for(int d=1;d<=v[i];d++)
+            if(v[i]%d==0) sd++;
+        if(ant==0) {ant=sd;
+            ct++;}
+        else if(ant!=0)
+        {if(sd==ant) ct++;
+        else {ct=1;
+            ant=sd;}
+            }
+        if(ct==3) {
+            cout<<"Da";
+            return 0;
+        }
+    }
+    
+    cout<<"Nu";
+    
+}
+
+14.
+
+#include <fstream>
+#include <iostream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n;
+    int oka=1,okr=1;
+    fin>>n;
+    int v[51];
+    for(int i=0;i<n;i++)
+        fin>>v[i];
+    
+
+    int ra=v[1]-v[0];
+    int rg=v[1]/v[0];
+    
+    for(int i=2;i<n-1;i++)
+    {
+        if(v[i+1]-v[i]!=ra) oka=0;
+        if(v[i+1]/v[i]!=rg) okr=0;
+    }
+    
+    if(oka==1) cout<<"elementele formeaza o progresie aritmetica cu ratia "<<ra<<endl;
+    if(okr==1) cout<<"elementele formeaza o progresie geometrica cu ratia "<<rg<<endl;
+    
+    if(oka==0&&okr==0) cout<<"elementele nu formeaza progresie";
+    
+}
+
+
