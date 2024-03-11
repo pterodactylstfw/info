@@ -1,0 +1,59 @@
+1.
+
+int Egal(int n)
+{
+    int v[9]={0},i=0;
+    while(n!=0)
+    {
+        v[i]=n%10;
+        n/=10;
+        i++;
+    }
+    int imp=0;
+    for(int j=i;j>=0;j--)
+    {
+        if(v[j]%2==1&&imp==0) imp=v[j];
+        if(imp!=0)
+            if(v[j]%2==1)
+                if(v[j]!=imp) return 0;
+    }
+    return 1;
+    
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    int n;
+    cin>>n;
+    
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(strlen(p)==n) cout<<p<<'\n';
+        p=strtok(NULL," ");
+    }
+}
+
+3.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    unsigned int n, x, y, z;
+    cin >> n >> x >> y >> z;
+    for(int i = n; i >= 4; i--)
+    {
+        if(i % 2 == 0)
+            cout << (i / 2 - 1) * z - (i / 2 - 1) * x + y << " ";
+        else
+            cout << (i / 2) * z - (i / 2 - 1) * x << " ";
+    }
+    cout << z << " " << y << " " << x;
+}
