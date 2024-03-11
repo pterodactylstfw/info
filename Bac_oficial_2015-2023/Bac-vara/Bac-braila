@@ -1,0 +1,48 @@
+1.
+
+
+2.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,x,a[51][51];
+    cin>>n>>x;
+    for(int i=1;i<=n;i++)
+        a[1][i]=x*(n-i+1);
+    for(int i=2;i<=n;i++)
+        for(int j=1;j<=n;j++)
+            if(a[i-1][j]==x) a[i][j]=x*n;
+            else a[i][j]=a[i-1][j]-x;
+    
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+            cout<<a[i][j]<<" ";
+        cout<<endl;
+    }
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n,x,lg,lgmax=0;
+    fin>>n;
+    while(fin>>x)
+    {
+        if(x%n==0) lg++;
+        else
+        {
+            if(lg>lgmax) lgmax=lg;
+            lg=1;
+        }
+    }
+    cout<<lgmax;
+}
