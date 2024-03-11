@@ -1,0 +1,47 @@
+1.
+void Impare(int &n)
+{
+    int v[9]={0};
+    int i=0,nr=0;
+    while(n!=0)
+    {
+        v[i]=n%10;
+        n/=10;
+        i++;
+    }
+    
+    for(int j=i;j>=0;j--)
+    {    if(v[j]%2==1) v[j]--;
+        nr=nr*10+v[j];
+        
+    }
+    
+    n=nr;
+        
+}
+
+2.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,m;
+    cin>>m>>n;
+    int a[51][51];
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=n;j++) cin>>a[i][j];
+    
+    int ms=n/2,ok=1;
+    int md=n-ms;
+    for(int k=1;k<=m;k++)
+    for(int i=1,j=n;i<=ms,j>=md;i++,j--)
+        if(a[k][i]!=a[k][j]) ok=0;
+    
+    if(ok==1) cout<<"DA";
+    else cout<<"NU";
+}
+
+
+3.
+

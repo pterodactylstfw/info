@@ -1,0 +1,80 @@
+Subiectul I
+
+1. a)
+2. b)
+3. a)
+4. b)
+5. c)
+
+Subiectul II
+
+1.
+    a) 3 4 6 8 8 9 15
+    b) 11, 5, 5; 
+       13, 2, 2;
+    c)
+        #include <iostream>
+        using namespace std;
+        int main()
+        {
+            int n,x,y,ok;
+            cin>>n>>x>>y;
+            ok=0;
+            for(int i=1;i<=n;i++)
+                if((i%x==0&&i%y==0)||(i%x!=0&&i%y==0)) {
+                    cout<<i<<" ";
+                    ok=1;
+                }
+            if(ok==0) cout<<0;
+        }
+
+
+    d) i <- 1
+     cat timp i<=n executa
+     ...
+
+
+2. ARMONIA
+
+3. 
+    a[0].dp.anNastere=2000;
+    a[0].venit=4000;
+
+Subiectul III
+
+1.
+    int cuburi(int n)
+    {
+        for(int i=n;i>=1;i--)
+        cout<<i*i*i<<" ";
+    }
+
+
+2.
+    #include <iostream>
+    using namespace std;
+    int main()
+    {
+        int n,k;
+        cin>>k>>n;
+        int a[51][51]={0};
+        for(int i=1;i<=n;i++)
+        a[i][i]=i*k;
+        for(int i=1;i<=n;i++)
+            for(int j=1;j<=n;j++)
+               
+                if(j<i)
+                    a[i][j]=a[i][i]-(i-j);
+                else if(i<j)
+                    a[i][j]=a[i][j-1]+1;
+    
+        
+        for(int i=1;i<=n;i++)
+        {for(int j=1;j<=n;j++)
+            cout<<a[i][j]<<" ";
+            cout<<endl;}
+    }
+
+
+3.
+
