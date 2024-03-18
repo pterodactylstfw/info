@@ -11,7 +11,7 @@ void perechi(int n, int v[],int &p)
             if(v[i]%d==0&&v[j]%d==0) ok=0;
         if(ok==1) p++;}
     }
-}
+}a
 
 
 2.
