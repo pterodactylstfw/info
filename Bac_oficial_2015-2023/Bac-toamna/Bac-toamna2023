@@ -62,47 +62,23 @@ int main()
 
 #include<iostream>
 #include <fstream>
-std::ifstream inp("date in");
-void quicksort(int D[], int s, int d)
-{
-if (s < d)
-{
-int m = (s+d) / 2;
-int t = D[s];
-D[s] = D[d];
-D[d] = t;
-int i=s, j=d, S=0;
-while (i < j) {
-if (D[i] > D[j]) {
-int temp = D[i];
-D[i] = D[j];
-D[j] = temp;
-S = 1-S;
-}
-i += S;
-j -= 1-S;
-}
-quicksort(D, s, i-1);
-quicksort(D, i+1, d);
-}
-}
-int main()
-{
-int n, m;
-inp >> n >> m;
-int l=0;
-int *A = new int[n];
-int *B = new int[m];
-for (int i=0; i<n; i++)
-inp >> A[i];
-for (int j=0; j<m; j++)
-inp >> B[j];
-quicksort(A, 0, n-1);
-quicksort(B, 0, m-1);
-for (int i=0; i<m; i++)
-if (A[i] == B[i])
-l++;
-std::cout << l;
-delete[] A, B;
-return 0;
+std::ifstream inp("date.in");
+int main(){
+    int m, n, x, afv[101]={0}, bfv[101]={0};
+    inp >> m >> n;
+    for(int i=0; i < m; i++){
+        inp >> x;
+        afv[x]++;
+    }
+    for(int i=0; i < n; i++){
+        inp >> x;
+        bfv[x]++;
+    }
+    int s=0;
+    for(int i=0; i <= 100; i++){
+        if(afv[i] > bfv[i])
+            s+=bfv[i];
+        else s+=afv[i];
+    }
+    cout << s;
 }
