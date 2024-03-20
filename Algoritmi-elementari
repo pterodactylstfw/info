@@ -1,0 +1,251 @@
+//Suma cifrelor unui numar
+
+int sumcif(int n)
+{
+    if(n==0) return 0;
+    else return n%10+sumcif(n/10);
+}
+
+//Cifra maxima din numar
+
+int cifmax(int n)
+{
+    int mx=0;
+    while(n!=0)
+    {
+        if(n%10>mx) mx=n%10;
+        n/=10;
+    }
+    return mx;
+
+}
+
+//Numar palindrom, verificare
+
+int palindrom(int n)
+{
+    int aux=n,og=0;
+    while(aux)
+    {
+        og=og*10+aux%10;
+        aux/=10;
+    }
+    return og==n;
+}
+
+//Numar rotund
+
+int rotund(int n)
+{
+    int n0,n1;
+    while(n)
+    {
+        if(n%2==1) n1++;
+        else n0++;
+        n/=10;
+    }
+    return n0==n1;
+}
+
+//Prima cifra din numar
+
+int primacif(int n)
+{
+    if(n<10) return n;
+    else return primacif(n/10);
+}
+
+//Cifra de control a unui numar
+
+    //Metoda 1
+    
+    int cc1(int n)
+    {
+        if(n%9==0) return 9;
+        else return n%9;
+    }
+
+    //Metoda 2
+
+    int cc2(int n)
+    {
+        int var=n,s;
+        while(n>9)
+        {
+        s=0;  
+        while(n!=0)
+            {
+            s=s+n%10;
+            n=n/10;
+            }
+        n=s;
+        return s;
+    }
+
+//CMMDC
+     
+     int cmmdc(int a, int b)
+     {
+        if(b==0) return a;
+        else return(b,a%b);
+     }
+
+     int cmmdc1(int a, int b)
+     {   
+        while(b != 0)
+        {
+        int r = a % b;
+        a = b;
+        b = r;
+        }
+        return b;
+     }
+
+     int cmmdc2(int a, int b)
+     {
+        
+        while(a != b)
+            if(a > b)
+                a -= b;
+            else
+                b -= a;
+        return b;
+     }
+
+//Numar prim
+
+int prim(int x, int d=3)
+{
+    if(x!=2&&x%2==0||x<2) return 0;
+    if(d*d>x) return 0;
+    if(x%d==0) return 0;
+    return prim(x,d+2);
+}
+
+//Numar extraprim- prime si prefixele sale
+
+int extraprim(int n)
+{
+    if(prim(n)==0) return 0;
+    else
+    {
+        while(n!=0)
+        {
+            n/=10;
+            if(prim(n)==0) return 0;
+        }
+    }
+    return 1;
+}
+
+//Divizorii unui numar
+
+void divnr_liniar(int n)
+{
+    for(int d=1;d<=n;d++)
+        if(n%d==0) cout<<d<<" ";
+}
+
+void divnr_pereche(int n)
+{
+    cout<<1<<" ";
+    for(int d=2;d*d<=n;d++)
+        if(n%d==0) cout<<d<<" ";
+}
+
+//Descompunere in factori primi
+
+void descompunere(int n)
+{
+    int d=2,p=0;
+    while(n%d==0)
+    {
+        p++;
+        n/=d;
+    }
+    if(p>0) cout<<d<<" ^ "<<p<<" ";
+    for(int d=3;d*d<=n&&n>1;d++)
+    {
+        p=0;
+        while(n%d==0)
+        {
+            p++;
+            n/=d;
+        }
+        if(p>0) cout<<d<<" ^ "<<p<<" ";
+    }
+    if(n>1) cout<<n<<" ^ "<<1;
+}
+
+//Fibonacci- verificare
+
+int Fibo(int x, int f1=0, int f2=1)
+{
+    if(f1+f2==x) return 1;
+    if(f1+f2>x) return 0;
+    else return Fibo(x,f2,f1+f2);
+}
+
+//Fibonacci - generare
+
+void Fibogen(int x)
+{
+    int f1=0,f2=1;
+    do
+    {
+        int f3=f1+f2;
+        f1=f2;
+        f2=f3;
+        cout<<f3<<" ";
+    }while(f3<x);
+}
+
+//Eliminare cifre impare
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int n, p = 1, nrNou = 0;
+   bool existaImp = false; 
+   cin >> n;
+   while (n) {
+       if (n % 2 != 0) { 
+           existaImp = true;
+       }
+       if (n % 10 % 2 == 0) { 
+           nrNou += n % 10 * p;
+           p *= 10; 
+       }
+       n /= 10; 
+   }
+   if (nrNou == 0 || !existaImp) { 
+       cout << "-1";
+   }
+   else {
+       cout << nrNou;
+   }
+   return 0;
+}
+
+//Dublare cifre pare
+
+int Impare(int n){
+          int m = 0, p = 1;
+          bool gasit = false;
+          while(n){
+              int c = n % 10;
+              if(c % 2 == 0){
+                  m = c * p + m;
+                  p *= 10;
+                  gasit = true;
+              }
+              m = c * p + m;
+              p *= 10;
+              n /= 10;
+          }
+          if(!gasit)
+              m = -1;
+          return m;
+      }
+
