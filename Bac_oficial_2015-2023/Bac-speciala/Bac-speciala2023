@@ -1,0 +1,43 @@
+1.
+void NrImp(int x, int y, int &nr)
+{
+    for(int i=x;i<=y;i++)
+    {
+        int nrd=0;
+        for(int d=1;d<=i;d+=2)
+            if(i%d==0) nrd++;
+        if(nrd==3) nr++;
+    }
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    char sf[256];
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(p[strlen(p)-1]=='.')
+        {
+            if(p[0]=='F')
+                strcat(sf,"fam.");
+            else if(p[0]=='G')
+                strcat(sf,"gen.");
+            else strcat(sf,"spe.");
+        }
+        else strcat(sf,p);
+        strcat(sf," ");
+        p=strtok(NULL," ");
+        
+    }
+    strcpy(s,sf);
+    cout<<s;
+}
+
+3.
+

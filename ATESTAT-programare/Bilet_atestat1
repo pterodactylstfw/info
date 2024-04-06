@@ -1,0 +1,33 @@
+1 aprilie 2024
+
+1.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n,a[51][51];
+    fin>>n;
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+            fin>>a[i][j];
+    int x=a[1][1];
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+            if(i+j<n+1)
+            {
+                if(a[i][j]%2!=x%2)
+                {
+                    cout<<"Nu";
+                    return 0;
+                    
+                }
+                else x=a[i][j];
+            }
+    
+    cout<<"Da";
+    return 0;
+    
+}
+

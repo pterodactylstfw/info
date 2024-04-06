@@ -1,0 +1,44 @@
+1.
+
+int doitrei(int n)
+{
+    while(n>0)
+    {
+        if(n%10!=2&&n%10!=3) return 0;
+        n/=10;
+    }
+    return 1;
+}
+
+2.
+
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+#include <climits>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,y,mnx=INT_MAX,mxx=INT_MAX;
+    int vmx,vmn;
+    vmx=vmn=-1;
+    int n;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {   fin>>x;
+        if(x<mnx&&x%2==0) mnx=x;
+        if(x<mxx&&x%2==1) mxx=x;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        fin>>x;
+        if(x%2==1&&x>vmx) vmx=x;
+        if(x%2==0&&x>vmn) vmn=x;
+    }
+    if(mnx<=vmx||mxx<=vmn) cout<<"NU";
+    else cout<<"DA";
+}

@@ -54,6 +54,11 @@ int main()
         y=x;
     }
     
+    {if(lg>lgmax) {lgmax=lg;
+        nr=1;}
+        else if(lg==lgmax) nr++;}
+        
+    
     cout<<nr<<" "<<lgmax;
     
 }

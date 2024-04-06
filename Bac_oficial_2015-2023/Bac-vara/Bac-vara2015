@@ -12,3 +12,86 @@ int main()
 }
 
 2.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    int v[10];
+    cin>>n;
+    for(int i=1;i<=n;i++) cin>>v[i];
+    int a[10][10];
+    for(int i=1;i<=n;i++)
+        a[1][i]=v[i];
+    
+    for(int i=2;i<=n;i++)
+    {
+        int aux=a[i-1][n];
+        for(int j=n;j>1;j--)
+        {
+            a[i][j]=a[i-1][j-1];
+            
+        }
+        a[i][1]=aux;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+            cout<<a[i][j]<<" ";
+        cout<<endl;
+    }
+}
+
+3.
+int Fibo(int n)
+{
+    int ct=1,nr;
+    int f1=0,f2=1;
+    do{
+        int f3=f1+f2;
+        f1=f2;
+        f2=f3;
+        if(f3%2==1)
+        {
+            nr=f3;
+            ct++;
+        }
+    }while(ct<n);
+    
+    return nr;
+}
+
+4.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int v[101]={0},x,mx=0,ok=0;
+    for(int i=1;i<=20;i++)
+    {
+        cin>>x;
+        v[x]=1;
+        if(x>mx) mx=x;
+        
+    }
+    
+    int st=0, dr;
+    while(st < mx){
+        if(v[st] == 1){
+            dr = st+1;
+            while(v[dr] == 0){
+                dr++;
+            }
+            if(dr-st >= 2)
+            {cout << st << " " << dr << "\n";
+                ok=1;}
+            st = dr;
+        }
+        else st++;
+    }
+    if(ok==0) cout<<"nu exista";
+        
+}
+

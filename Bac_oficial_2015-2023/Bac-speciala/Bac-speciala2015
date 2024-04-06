@@ -1,0 +1,66 @@
+1.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    char aux[21];
+    while(p)
+    {
+        if(p[0]>='A'&&p[0]<='Z') strncat(aux,p,1);
+        p=strtok(NULL," ");
+    }
+    cout<<aux;
+}
+
+2.
+int divimp(int a, int b)
+{
+    int nr=0;
+    for(int i=1;i<=min(a,b);i+=2)
+        if(a%i==0&&b%i==0) nr=i;
+    return nr;
+}
+
+3.
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+ifstream f("date.in");
+int a, b = -1, c = -1, ok;	
+
+int main()
+{
+    while (f >> a && ok == 0)	
+    {
+	if (a % 2 == 0 && (b == -1 || a >= b))	
+	    b = a;		
+	else {
+	    if (a % 2 == 1 && (c == -1 || a <= c))	
+	    {
+		    c = a;		
+	    } 
+        else 
+        {
+		    if (a % 2 == 0 && a < b)	
+		    {
+		        ok++;
+		    } 
+            else 
+                if (a % 2 == 1 && a > c)	
+		        {
+		            ok++;
+		        }
+        }
+    }
+    if (ok == 0)		
+	    cout << "DA";
+    else			
+	    cout << "NU";
+    f.close()			
+	return 0;
+}

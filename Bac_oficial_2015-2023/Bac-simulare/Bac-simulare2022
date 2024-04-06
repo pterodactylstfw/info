@@ -1,0 +1,109 @@
+1.
+void rest(int x, int y, int n, int &k)
+{
+    k=-1;
+    for(int i=n;i>=1;i--)
+    {
+        if(i%x==2&&i%y==2) {k=i;
+            break;}
+    }
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    char cuv[21][21];
+    char x[21];
+    cin.getline(x,21);
+    char*p=strtok(s," ");
+    int ct=0;
+    while(p)
+    {
+        strcpy(cuv[ct],p);
+        ct++;
+        p=strtok(NULL," ");
+    }
+    
+    for(int i=0;i<ct;i+=2)
+        if(strcmp(x,cuv[i])==0) cout<<cuv[i+1]<<" ";
+}
+PARTIAL CORECT, N AM VAZUT CA SE FOLOSESTE ";"
+
+3.
+#include    <iostream>
+#include    <fstream>
+
+using namespace std;
+
+ofstream fout("bac.txt");
+
+int main()
+{
+    int p1 = 0; // Puterile lui 5
+    int p2 = 0; // Puterile lui 3
+    int n;
+    cin >> n;
+
+    int div = 5;
+    while(n / div != 0)
+    {
+        p1 = p1 + (n / div);
+        div = div * 5;
+    }
+
+    div = 3;
+    while(n / div != 0)
+    {
+        p2 = p2 + (n / div);
+        div = div * 3;
+    }
+
+    if(p2 / 2 < p1)
+    {
+        fout << p2 /2;
+    }
+    else
+    {
+        fout << p1;
+    }
+    return 0;
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char acr[5][21]={"COLEGIUL","NATIONAL","LICEUL","TEORETIC"};
+    char s[71],aux[70];
+    cin.getline(s,51);
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(strchr(p,'.')!=NULL)
+        {
+            cout<<"cuvantul este "<<p<<endl;
+            char cuv[51];
+            int ok=0;
+            strncpy(cuv,p,strlen(p)-1);
+            for(int i=0;i<=4&&ok==0;i++)
+                if(strstr(acr[i],cuv)!=NULL)
+                {strcpy(aux,acr[i]);
+                    ok=1;}
+            
+        }
+        else strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+        
+        strcpy(s,aux);
+        cout<<s;
+}

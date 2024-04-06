@@ -894,24 +894,60 @@ int main()
 38. la fel ca 37.
 
 39.
-    #include <iostream>
+#include <iostream>
 #include <cstring>
 #include <fstream>
 using namespace std;
-ifstream fin("numere.in");
-ifstream f("numere2.in");
+ifstream fin("x.txt");
+ifstream f("y.txt");
 int main()
 {
     char s1[21],s2[21];
-    while(fin.getline(s1,21)||f.getline(s2,21))
+    int n=7, m=7;
+    fin>>s1;
+    f>>s2;
+    n--,m--;
+    do
     {
-        if(strcmp(s1,s2)==0) cout<<s1;
-        if(strcmp(s1,s2)<0)
-            cout<<s1<<" "<<s2<<" ";
-        else cout<<s2<<" "<<s2<<" ";
-    }
+        if(strcmp(s1,s2)<0) {cout<<s1<<" ";
+        fin>>s1;n--;}
+        else if(strcmp(s1,s2)==0){
+            cout<<s1<<" ";
+            fin>>s1;
+            f>>s2;
+            n--,m--;
+        }
+        else
+        {
+            cout<<s2<<" ";
+            f>>s2;
+            m--;
+        }
+        
+    }while(n>0&&m>0);
+    
     
 }
 
 40.
-    E usoara dar n am chef.
+
+#include <iostream>
+using namespace std;
+int valid(int zi, int luna, int an)
+{
+    if(luna==2)
+    {
+        if(an%400==0)
+            if(zi>29) return 0;
+        else
+            if(zi>28) return 0;
+    }
+    else
+    {
+        if(luna==4||luna==6||luna==9||luna=11)
+            if(zi>30) return 0;
+        else if(zi>31) return 0;
+    }
+}
+
+
