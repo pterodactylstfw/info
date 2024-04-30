@@ -1,0 +1,64 @@
+1.
+
+void imog(int x, int y, int &rez)
+{
+    rez=1;
+    int a[9]={0},b[9]={0},i=0,j=0;
+    while(x!=0&&y!=0)
+    {
+        if(x%10%2==1) {a[i]=x%10;i++;}
+        if(y%10%2==1) {b[j]=y%10,j++;}
+        x/=10,y/=10;
+    }
+    int n=i,m=j;
+    for(i=0,j=m-1;i<n,j>=0;i++,j--)
+            if(a[i]!=b[j]) rez=0;
+}
+
+2.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    int a[50][50];
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+            cin>>a[i][j];
+        for(int i=1;i<k;i++)
+        {
+            
+            int aux=a[k][i];
+            a[k][i]=a[i][k];
+            a[i][k]=aux;
+        }
+    for(int i=1;i<=n;i++)
+    {for(int j=1;j<=n;j++)
+        cout<<a[i][j]<<" ";
+        cout<<endl;
+        }
+}
+
+3.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int x,y,n;
+    cin>>x>>y;
+    n=(y-x)/2;
+    n--;
+    cout<<y<<" "<<x<<" ";
+    while(n!=0)
+    {
+        y=x;
+        x=y-2*n;
+        n--;
+        cout<<x<<" ";
+    }
+    return 0;
+}
+

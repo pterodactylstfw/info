@@ -1,0 +1,50 @@
+1.Stergerea valorilor multiple
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a[1001];
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++) cin>>a[i];
+    int i=0;
+    while(i<n)
+    {
+        int j=i+1;
+        while(j<n)
+        {
+            if(a[i]==a[j])
+                for(int k=j;k<=n-2;k++)
+                    a[k]=a[k+1];
+        }
+    }
+}
+
+
+2. Inserarea mediei aritmetice intre oricare 2 elemente
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,a[200];
+    cin>>n;
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+    int i=0;
+    while(i<=n-2)
+    {
+        if(a[i]%2==0&&a[i+1]%2==0)
+        {
+            n++;
+            for(int j=n-1;j>=n-2;j--)
+                a[j]=a[j-1];
+            a[i+1]=(a[i]+a[i+1])/2;
+            i+=2;
+        }
+        else i++;
+    }
+    for(int i=0;i<n;i++) cout<<a[i]<<" ";
+    return 0;
+}
