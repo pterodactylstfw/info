@@ -1,0 +1,42 @@
+1.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    for(int i=1;i<=n;i++)
+    {for(int j=1;j<=m;j++)
+        if(i<j)cout<<i<<" ";
+        else cout<<j<<" ";
+            cout<<endl;
+           }
+}
+
+2.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n;
+    int x;
+    cin>>n;
+    while(fin>>x)
+    {
+        if(x%n==0) cout<<x<<" ";
+    }
+}
+
+3.
+
+int sub(int v[],int n,int a)
+{
+    int ct=0;
+    for(int i=1;i<=n;i++)
+        if(v[i]<a) ct++;
+    return ct;
+}
+
