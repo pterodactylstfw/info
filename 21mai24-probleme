@@ -1,0 +1,196 @@
+/*#include <iostream>
+using namespace std;
+
+int secventa(int n)
+{
+    int v[9];
+    
+    int aux=n,ctcif=0;
+    while(aux)
+        ctcif++,aux/=10;
+    for(int i=ctcif-1;i>=0;i--)
+    {v[i]=n%10;
+        n/=10;}
+    for(int i=ctcif-1;i>0;i--)
+        if(v[i]==2&&v[i-1]==2) v[i]=0;
+    
+    for(int i=ctcif;i>=0;i--)
+        n=n*10+v[i];
+    return n;
+}
+
+int main()
+{
+    cout<< secventa(202233228);
+}
+
+
+
+ pb plaja marea neagra
+ 
+ #include <iostream>
+ #define maxim 11
+ using namespace std;
+ int n,m,a[104][104],s;
+ int mini(int i,int j)
+ {
+     int b=min(a[i][j-1],a[i][j+1]);
+     int c=min(a[i+1][j],a[i-1][j]);
+     if(b<=a[i][j] or c<=a[i][j])
+         return 0;
+     else if(b>a[i][j] and c>a[i][j])
+         return min(b,c)-a[i][j];
+
+ }
+ int main()
+ {
+     cin>>n>>m;
+     for(int i=1;i<=n;i++)
+         for(int j=1;j<=m;j++)
+             cin>>a[i][j];
+     for(int j=1;j<=m;j++)
+         a[0][j]=a[n+1][j]=maxim;
+     for(int i=1;i<=n;i++)
+         a[i][0]=a[i][m+1]=maxim;
+     for(int i=1;i<=n;i++)
+         for(int j=1;j<=m;j++)
+            s+=mini(i,j);
+     cout<<s;
+ }
+ 
+ 
+ patrate
+ 
+ void patrate(int n, int *x, int *y)
+ {
+    int ok = 0;
+    for(int i = 2; i <= n/2 && !ok; i++)
+    {
+        for(int j = n/2; j >= 2; j--)
+        {
+            if (i*i*j*j == n && i != j)
+            {
+                ok = 1;
+                *x = i;
+                *y = j;
+                break;
+            }
+        }
+    }
+    if(ok == 0)
+    {
+        *x = 0;
+        *y = 0;
+    }
+ }
+ 
+ 
+ #include <iostream>
+ #include <fstream>
+ using namespace std;
+ ifstream fin("numere.in");
+ int main()
+ {
+    int x,y,l1=0,l2=0,lmax=0;
+    fin>>x;
+    while(fin>>y)
+    {
+        if(x==y) l1++;
+        else
+ 
+            if(l1==x) {l2=l1+l2;
+                            if(l2>lmax) l1=l2;}
+            else {l2=0;
+            l1=1;}
+    x=y;
+    }
+ 
+ cout<<lmax;
+ }
+ 
+ inserare
+ 
+ void inserare(int &n, int a[101])
+ {
+    int i, j;
+    for(i=1; i<=n; i++)
+    {
+        if(a[i]%2==0)
+        {
+            for(j=n; j>=i; j--)
+                a[j+1]=a[j];
+            n++;
+            i++;
+            a[i]=2011;
+        }
+    }
+ }
+
+ 
+ 
+ 
+ */
+
+
+#include <iostream>
+#include <string>
+
+
+using namespace std;
+
+// Funcție care verifică dacă un caracter este vocală
+bool esteVocala(char ch) {
+    char vocale[] = {'A', 'E', 'I', 'O', 'U'};
+    for (char vocala : vocale) {
+        if (ch == vocala) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Funcție care găsește cea mai apropiată vocală de o consoană
+char gasesteVocalaPrietena(char consoana) {
+    char vocale[] = {'A', 'E', 'I', 'O', 'U'};
+    int distantaMinima = 26; // Distanța maximă posibilă în alfabet
+    char vocalaPrietena = 'A'; // Valoare de început
+    for (char vocala : vocale) {
+        int distanta = abs(consoana - vocala);
+        if (distanta < distantaMinima) {
+            distantaMinima = distanta;
+            vocalaPrietena = vocala;
+        } else if (distanta == distantaMinima && vocala < vocalaPrietena) {
+            vocalaPrietena = vocala;
+        }
+    }
+    return vocalaPrietena;
+}
+
+int main() {
+    string sirIntrare;
+    cout << "Introdu șirul de caractere: ";
+    cin >> sirIntrare;
+
+    string sirIesire = "";
+    bool areConsoane = false;
+
+    for (char ch : sirIntrare) {
+        if (!esteVocala(toupper(ch)) && isalpha(ch)) {
+            areConsoane = true;
+            char vocalaPrietena = gasesteVocalaPrietena(toupper(ch));
+            sirIesire += ch;
+            sirIesire += vocalaPrietena;
+        } else {
+            sirIesire += ch;
+        }
+    }
+
+    if (areConsoane) {
+        cout << sirIesire << endl;
+    } else {
+        cout << "NU AM CONSOANE" << endl;
+    }
+
+    return 0;
+}
+

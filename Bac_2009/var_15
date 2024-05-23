@@ -1,0 +1,69 @@
+1.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int a[6][6];
+    for(int i=0;i<6;i++)
+    {for(int j=0;j<6;j++)
+        if(i<j)
+        a[i][j]=a[j][i]=n%10;
+        n/=10;}
+    
+    for(int i=0;i<6;i++)
+        a[i][i]=0;
+    
+    for(int i=0;i<6;i++,cout<<endl)
+    for(int j=0;j<6;j++)
+        cout<<a[i][j]<<" ";
+    
+}
+
+2.
+
+int mxdiv(int n)
+{
+    int mxd=0, mx=0;
+    for(int i=n;i>=1;i--)
+    {
+        int nrd=0;
+        for(int d=1;d<=i;d++)
+            if(i%d==0) nrd++;
+        if(nrd>=mxd)
+        {
+            mxd=nrd;
+            mx=i;
+        }
+    }
+    return mx;
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x, ok=0,mx1=0,mx2=0;
+    while(fin>>x)
+    {
+        if(x%2==1)
+        {
+            ok++;
+            if(mx1==0)
+            mx1=mx2=x;
+            else
+                if(x>mx1)
+                {mx2=mx1;
+                    mx1=x;}
+        }
+        
+    }
+    if(ok<2) cout<<"numere insuficiente";
+    else cout<<mx1<<" "<<mx2;
+}
