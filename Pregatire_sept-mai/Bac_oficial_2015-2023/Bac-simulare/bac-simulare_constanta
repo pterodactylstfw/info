@@ -1,0 +1,89 @@
+1.
+int dublu(int n)
+{
+    int aux=n,c=0;
+    while(aux)
+    {
+        c++;
+        aux/=10;
+    }
+    if(c%2==0) return -1;
+    int p=1;
+    for(int i=1;i<=c/2;i++)
+        p=p*10;
+    n=(x/p)*10+(x/p)%10*p+x%p;
+    return n;
+}
+
+
+2.
+
+#include <iostream>
+#include <stdlib.h>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    int ctcf=0,ctnr=0;
+    cin.getline(s,256);
+    char *p=strtok(s," ");
+    while(p)
+    {
+        int i=0,ok=1;
+        if(p[i]=='-') i++;
+        for(i;i<strlen(p);i++)
+            if(!isdigit(p[i])) ok=0;
+            else if(p[i]==','&&(isdigit(p[i-1])&&isdigit(p[i+1]))) ok=1;
+            else ctcf++;
+        if(ok) ctnr++;
+        p=strtok(NULL, " ");
+    }
+    
+    cout<<ctnr<<" "<<ctcf;
+    return 0;
+}
+
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n,m,x,i=0,j=0;
+    int v[100];
+    fin>>n;
+    for(int i=0;i<n;i++)
+    {
+        
+        fin>>x;
+        if(x%3==0) v[i]=x;
+    }
+    fin>>m;
+    fin>>x;
+    while(j<m)
+    {
+        
+        if(v[i]<x)
+        {
+            cout<<v[i]<<" ";
+            i++;
+        }
+        if(v[i]==x){ cout<<x<<" ";
+            i++;
+            fin>>x;}
+        else
+        {
+            if(x%3==0)cout<<x<<" ";
+                fin>>x;
+            
+        }
+        
+    }
+    while(fin>>x) {
+        if(x%3==0) cout<<x<<" ";
+    }
+    
+}
