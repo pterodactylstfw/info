@@ -1,0 +1,89 @@
+5.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+int a[51][51];
+
+int main()
+{
+    int m,n;
+    
+    cin>>n>>m;
+    for(int i=0;i<m;i++)
+        a[n-1][i]=1;
+    for(int i=0;i<n;i++)
+        a[i][m-1]=1;
+    
+    for(int i=n-2;i>=0;i--)
+        for(int j=m-2;j>=0;j--)
+            a[i][j]=(a[i+1][j]+a[i][j+1])%10;
+    
+    for(int i=0;i<n;i++)
+    {    for(int j=0;j<m;j++)
+        cout<<a[i][j]<<" ";
+        cout<<endl;
+        }
+}
+
+3.
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+int inter(int na,int a[], int nb, int b[])
+{
+    int ct=0;
+    for(int i=0;i<na;i++)
+        for(int j=0;j<nb;j++)
+        {if(a[i]==b[j]) ct++;
+            }
+    return ct;
+}
+
+int main()
+{
+    int na,nb,a[10],b[10];
+    cin>>na>>nb;
+    for(int i=0;i<na;i++) cin>>a[i];
+    for(int i=0;i<nb;i++) cin>>b[i];
+    cout<<inter(na, a, nb, b);
+}
+
+
+4.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+
+int nr_cif(int n)
+{
+    int c=1;
+    while(n!=0)
+    {
+        c*=10;
+        n/=10;    }
+    return c;
+}
+
+int main()
+{
+    int n;
+    fin>>n;
+    int x;
+    int nr=0;
+    int c=nr_cif(n);
+    while(fin>>x)
+    {
+        int aux=x;
+        if(x%c==n) nr=aux;
+    }
+    
+    cout<<nr;
+    fin.close();
+}

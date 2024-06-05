@@ -1,0 +1,40 @@
+5.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s1[30],pref[30],suf[30];
+    cin.getline(s1,30);
+    char s2[30];
+    cin.getline(s2,30);
+    int l1=strlen(s1),l2=strlen(s2);
+    for(int i=0;i<min(l1,l2);i++)
+    {
+        strncpy(pref,s2,i); //copiez in prefix i litere
+        pref[i]='\0';
+        strcpy(suf,s1+l1-i); //copiez in sufix i litere de la sfarsit
+        if(strcmp(suf,pref)==0) //compar sirurile
+        cout<<suf<<endl;
+    }
+}
+
+3.
+void dublu(int &n, int *v)
+{
+    for(int i=0;i<n;i++)
+    {
+        
+        if(v[i]>0)
+        {
+            n++;
+            for(int p=n-1;p>i;p--)
+                v[p]=v[p-1];
+            v[i+1]=v[i];
+            i++;
+        }
+    }
+}
+
+4.

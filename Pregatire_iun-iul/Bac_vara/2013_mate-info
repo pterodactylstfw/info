@@ -1,0 +1,85 @@
+5.
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+
+int main()
+{
+    int m,n;
+    cin>>m>>n;
+    int a[51][51];
+    for(int i=0;i<m;i++)
+        for(int j=0;j<n;j++) cin>>a[i][j];
+    for(int i=0;i<n;i++)
+    { int x=a[0][i],ok=1;
+        for(int j=1;j<m;j++)
+            if(x!=a[j][i]) ok=0;
+        if(ok) cout<<x<<" ";
+    }
+    
+    
+}
+
+3.
+
+void valuri(int n, int *v)
+{
+    int p=2*n,imp=1;
+    for(int i=1;i<=2*n;i++)
+    {
+        
+        if(i%2==1) v[i]=imp,imp+=2;
+        else v[i]=p,p-=2;
+    }
+}
+
+4.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+
+int main()
+{
+    int x,y,z;
+    cin>>x;
+    cout<<x<<" ";
+    if(x%2==1)
+    {
+        z=(x-1)/2;
+        y=z+1;
+    }
+    else
+    {
+        x--;
+        cout<<x<<" ";
+        z=(x-1)/2;
+        y=z+1;
+    }
+    cout<<y<<" "<<z<<" ";
+    x=y;
+    do {
+        if(x%2==1)
+        {
+            z=(x-1)/2;
+            y=z+1;
+        }
+        else
+        {
+            x--;
+            
+            z=(x-1)/2;
+            y=z+1;
+        }
+        cout<<y<<" "<<z<<" ";
+        x=y;
+    } while (z!=1);
+    
+    
+}
+
+

@@ -1,0 +1,75 @@
+5.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int a[101][101];
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+        a[i][i]=0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=i-1;j>=0;j--)
+            a[i][j]=a[i][j+1]+1;
+        
+        for(int j=i+1;j<n;j++)
+            a[i][j]=a[i][j-1]+1;
+    }
+    
+    for(int i=0;i<n;i++,cout<<endl)
+        for(int j=0;j<n;j++)
+            cout<<a[i][j]<<" ";
+}
+
+3.
+
+void sir(int n, int*a)
+{
+    a[0]=a[1]=1;
+    for(int i=2;i<n;i++)
+        a[i]=3*a[i-1]-a[i-2];
+    
+    for(int i=0;i<n-1;i++)
+        for(int j=i+1;j<n;j++)
+            if(a[j]%2==1&&a[i]%2!=1)
+            {
+                int aux=a[j];
+                a[j]=a[i];
+                a[i]=aux;
+            }
+}
+
+4.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+
+
+int main()
+{
+    int x,mx1=0,mx2=0,mx3=0;
+    int n;
+    fin>>n;
+    for(int i=0;i<n;i++)
+    {
+        fin>>x;
+        if(x%10==5)
+        {
+            if(x>mx1) mx1=x;
+            else if(mx2<x) mx2=x;
+            else if(mx3<x) mx3=x;
+        }
+    }
+    cout<<mx3<<" "<<mx2<<" "<<mx1;
+}
+

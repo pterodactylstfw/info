@@ -1,0 +1,77 @@
+5.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    int n, ct = 0;
+    cin >> n;
+    cin.ignore(); // pentru a elimina '\n' rămas după citirea lui n
+
+    char cuv[21];
+    cin.getline(cuv, 21);
+
+    for(int i = 1; i < n; i++) {
+        char s[21];
+        cin.getline(s, 21);
+
+        bool ok = true;
+        for(int j = 0; j < strlen(cuv); j++) {
+            if(s[j] != cuv[j]) {
+                ok = false;
+                break;
+            }
+        }
+        if(ok) ct++;
+    }
+
+    cout << ct << endl;
+    return 0;
+}
+
+
+3.
+
+void inserare(int &n, int *a)
+{
+    
+        for(int p = 0 ; p < n ; p ++)
+            if(a[p] % 2 == 0){
+                for(int i = n ; i >= p ; i --)
+                    a[i+1] = a[i];
+                n ++;
+                a[p+1] = 2011;
+            }
+        
+    
+}
+
+4.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+ofstream fout("numere.out");
+
+int main() {
+    int s1,s2;
+    cin>>s1>>s2;
+    int v[4];
+    for(int m=1;m<=9;m++)
+    {
+        int n=0;
+        v[2]=m;
+        for(int i=1;i<=9;i++)
+            for(int j=0;j<=9;j++)
+                if(i+j==s1)
+                {
+                    for(int k=0;k<=9;k++)
+                        for(int l=0;l<=9;l++)
+                            if(k+l==s2)
+                                fout<<l+k*10+m*100+j*1000+i*10000<<" ";
+                }
+    }
+}

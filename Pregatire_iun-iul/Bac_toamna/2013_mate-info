@@ -1,0 +1,69 @@
+5.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    char s[101];
+    cin.getline(s,101);
+    char aux[101];
+    
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    aux[strlen(aux)-1]='\0';
+    strcpy(s,aux);
+    cout<<s;
+
+    
+    
+    
+}
+
+3.
+
+int sub(int n, int v[], int k)
+{
+    int ct=0,s=0;
+    for(int i=0;i<n;i++)
+    {
+        if(ct<k)
+        if(v[i]%2==1) ct++,s+=v[i];
+    }
+    if(ct<k) return -1;
+    else return s;
+}
+
+4.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int n,x,nr=0;
+    fin>>n;
+    
+    int put=1;
+    int aux=n;
+    while(aux)
+        aux/=10,put*=10;
+    
+    while(fin>>x)
+    {
+        if(x%put==n) nr=x;
+    }
+    if(nr==0) cout<<"nu exista";
+    else cout<<nr;
+}
