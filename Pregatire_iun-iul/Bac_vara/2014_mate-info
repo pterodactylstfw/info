@@ -1,0 +1,66 @@
+5.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int m,n;
+    int a[51][51];
+    cin>>m>>n;
+    for(int i=0;i<m;i++)
+        for(int j=0;j<n;j++) cin>>a[i][j];
+    for(int i=0;i<n;i++)
+        a[m-2][i]=a[m-1][i];
+    m--;
+    for(int i=0;i<m;i++)
+        a[i][n-2]=a[i][n-1];
+    n--;
+    for(int i=0;i<m;i++,cout<<endl)
+        for(int j=0;j<n;j++)
+            cout<<a[i][j]<<" ";
+}
+
+3.
+void interval(int n, int&a, int&b)
+{
+    int f=1,f2;
+    for(int i=1;i<=n;i++)
+        f=f*i;
+    f2=f*(n+1);
+    int dif=0;
+    for(int i=n;i<f2;i++)
+        for(int j=f2-1;j>i;j--)
+        {
+            int d=j-i;
+            if(d>dif) {dif=d;
+                a=i,b=j;}
+        }
+            
+    
+}
+
+4.
+
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int v[100]={0}, mx=0;
+    int x;
+    while(fin>>x)
+    {
+        while(x!=0)
+        {
+            int nr=x%100;
+            v[nr]++;
+            if(v[nr]>mx) mx=v[nr];
+            x/=10;
+        }
+    }
+    for(int i=99;i>9;i--)
+        if(v[i]==mx) cout<<i<<" ";
+    return 0;
+}

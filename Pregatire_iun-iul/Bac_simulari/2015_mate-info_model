@@ -1,0 +1,42 @@
+5.
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+
+int main()
+{
+    int m,n,a[51][51];
+    cin>>m>>n;
+    int nr=1;
+    for(int i=m-1;i>=0;i--)
+        for(int j=n-1;j>=0;j--)
+            if(nr%3!=0) a[i][j]=nr,nr+=2;
+                else
+                {
+                    nr+=2;
+                    a[i][j]=nr;
+                    nr+=2;
+                }
+    for(int i=0;i<m;i++,cout<<endl)
+        for(int j=0;j<n;j++) cout<<a[i][j]<<" ";
+        
+                
+}
+
+3.
+void subperfect(int a, int b)
+{
+    for(int n=b;n>=a;n--)
+    {
+        int sd=0;
+        for(int i=2;i<n;i++)
+            if(n%i==0) sd+=i;
+        if(n<sd) cout<<n<<" ";
+    }
+}
+
+4.
+
+vezi toamna 2014, acelasi lucru doar ca puterile lui 2

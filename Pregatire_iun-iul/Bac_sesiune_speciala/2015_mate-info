@@ -1,0 +1,71 @@
+5.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    char aux[25]="";
+    while(p)
+    {
+        if(isupper(p[0])) strncat(aux,p,1);
+        p=strtok(NULL," ");
+    }
+    strcpy(s,aux);
+    cout<<s;
+}
+
+3.
+int DivImpar(int a, int b)
+{
+    int max_ab = (a > b) ? a : b; // determinăm maximul dintre a și b
+    int min_ab = (a < b) ? a : b; // determinăm minimul dintre a și b
+
+    for (int i = min_ab; i >= 1; i--) {
+        if (a % i == 0 && b % i == 0 && i % 2 == 1) {
+            return i; // returnăm cel mai mare divizor comun impar
+        }
+    }
+    return -1; // în cazul în care nu se găsește niciun divizor comun impar
+}
+
+4.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int li=-1,lp=-1,oki=1,okp=1;
+    int x;
+    while(fin>>x)
+    {
+        if(x%2==1)
+        {
+            if(li==-1) li=x;
+            else {if(li<x) {oki=0;
+                cout<<"NU";
+                exit(0);}
+                else li=x;}
+            
+        }
+        if(x%2==0)
+        {
+            if(li==-1) lp=x;
+            else {if(lp>x) {okp=0;
+                cout<<"NU";
+                exit(0);}
+                else lp=x;}
+            
+        }
+    }
+    if(okp&&oki) cout<<"DA";
+    
+}

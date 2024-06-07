@@ -1,0 +1,81 @@
+5.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int m,n;
+    cin>>m>>n;
+    int nr=2;
+    int a[51][51];
+    for(int i=0;i<m;i++)
+        for(int j=0;j<n;j++)
+        {
+            if(nr%5!=0) a[i][j]=nr;
+            else {nr+=2;
+                a[i][j]=nr;}
+            nr+=2;
+        }
+    for(int i=0;i<m;i++,cout<<endl)
+        for(int j=0;j<n;j++)
+            cout<<a[i][j]<<" ";
+    
+}
+
+
+3.
+
+void triplete(int n)
+{
+    for(int x=0;x<=n;x++)
+        for(int y=x+1;y<=n;y++)
+            for(int z=y+1;z<=n;z++)
+                if(x*y+y*z==n) cout<<"("<<x<<", "<<y<<", "<<z <<")"<<'\n';
+}
+
+4.
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int n;
+    fin >> n;
+    int ct = 0, ct2 = 0;
+    int x, mxp = 0;
+    int v[9] = {0}, nr = 1;
+    while (fin >> x)
+    {
+        ct++;
+        int p = 0;
+        if (x % 10 == 0)
+            while (x % 10 == 0) {
+                p++;
+                x /= 10;
+            }
+        v[p]++;
+        if (mxp < p) // corectare: actualizare corectă pentru mxp
+            mxp = p;
+    }
+    if (ct < n)
+        cout << "nu exista";
+    else
+    {
+        for (int i = 0; i <= mxp; i++)
+        {
+            while (v[i] > 0 && ct2 < ct) {
+                ct2++;
+                v[i]--;
+            }
+            if (ct2 == ct)
+            {
+                for (int j = 2; j < i; j++)
+                    nr *= 10;
+                cout << nr;
+                exit(0);
+            }
+        }
+    }
+}

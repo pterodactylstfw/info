@@ -1,0 +1,83 @@
+5.
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    char s[101];
+    cin.getline(s,101);
+    char aux[101];
+    int ok=0;
+    char *p=strtok(s," ");
+    while(p!=NULL)
+    {
+        if(strlen(p)%2==1&&strlen(p)>=3)
+        {
+            strcpy(p+strlen(p)/2,p+strlen(p)/2+1);
+            strcat(aux,p);
+            ok=1;
+        }
+        else strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    aux[strlen(aux)-1]='\0';
+    strcpy(s,aux);
+    if(ok)
+    cout<<s;
+    else cout<<"nu exista";
+    return 0;
+}
+
+3.
+void perfect(int a,int b)
+{
+    int ok=0;
+    for(int x=b;x>=a;x--)
+    {
+        int sd=0;
+        for(int d=1;d<x;d++)
+            if(x%d==0) sd+=d;
+        if(sd==x) {
+            cout<<x<<" ";
+            ok=1;
+        }
+    }
+    if(ok==0) cout<<"nu exista";
+}
+
+4.
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int x,y, lg=1, lgmax=0, nr;
+    fin>>y;
+    while(fin>>x)
+    {
+        if(x==y) lg++;
+        else
+        {
+            if(lg>=lgmax)
+            {
+                lgmax=lg;
+                nr=y;
+                lg=1;
+            }
+            
+            else lg=1;
+        }
+        y=x;
+    }
+    
+    cout<<lgmax<<'\n';
+    for(int i=1;i<=lgmax;i++)
+        cout<<nr<<" ";
+}
