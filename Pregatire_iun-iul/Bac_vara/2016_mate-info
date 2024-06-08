@@ -1,0 +1,79 @@
+5.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    int a[51][51]={0};
+    cin>>n;
+    for(int i=1;i<=n;i++)
+        a[i][1]=i;
+    for(int j=2;j<=n;j++)
+    for(int i=1;i<=n;i++)
+        a[i][j]=a[i][j-1]+a[i+1][j-1];
+    
+    
+    for(int i=1;i<=n;i++,cout<<endl)
+        for(int j=1;j<=n;j++) cout<<a[i][j]<<" ";
+}
+
+
+3.
+int cifreImpare(int n)
+{
+    int ok=-1,okp=0;
+    int v[9]={0};
+    int j=0;
+    while(n)
+    {
+        if(n%10%2==0) {v[j]=n%10;okp=1;
+            j++;}
+        else ok=1;
+        
+        n/=10;
+    }
+    if(ok==-1||okp==0) return -1;
+    int nr=0;
+    for(int i=n+1;i>=0;i--)
+        nr=nr*10+v[i];
+    return nr;
+}
+
+4.
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int n;
+    fin>>n;
+    int x,y;
+    fin>>y;
+    if(y>1)
+    {
+        int k=1;
+        while(k<y) cout<<k++<<" ";
+    }
+    while(fin>>x)
+    {
+        if(x-y>1)
+        {
+            int k=y+1;
+            while(k<x)
+                cout<<k++<<" ";
+        }
+        y=x;
+    }
+    if(x<n)
+    {
+        int k=x+1;
+        while(k<n) cout<<k++<<" ";
+    }
+}
+
+
+

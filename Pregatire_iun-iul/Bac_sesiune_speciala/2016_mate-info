@@ -1,0 +1,64 @@
+5.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+int main()
+{
+    char s[21][21];
+    int n,k;
+    cin>>n;
+    cin.ignore();
+    for(int i=0;i<n;i++)
+        cin.getline(s[i],20);
+    cin>>k;
+    for(int i=0;i<n-1;i++)
+        for(int j=i+1;j<n;j++)
+            if(strlen(s[i])!=k&&strlen(s[j])==k) swap(s[i],s[j]);
+    for(int i=0;i<n;i++) cout<<s[i]<<" ";
+}
+
+3.
+
+int minDivPrim(int n)
+{
+    int d=2,nr=1,p=0;
+    while(n%d==0)
+    {
+        p++,n/=d;
+    }
+    if(p!=0) nr*=d;
+    for(d=3;d*d<=n;d+=2)
+    {
+        p=0;
+        while(n%d==0)
+            p++,n/=d;
+        if(p!=0) nr*=d;
+    }
+    if(n>1) nr*=n;
+    return nr;
+}
+
+4.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ofstream g("bac.out");
+int n, i;
+
+int main()
+{
+    cin >> n;			
+    for (i = n; i >= 1; i--)	
+    {
+	    if (i % 2 == 0)		
+	        g << -i / 2 << " ";
+	    else			
+	        g << (i - 1) / 2 + 1 << " ";
+    }
+    g.close();			
+    return 0;
+}

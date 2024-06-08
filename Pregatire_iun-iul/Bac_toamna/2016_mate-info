@@ -1,0 +1,88 @@
+5.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int m,n;
+    cin>>m>>n;
+    int a[51][51];
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=n;j++) cin>>a[i][j];
+    int x;
+    cin>>x;
+    for(int i=1;i<=n;i++)
+    { if(a[1][i]==x) {cout<<"DA";
+        exit(0);}
+      if(a[n][i]==x) {cout<<"DA";
+          exit(0);}
+    }
+    for(int i=1;i<=m;i++)
+    { if(a[i][1]==x) {cout<<"DA";
+        exit(0);}
+        if(a[m][1]==x) {cout<<"DA";
+            exit(0);}
+    }
+    cout<<"NU";
+}
+
+3.
+
+int duplicare(int n)
+{
+    int v[9]={0},okp=0;
+    int j=0;
+    while(n)
+    {
+        v[j]=-1;
+        v[j+1]=-1;
+        
+        if(n%10%2==0) {v[j]=v[j+1]=n%10;
+            okp=1;}
+        else v[j]=n%10;
+        n/=10;
+           j+=2;
+    }
+    for(int i=j;i>=0;i--)
+        if(v[i]!=-1) n=n*10+v[i];
+    return n;
+}
+
+4.
+
+Nu-i al meu
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main()
+{
+    cout << "Hello world!" << endl;
+    ifstream f("bac.txt");
+    int i=0,x,n=-1,v=-1;
+    while(i<3&&!f.eof())
+        {
+            f>>x;
+            if(x%2!=0)
+                i++;
+        }
+    while(i==3&&!f.eof())
+    {
+        f>>x;
+        if(x%2!=0)
+            i++;
+        else
+        if(n<x)
+            {
+                v=n;
+                n=x;
+            }
+    }
+    if(n==-1 || v==-1)
+        cout<<"Nu exista";
+    else
+        cout<<v<<" "<<n;
+    f.close();
+    return 0;
+}
+

@@ -1,0 +1,73 @@
+5.
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    int a[21][21];
+    for(int i=0;i<n;i++) cin>>a[0][i];
+    for(int i=1;i<n;i++)
+    { int nr=a[i-1][n-1];
+        
+        for(int j=1;j<n;j++)
+        {
+            a[i][j]=a[i-1][j-1];
+        }
+        a[i][0]=nr;
+    }
+    
+    for(int i=0;i<n;i++,cout<<endl)
+        for(int j=0;j<n;j++) cout<<a[i][j]<<" ";
+}
+
+3.
+int Fibo(int n)
+{
+    int ct=1;
+    int f1=0,f2=1,f3;
+    do {
+        f3=f1+f2;
+        f1=f2;
+        f2=f3;
+        if(f3%2==1) ct++;
+    } while (ct<n);
+    return f3;
+}
+
+4.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int v[101]={0};
+    int x;
+    while(fin>>x)
+    {
+        v[x]++;
+    }
+    int okf=0;
+    for(int x=0;x<=100;x++)
+        for(int y=x+2;y<=100;y++)
+        {   int ok=1;
+            if(y-x>=2&&v[x]&&v[y])
+            {
+                for(int k=x+1;k<y;k++)
+                    if(v[k]>0) ok=0;
+                if(ok){cout<<x<<" "<<y<<'\n';
+                    okf=1;}}
+        }
+    if(okf==0) cout<<"nu exista";
+    
+    
+}

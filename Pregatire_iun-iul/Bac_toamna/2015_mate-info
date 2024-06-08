@@ -1,0 +1,56 @@
+5.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    for(int i=0;i<strlen(s);i++)
+        if(strchr("aeou",s[i])!=NULL)
+        {
+            cout<<"NU";
+            exit(0);
+        }
+    
+    cout<<"DA";
+}
+
+3.
+int NrPrime(int n)
+{
+    if (n==0) return 0;
+    else
+    {
+        int c=n%10;
+        if(c==2||c==3||c==5||c==7) return 1+NrPrime(n/10);
+        else if(n>0) return NrPrime(n/10);
+    }
+    return 0;
+}
+
+4.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int n;
+    fin>>n;
+    int s=0;
+    int v[5001];
+    for(int i=1;i<=2*n;i++) fin>>v[i];
+    for(int i=1;i<=n;i++)
+        for(int j=n+1;j<=2*n;j++)
+            if(v[i]%2!=v[j]%2) s+=v[i]*v[j];
+    
+    cout<<s;
+}
