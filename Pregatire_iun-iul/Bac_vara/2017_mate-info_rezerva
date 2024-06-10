@@ -1,0 +1,68 @@
+5.
+
+#include <iostream>
+#include <climits>
+using namespace std;
+int main()
+{
+    int m,n,a[51][51],mnp,mnu,jp,ju=0;
+    mnp=INT_MAX,mnu=INT_MAX;
+    cin>>m>>n;
+    for(int i=0;i<m;i++)
+        for(int j=0;j<n;j++)
+        {
+            cin>>a[i][j];
+            if(j==0) if(mnp>a[i][j]){
+                mnp=a[i][j],jp=i;
+            }
+            if(j==n-1)if(mnu>a[i][j]){
+                mnu=a[i][j],ju=i;
+            }
+        }
+    swap(a[jp][0],a[ju][n-1]);
+    for(int i=0;i<m;i++,cout<<endl)
+        for(int j=0;j<n;j++) cout<<a[i][j]<<" ";
+}
+
+
+3.
+
+void produs(int n, int &k)
+{
+    k=1;
+    int prod=1;
+    do {
+        prod*=k;
+        if(prod<n)k+=2;
+        else {
+            k-=2;break;
+            }
+    } while (prod<n);
+}
+
+5.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,nr=0,y;
+    fin>>y;
+    nr=1;
+    while(fin>>x)
+    {
+        if(x==y)nr++;
+        else
+        {
+            if(nr%2==1) {cout<<y;
+                exit(0);}
+            nr=1;
+            
+            
+        }
+        
+        y=x;
+    }
+}
