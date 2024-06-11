@@ -1,0 +1,117 @@
+1.
+
+void inserare(int &n)
+{
+    int v[11]={0};
+    int i=0;
+    while(n!=0)
+    {
+        v[i]=-1;
+        v[i]=n%10;
+        i++;
+        v[i]=-1;
+        i++;
+        n/=10;
+    }
+    
+    
+    
+    for(int j=1;j<i-1;j+=2)
+    {
+        if(v[j-1]>v[j+1]) v[j]=v[j-1]-v[j+1];
+        else v[j]=v[j+1]-v[j-1];
+    }
+    for(int j=0;j<i;j++) cout<<v[j]<<" ";
+    
+    for(int j=i;j>=0;j--) if(v[j]!=-1)n=n*10+v[j];
+    
+    
+}
+
+2.
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+
+int main()
+{
+    char s[51],aux[100]="";
+    cin.getline(s,50);
+    char acr[4][11]={"COLEGIUL","NATIONAL","LICEUL","TEORETIC"};
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(strchr(p,'.')!=NULL)
+        {
+            char ac[10]="";
+            strncpy(ac,p,strlen(p)-1);
+            int ok=0;
+            for(int i=0;i<4&&ok==0;i++)
+                if(strstr(acr[i],ac)!=NULL)
+                {strcat(aux,acr[i]);
+                    strcat(aux," ");
+                    ok=1;}
+        }
+        else strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    strcpy(s,aux);
+    cout<<s;
+}
+
+3.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int n;
+    fin>>n;
+    int mxi1=0,mxp1=0,cti1=0,ctp1=0;
+    for(int i=1;i<=n;i++)
+    {
+        int x;
+        fin>>x;
+        if(x%2==1)
+        {if(x>mxi1) mxi1=x;
+            cti1++;}
+        else if(x%2==0)
+        {if(x>mxp1) mxp1=x;
+            ctp1++;}
+    }
+        int mxi2=0,mxp2=0;
+        for(int i=1;i<=n;i++)
+        {
+            int x;
+            fin>>x;
+            if(x%2==1)
+            {
+                cti1--;
+                if(x>mxi2) mxi2=x;
+            }
+            else if(x%2==0)
+            {
+                ctp1--;
+                if(x>mxp2) mxp2=x;
+            }
+        }
+        
+    if(cti1==ctp1==0) {cout<<"DA";
+        exit(0);}
+    else
+    {
+        if(mxp2>mxi1||mxi2>mxp1){cout<<"DA";
+            exit(0);}
+        else cout<<"NU";
+    }
+    
+}
+

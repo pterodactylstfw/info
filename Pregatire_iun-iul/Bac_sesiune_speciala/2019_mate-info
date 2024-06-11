@@ -1,0 +1,77 @@
+1.
+
+int egal(int n)
+{
+    int imp=-1;
+    while(n)
+    {
+        if(n%10%2==1)
+            if(imp==-1) imp=n%10;
+            else if(n%10!=imp) return 0;
+        n/=10;
+    }
+    if(imp==-1) return 0;
+    return 1;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+
+
+int main()
+{
+    char s[256];
+    int n;
+    cin>>n;
+    cin.ignore();
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(strlen(p)==n) cout<<p<<'\n';
+        p=strtok(NULL," ");
+    }
+    
+}
+
+3.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int x,y,z,n;
+    fin>>x>>y>>z>>n;
+    n=n-3;
+    int nou,i=0;
+    while(i<n)
+    {nou=z+y-x;
+        x=y;
+        y=z;
+        z=nou;
+        i++;
+    }
+    
+    cout<<z<<" "<<y<<" "<<x<<"  ";
+    
+    while(n>0)
+    {
+        nou=x+y-z;
+        cout<<nou<<" ";
+        z=y;
+        y=x;
+        x=nou;
+        n--;
+    }
+    
+}

@@ -1,0 +1,82 @@
+1.
+
+int maximp(int a, int b)
+{
+    for(int i=b;i>=a;i--)
+    {
+        int pd=1;
+        for(int d=1;d<=i;d+=2)
+            if(i%d==0) pd*=d;
+        if(pd>i) return i;
+        
+    }
+    
+    return 0;
+    
+}
+
+2.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int a[51][51];
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++) cin>>a[i][j];
+    
+    int ct=1,mxct=0,x=a[1][1],ok=1;
+    while(ct<=n)
+    {
+        for(int i=1;i<=ct;i++)
+            for(int j=1;j<=ct;j++)
+                if(a[i][j]!=x) {
+                    
+                    mxct=ct-1;
+                    ok=0;
+                }
+        if(ok==1)ct++;
+        else break;
+    }
+    
+    cout<<mxct;
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main() {
+    // Tablou pentru a stoca frecvența numerelor, presupunând că valorile sunt în intervalul [0, 103]
+    int freq[104] = {0}; // Numerele sunt în intervalul [0, 103]
+    int x;
+
+    // Citirea numerelor din fișier și actualizarea frecvenței
+    while (fin >> x) {
+        freq[x]++;
+    }
+
+    // Afișarea numerelor impare în ordine crescătoare
+    for (int i = 1; i <= 103; i += 2) {
+        while (freq[i] > 0) {
+            cout << i << " ";
+            freq[i]--;
+        }
+    }
+
+    // Afișarea numerelor pare în ordine crescătoare
+    for (int i = 0; i <= 103; i += 2) {
+        while (freq[i] > 0) {
+            cout << i << " ";
+            freq[i]--;
+        }
+    }
+
+    return 0;
+}
