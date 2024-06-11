@@ -1,0 +1,89 @@
+5.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char cod[256];
+    cin.getline(cod,256);
+    if(strlen(cod)!=strlen(s)) {
+        cout<<"cod incorect";
+        exit(0);
+    }
+    char cuv[256]="";
+    strncpy(cuv,s,1); //copiez prima litera
+     //sir ajutator
+    for(int i=1;i<strlen(cod);i++)
+    {
+        if((cod[i]-'0')%2==0) //par => copiez la inceput
+        {
+            char aux[256]="";
+            strcpy(aux,cuv);
+            cuv[0]=s[i];
+            cuv[1]='\0';
+            strcat(cuv,aux);
+        }
+        else
+        {
+            strncat(cuv,s+i,1);
+        }
+    }
+    cout<<cuv;
+}
+
+
+3.
+
+int resturi(int n,int x, int y, int r)
+{
+    if(n==0) return 0;
+    if(n%x==r&&n%y==r) return 1+resturi(n-1,x,y,r);
+    return resturi(n-1,x,y,r);
+}
+
+
+4.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream fin("numere.in");
+    if (!fin) {
+        cerr << "Nu s-a putut deschide fisierul bac.txt" << endl;
+        return 1;
+    }
+
+    int prev1, prev2, curr;
+    int maxLength = 0, currentLength = 0;
+
+    // Citim primele două numere
+    if (fin >> prev2 >> prev1) {
+        currentLength = 2;
+
+        while (fin >> curr) {
+            if (curr != prev1 && curr != prev2 && prev1 != prev2) {
+                currentLength++;
+            } else {
+                if (currentLength > maxLength) {
+                    maxLength = currentLength;
+                }
+                currentLength = 2;  // resetăm lungimea secvenței
+            }
+            prev2 = prev1;
+            prev1 = curr;
+        }
+
+        if (currentLength > maxLength) {
+            maxLength = currentLength;
+        }
+    }
+
+    fin.close();
+    cout << maxLength << endl;
+    return 0;
+}
