@@ -1,0 +1,72 @@
+1.
+void putere(int n, int &d, int &p)
+{
+    d=2,p=0;
+    int dmax=0,pmax=0;
+    while (n%d==0)
+        n/=d,p++;
+    if(p>pmax) {pmax=p;
+        dmax=d;}
+    
+    for(d=3;d*d<=n&&n>1;d++)
+    {
+        p=0;
+        while(n%d==0)
+            n/=d,p++;
+        if(p>=pmax)
+        { dmax=d;
+            pmax=p;}
+        
+            
+    }
+    if(n>1) if(pmax==1) dmax=d;
+    d=dmax,p=pmax;
+}
+
+2.
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    int n,k;
+    int a[21][21];
+    cin>>n>>k;
+    for(int i=1;i<=n;i++)
+    {   int nr=i,ct=0;
+        for(int j=1;j<=n*k;j++)
+        {if(ct<k){a[i][j]=nr;ct++;}
+        if(ct>=k) {
+            nr++,ct=0;}
+        }
+        }
+    for(int i=1;i<=n;i++,cout<<endl)
+        for(int j=1; j<=n*k;j++) cout<<a[i][j]<<" ";
+            
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int x,y;
+    fin>>x>>y;
+    cout<<y<<" "<<x<<" ";
+    int z;
+    while(z!=1)
+    {
+        z=3*x-y;
+        cout<<z<<" ";
+        y=x,x=z;
+    }
+    cout<<1;
+            
+}

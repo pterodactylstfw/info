@@ -1,0 +1,62 @@
+1.
+
+void generatoare(int n)
+{
+    for(int i=1;i<=n;i++)
+        for(int j=n;j>=1;j--)
+            if(i*j+i/j==n&&i%2==0) cout<<i<<"-"<<j<<" ";
+}
+
+2.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    int m,n;
+    cin>>m>>n;
+    int a[21][21];
+    for(int i=1;i<=m;i++)
+        for(int j=1;j<=n;j++) cin>>a[i][j];
+    int ct=0;
+    for(int j=2;j<=n;j++)
+    {   int ok=1;
+        for(int i=1;i<=m;i++)
+            if(a[i][1]==a[i][j]) ok=0;}
+        if(ok) ct++;
+    }
+    cout<<ct;
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+
+int main()
+{
+    int x,ct;
+    fin>>x;
+    int ok=1;
+    ct=1;
+    int y;
+    while(fin>>y)
+    {
+        if(x==y) ct++;
+        else
+        {
+            if(ct==2) {cout<<x<<" ";
+                ok=0;}
+            ct=1;
+        }
+        x=y;
+    }
+    if(ok==1) cout<<"nu exista";
+    if(ct==2) cout<<y;
+}

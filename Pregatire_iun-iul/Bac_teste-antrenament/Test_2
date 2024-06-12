@@ -1,0 +1,65 @@
+1.
+
+void fii(int n)
+{
+    int x,y;
+    for(x=n;x>=1;x--)
+        for(y=1;y<=x;y++)
+            if(x*y==n) cout<<"("<<x<<" "<<y<<")"<<" ";
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    for(int i=0;i<strlen(s);i++)
+        if(s[i]=='-'&&isnumber(s[i+1])) {
+            int j=i+1;
+            while(isnumber(s[j])||s[j]==',') j++;
+            strcpy(s+i,s+j);
+            i=j;
+        }
+    cout<<s;
+    
+}
+
+3.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int x;
+    int mx1,mx2,mx3;
+    mx1=mx2=mx3=0;
+    while(fin>>x)
+    {
+        
+        if(x%100==20)
+            if(x>mx1) mx1=x;
+        mx3=max(max(mx1,mx2),mx3);
+        if(mx1==mx3) mx1=0;
+        
+        mx2=max(mx1,mx2);
+        if(mx1==mx2) mx1=0;
+        mx1=min(mx1,mx2);
+            
+            
+    }
+    
+    cout<<mx1<<" "<<mx2<<" "<<mx3;
+    
+}

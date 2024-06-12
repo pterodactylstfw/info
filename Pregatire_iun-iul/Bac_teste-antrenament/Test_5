@@ -1,0 +1,65 @@
+1.
+
+int baza(int n)
+{
+    int mx=0;
+    while(n)
+    {if(n%10>mx) mx=n%10;
+        n/=10;}
+    return mx+1;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+
+
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char *p=strtok(s," ");
+    int ct=0;
+    while(p)
+    {
+        int ok=1;
+        for(int i=0;i<strlen(p);i++)
+            if(!isnumber(p[i])) ok=0;
+        if(ok) ct++;
+        p=strtok(NULL," ");
+    }
+    cout<<ct;
+}
+
+
+3.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+
+int main()
+{
+    int x,s,smax;
+        s=smax=0;
+        fin>>x;
+        s=smax=x;
+        while(fin>>x)
+        {
+            if(s>0)
+               s=s+x;
+            else
+               s=x;
+            if(s>smax)
+               smax=s;
+        }
+        cout<<smax;
+}
