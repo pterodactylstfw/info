@@ -1,0 +1,65 @@
+1.
+void divprim(int n, int &k ,int *v)
+{
+    int d,ok=0;
+    if(n%2==0) d=2;
+    else
+    {
+        int i=3;
+        while(i<=n&&ok!=1)
+        {
+            if(n%i==0) {d=i;
+                ok=1;}
+            i++;
+        }
+    }
+    ok=0;
+    for(int i=1;i<=k;i++)
+        if(v[i]==d) ok=1;
+    if(ok==1) return;
+    else
+    {
+        for(int i=1;i<=k;i++)
+            if(v[i]<d&&v[i+1]>d) //trebuie sa inserez pe pozitia i+1
+            {k++;
+                for(int j=k;j>i;j--)
+                    v[j]=v[j-1];
+                v[i+1]=d;
+            }
+    }
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    char aux[256]="";
+    char *p=strtok(s," ");
+    int okg=0;
+    while(p)
+    {
+        int ok=1;
+        for(int i=0,j=strlen(p)/2;i<strlen(p)/2-1,j<strlen(p)&&ok!=0;i++,j++)
+            if(p[i]!=p[j]) {ok=0;okg=1;
+            }
+        if(ok) {strncat(aux,p,strlen(p)/2);
+            strcat(aux,"*");
+        }
+        else strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    aux[strlen(aux)-1]='\0';
+    strcpy(s,aux);
+    if(okg)cout<<s;
+    else cout<<"NEMODIFICAT";
+}
+
+3.
+

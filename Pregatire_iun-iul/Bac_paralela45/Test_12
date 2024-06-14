@@ -1,0 +1,83 @@
+1.
+void perechi(int n, int m, int &k)
+{
+    for(int i=1;i<=n;i++)
+        for(int j=i+1;j<=n;j++)
+            if(i*j==m||((i*j)%m==0)&&(m%i==0&&m%j==0)) {cout<<i<<" "<<j<<endl;
+                k++;}
+    k--;
+}
+
+
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    int transf=1,ct=0;
+    while(transf<2) //0 pt sir transf, 1 pt sir transf la final, de verificat, 2 pentru sir verificat
+    {
+        int ok=0; //verif pt fiecare iteratie
+        for(int i=0;i<strlen(s)-1;i++)
+            if(s[i]==s[i+1]) {
+                ok=1;
+                int j=i+1;
+                while(s[i]==s[j]) j++;
+                strcpy(s+i,s+j);
+                
+            }
+        
+        if(ok==1) transf=0;
+        if(ok==0){ ct++;
+            if(transf==0) transf=1;
+            else if(transf==1) transf=2;}
+        
+        
+    }
+    
+    cout<<s;
+    cout<<endl<<ct;
+     
+}
+
+
+//mtopppppootatnne
+
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int vp[10]={0},vn[10]={0};
+    int x,mxf=0;
+    while(fin>>x)
+    {
+        if(x<0) {vn[-x]++;
+            if(vn[-x]>mxf)mxf=vn[-x];}
+        else {
+            vp[x]++;
+            if(vp[x]>mxf) mxf=vp[x];
+        }
+        
+    }
+    
+    for(int i=10;i>=1;i--)
+        if(vn[i]==mxf) cout<<-i<<" ";
+    for(int i=0;i<=9;i++) if(vp[i]==mxf) cout<<i<<" ";
+     
+}
+
+
+

@@ -1,0 +1,54 @@
+1.
+
+int cmmdc(int a, int b)
+{
+    if(b==0) return a;
+    return cmmdc(b,a%b);
+}
+
+void nPrime(int n, int &k, int *p)
+{
+    int i=1,ct=1;
+    int x=2;
+    p[0]=1;
+    while(ct<k)
+    {
+        if(cmmdc(n,x)==1) {p[i++]=x;ct++;}
+        x++;
+    }
+}
+
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    int n;
+    int a[51][51];
+    cin>>n;
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++) cin>>a[i][j];
+    int val[51]={0};
+    for(int i=1;i<=n;i++)
+    {   int ct=0;
+        for(int j=1;j<=n;j++)
+            if(a[j][i]==1) ct++;
+        val[i]=ct;
+        }
+    for(int i=1;i<=n;i++)
+    {   int ok=1;
+        for(int j=1;j<=n;j++)
+            if(a[i][j]!=0) ok=0;
+        if(ok==1)
+            for(int k=1;k<=n;k++) a[i][k]=val[k];
+    }
+    for(int i=1;i<=n;i++,cout<<endl)
+        for(int j=1;j<=n;j++) cout<<a[i][j]<<" ";
+}
+
+3.
+
