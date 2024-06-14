@@ -1,0 +1,62 @@
+1.
+
+
+2.
+
+
+3.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int a[10],mx;
+int main()
+{
+    int n,x;
+    fin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        fin>>x;
+        a[x]++;
+    }
+    int ct=0;
+    for(int i=1;i<=9;i++)
+    {
+        if(a[i]%2==0) ct++;
+        if(mx<i&&i%2==0) mx=i;
+    }
+    
+    if(ct>1) cout<<"nu";
+    
+    else
+    {
+        if(ct==1)
+        {if(a[mx]%2==1) cout<<mx;
+            a[mx]=mx-3;
+            for(int i=9;i>=1;i--)
+                for(int j=a[i]/2;j>=1;j--)
+                    cout<<i;
+            cout<<mx;
+            for(int i=1;i<=9;i++)
+                for(int j=1;j<=a[i]/2;j++)
+                    cout<<i;}
+        else
+        {
+            cout<<mx;
+            a[mx]=a[mx]-2;
+            int x=0;
+            for(int i=9;i>=1;i--)
+            {
+                if(a[i]%2==1) x=i;
+                for(int j=1;j<=a[i]/2;j++)
+                    cout<<i;
+            }
+            if(x!=0) cout<<x;
+            for(int i=1;i<=9;i++)
+                for(int j=1;j<=a[i]/2;j++)
+                    cout<<i;
+            cout<<mx;
+        }
+         
+    }
+}
