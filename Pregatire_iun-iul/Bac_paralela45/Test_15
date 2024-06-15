@@ -1,0 +1,102 @@
+1.
+
+void compact(int &n,int *a)
+{
+    for(int i=1;i<n;i++)
+        for(int j=i+1;j<=n;j++)
+            if(a[i]==a[j])
+            {for(int k=j;k<n;k++)
+                a[k]=a[k+1];
+                n--;
+                j--;}
+    
+                    
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+// Functie care verifica daca un sir este palindrom
+bool isPalindrome(const char* s, int length) {
+    for (int i = 0; i < length / 2; ++i) {
+        if (s[i] != s[length - i - 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    const int MAX_LENGTH = 100;
+    char S[MAX_LENGTH + 1];
+    
+    cout << "Introduceti sirul: ";
+    cin >> S;
+
+    int n = strlen(S);
+    char result[MAX_LENGTH * 2 + 1]; // Maxim dublul lungimii initiale
+
+    strcpy(result, S);
+
+    // Verificam de la sfarsit cat din sir este deja palindrom
+    for (int i = 0; i < n; ++i) {
+        if (isPalindrome(S + i, n - i)) {
+            // Adaugam la final partea din sir care lipseste pentru a face palindrom
+            for (int j = i - 1; j >= 0; --j) {
+                result[n++] = S[j];
+            }
+            result[n] = '\0'; // Null terminator pentru finalul sirului
+            break;
+        }
+    }
+
+    cout << "Sirul obtinut este: " << result << endl;
+
+    return 0;
+}
+
+
+3.
+
+NU MERGE
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int x,y,lgmax=-1,nrmax=0,lg=0;
+    fin>>x;
+    int mx=0;
+    while(fin>>y)
+    {
+        if(x>y&&mx==0)
+        {
+            mx=y;
+            lg=0;
+        }
+        else if(x>y&&mx!=0)
+        {
+            if(mx<y)
+            {if(lgmax>lg) lgmax=lg,nrmax=1;
+            else if(lgmax==lg) nrmax++;}
+                else mx=y;
+        }
+        else if(x<y&&mx!=0)
+        {
+            lg++;
+        }
+        
+        x=y;
+    }
+    if(lgmax==-1) cout<<"nu exista";
+    else cout<<lgmax<<" "<<nrmax;
+}
