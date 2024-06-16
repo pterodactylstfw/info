@@ -1,0 +1,63 @@
+1.
+int suma (int n)
+{
+    int s=0;
+    int d=2,p=0;
+    while(n%d==0)
+        n/=d,p++;
+    if(p!=0) s+=d;
+    for(d=3;d*d<=n&&n>1;d+=2)
+    {
+        p=0;
+        while(n%d==0)
+            n/=d,p++;
+        if(p) s+=d;
+    }
+    if(n>1) s+=n;
+    return s;
+}
+
+
+2.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    int a[51][51];
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++) cin>>a[i][j];
+    cout<<endl;
+    int aux=a[k][1];
+    for(int j=1;j<k;j++)
+        a[k][j]=a[k][j+1];
+    a[k][k-1]=aux;
+    for(int i=1;i<=n;i++,cout<<endl)
+        for(int j=1;j<=n;j++)
+            cout<<a[i][j]<<" ";
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,poz[10]={0},v[10]={0},mx=0;
+    int i=1;
+    while(fin>>x)
+    {
+        v[x%10]++,poz[x%10]=i;
+        i++;
+        if(v[x%10]>mx) mx=v[x%10];
+    }
+    
+    for(int i=0;i<=9;i++)
+        if(v[i]==mx) cout<<poz[i]<<" ";
+        
+}

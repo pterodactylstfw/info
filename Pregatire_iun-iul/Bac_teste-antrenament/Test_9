@@ -1,0 +1,60 @@
+1.
+
+void suma(int n, int &s)
+{
+    int v[9]={0};
+    s=0;
+    while(n)
+    {
+        int c=n%10;
+        
+        if(c%2==1&&v[c]==0) s+=c;
+        v[c]=1;
+        n/=10;
+    }
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+    char s[11][21];
+    char cuv[21];
+    int n;
+    cin>>n;
+    cin.get();
+    for(int i=0;i<n-1;i++) cin.getline(s[i],21);
+    cin.getline(cuv,21);
+    
+    for(int i=0;i<n-1;i++)
+        if(strncmp(s[i],cuv,strlen(cuv))==0) cout<<s[i]<<endl;
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int k;
+    fin>>k;
+    int x;
+    int lg=0,lgmax=0,nr=0;
+    while(fin>>x)
+    {
+        if(x%k==0) lg++;
+        else{
+            if(lg>lgmax) lgmax=lg,nr=1,lg=0;
+            else if(lg==lgmax) nr++;
+        }
+    }
+    if(lg==lgmax) nr++;
+    cout<<lgmax<<" "<<nr;
+}

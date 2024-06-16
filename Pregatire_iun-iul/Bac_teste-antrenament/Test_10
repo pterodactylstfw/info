@@ -1,0 +1,44 @@
+1.
+
+void produs(int n, int &p)
+{
+    p=-1;
+    int v[10]={0};
+    while(n)
+    {
+        int c=n%10;
+        if(c%2==0&&p==-1) p=1;
+        if(c%2==0&&v[c]==0) p*=c;
+        v[c]=1;
+        n/=10;
+    }
+}
+
+2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+char s[103], t[501] = "";
+cin.getline(s, 103);
+ 
+char *p = strtok(s, " "), c = '\0';
+ 
+while (p != NULL)
+{
+ if (p[strlen(p) - 1] == c)
+  strcat(t, "succes ");
+ strcat(t, p);
+ strcat(t, " ");
+ c = p[strlen(p) - 1];
+ p = strtok(NULL, " ");
+}
+ 
+cout << t;
+ 
+return 0;
+}
+
+3.
+
