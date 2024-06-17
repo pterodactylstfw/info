@@ -1,0 +1,79 @@
+1.
+
+void divPrimMax(int n, int &p)
+{
+    int d=2,p1=0;
+    while(n%d==0)
+        p1++,n/=d;
+    if(p1) p=d;
+    
+    for(d=3;d*d<=n&&n>1;d+=2)
+    {
+        p1=0;
+        while(n%d==0)
+            p1++,n/=d;
+        if(p1) p=d;
+    }
+    if(n>1) p=n;
+}
+
+2.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    int ct=0;
+    char *p=strtok(s, " ");
+    char voc[6]="aeiou";
+    while(p)
+    {
+        int nrcs=0,nrvc=0;
+        for(int i=0;i<strlen(p);i++)
+        {
+            if(strchr(voc,p[i])!=NULL) nrvc++;
+            else nrcs++;
+        }
+        
+        if(nrvc==nrcs) ct++;
+            
+        p=strtok(NULL," ");
+    }
+    
+    cout<<ct;
+}
+
+
+3.
+
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+ofstream fout("numere.out");
+
+int main()
+{
+    int p1,p2,ct=0;
+    cin>>p1>>p2;
+    int nr;
+    for(int i=1;i<=9;i++)
+        for(int j=1;j<=9;j++)
+        if(i*j==p1)
+            for(int k=1;k<=9;k++)
+                for(int l=1;l<=9;l++)
+                    if(k*l==p2)
+                        for(nr=0;nr<10;nr++)
+                        {fout<<i<<j<<nr<<nr<<nr<<k<<l<<" ";
+                            ct++;}
+        
+    cout<<ct;
+}

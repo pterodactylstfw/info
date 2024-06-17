@@ -1,0 +1,81 @@
+1.
+void patrate(int a, int b)
+{
+    int s=0,ok=0,v[10]={0},j=0;
+    for(int x=a;x<=b;x++)
+    {
+        for(int i=1;i*i<=x;i++)
+            if(i*i==x){ ok=1; s+=x;
+                v[j]=x;
+                j++;
+        }
+        
+        
+        
+        
+    }
+    if(ok){for(int i=0;i<j-1;i++)
+        cout<<v[i]<<"+";
+        cout<<v[j-1];
+        cout<<"="<<s;}
+    
+    if(ok==0) cout<<"nu exista";
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+
+int main()
+{
+    char s[256];
+    cin.getline(s,255);
+    char aux[256];
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(islower(p[0])) p[0]-=32;
+        for(int i=1;i<strlen(p);i++)
+            if(isupper(p[i])) p[i]+=32;
+        
+        strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+        
+    }
+    aux[strlen(aux)-1]='\0';
+    strcpy(s,aux);
+    cout<<s;
+}
+
+
+3.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int x,y;
+    int lg=1;
+    fin>>x;
+    while(fin>>y)
+    {
+        if(x==y) lg++;
+        else
+        {
+            cout<<x<<" "<<lg<<" ";
+            lg=1;
+            
+        }
+        x=y;
+    }
+    cout<<x<<" "<<lg;
+}

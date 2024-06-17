@@ -1,0 +1,52 @@
+1.
+
+int pDoi(int n)
+{
+    int p=2;
+    while(p*2<=n)
+        p*=2;
+    return p;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    int ok=0;
+    for(int i=strlen(s)-1;i>=0;i--)
+        if(strchr("aeiou",s[i]))
+        {strcpy(s+(strlen(s)-(strlen(s)-i)),s+(strlen(s)-(strlen(s)-i))+1);
+            ok=1; break;}
+    
+    if(ok)cout<<s;
+    else cout<<"nu exista";
+}
+
+
+3.
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+int main()
+{
+    int x;
+    cin>>x;
+    cout<<x<<" ";
+    do {
+        int y;
+        if(x%2==1) y=x-1;
+        else y=x/2;
+        cout<<y<<" ";
+        x=y;
+        
+    } while (x>10);
+    
+    for(int i=9;i>=1;i--) cout<<i<<" ";
+    
+}
