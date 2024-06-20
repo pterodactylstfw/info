@@ -1,0 +1,81 @@
+1.
+
+int maxim(int n)
+{
+    
+    int c=-1;
+    while(n)
+    {
+        if(n%2==1) if(n%10>c) c=n%10;
+        n/=10;
+    }
+    return c;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    char aux[400]="";
+    char *p=strtok(s," ");
+    while(p)
+    {
+        bool ok=true;
+        char voc[6]="aeiou";
+        for(int i=0;i<strlen(p);i++)
+            if(strchr(voc,p[i])==NULL) ok=0;
+        if(ok)
+        {strcat(aux,p);
+            strcat(aux," ");
+            strcat(aux,p);
+            strcat(aux," ");}
+        else
+        {
+            strcat(aux,p);
+            strcat(aux," ");
+        }
+        p=strtok(NULL," ");
+        
+    }
+    aux[strlen(aux)-1]='\0';
+    if(strcmp(aux,s)!=0)
+    {strcpy(s,aux);
+        
+        cout<<s;}
+    else cout<<"nu exista";
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int n;
+    fin>>n;
+    int a[1001];
+    for(int i=0;i<n;i++) fin>>a[i];
+    int x,y;
+    int ct=0;
+    while(fin>>x>>y)
+    {
+        if(x<a[0]&&y<a[0]) ct++;
+        else if(x>a[n-1]&&y>a[n-1]) ct++;
+        else
+        {   int ok=1;
+            for(int i=0;i<n;i++)
+                if(a[i]>=x&&a[i]<=y) ok=0;
+            if(ok) ct++;}
+    }
+    cout<<ct;
+}

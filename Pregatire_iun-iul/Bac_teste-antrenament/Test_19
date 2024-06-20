@@ -1,0 +1,55 @@
+1.
+
+void paritate(int n, int &nr)
+{
+    for(int i=1;i<=n;i++)
+        if(n%i==0&&n%2==i%2) nr++;
+}
+
+2.
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    int n,m,k,a[21][21];
+    cin>>m>>n>>k;
+    for(int i=0;i<m;i++)
+        for(int j=0;j<n;j++) cin>>a[i][j];
+    int okg=0;
+    for(int i=1;i<m;i++)
+    {
+        int ok=1;
+        for(int j=0;j<n;j++)
+        {   if(i!=k)
+            if(a[k][j]==a[i][j]) ok=0;
+        }
+        if(ok==1) okg=1;
+    }
+    
+    if(okg) cout<<"DA";
+    else cout<<"NU";
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x,ultim=-1;
+    while(fin>>x)
+    {
+        if(x%2==0&&ultim!=x)
+        {
+            cout<<x<<" ";
+            ultim=x;
+        }
+    }
+    
+}

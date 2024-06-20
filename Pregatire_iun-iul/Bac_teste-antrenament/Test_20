@@ -1,0 +1,67 @@
+1.
+
+int transformareBaza10(int b, int n)
+{
+    int p=1;
+    int nr=0;
+    while(n)
+    {
+        nr+=n%10*p;
+        p*=b;
+        n/=10;
+    }
+    return nr;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+
+
+int main()
+{
+    char s[256];
+    cin.getline(s,256);
+    for(int i=0;i<strlen(s);i++)
+    {
+        if(s[i]==','&&isnumber(s[i-1]))
+        {
+            int j=i;
+            while(s[j]!=' ') j++;
+            strcpy(s+i,s+j);
+        }
+    }
+    cout<<s;
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int smax=0,sum=0,x,y;
+    fin>>y;
+    sum+=y;
+    while(fin>>x)
+    {
+        if(x%2==y%2) sum+=x;
+        else
+        {
+            if(sum>smax) {smax=sum;
+            }
+            sum=x;
+        }
+        y=x;
+    }
+    
+    cout<<smax;
+}

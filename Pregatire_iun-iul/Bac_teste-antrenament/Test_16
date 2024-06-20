@@ -1,0 +1,106 @@
+1.
+
+int nrDivPrimi(int n)
+{
+    int d=2,p=0;
+    while(n%d==0) n/=d,p++;
+    int ct=0;
+    if(p%2==1) ct++;
+    for(d=3;d*d<=n&&n>1;d+=2)
+    {
+        p=0;
+        while(n%d==0) n/=d,p++;
+        if(p%2==1) ct++;
+    }
+    if(n>1) ct++;
+    return ct;
+}
+
+2.
+
+#include <iostream>
+using namespace std;
+
+
+
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    int nr=1;
+    int a[21][21];
+    for(int i=n-1;i>=0;i--)
+        for(int j=m-1;j>=0;j--) {a[i][j]=nr*nr;
+            nr+=2;}
+    
+    for(int i=0;i<n;i++,cout<<endl)
+        for(int j=0;j<m;j++) cout<<a[i][j]<<" ";
+        
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream f("numere.in");
+int m,n,a[1000001],mini,i,j,ultim,x;
+int main()
+{
+   ultim=-1;
+   f>>m>>n;
+   for(i=1; i<=m; i++)
+       f>>a[i];
+   i=1;
+   j=1;
+   f>>x;
+   while(i<=m and j<=n)
+   {
+       mini=min(x,a[i]);
+       if(ultim==-1)
+       {
+           cout<<mini<<" ";
+           ultim=mini;
+       }
+       else if(ultim%2!=mini%2)
+       {
+           cout<<mini<<" ";
+           ultim=mini;
+       }
+       if(x==mini and a[i]==mini)
+       {
+           i++,j++;
+           f>>x;
+       }
+       else if(x!=mini and a[i]==mini)
+           i++;
+       else
+       {
+           j++;
+           f>>x;
+       }
+   }
+   while(i<=m)
+   {
+       if(ultim%2!=a[i]%2)
+       {
+           cout<<a[i]<<" ";
+           ultim=a[i];
+       }
+       i++;
+   }
+   while(j<=n)
+   {
+       f>>x;
+       j++;
+       if(ultim%2!=x%2)
+       {
+           cout<<x<<" ";
+           ultim=x;
+       }
+   }
+   return 0;
+}
+
+!! 3
