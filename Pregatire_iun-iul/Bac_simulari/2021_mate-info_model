@@ -1,0 +1,64 @@
+1.
+
+void prime(int n, int &x, int &y)
+{
+    x=-1,y=-1;
+    for(int i=n-1;i>=1;i--)
+    {
+        int ok=1;
+        if(i!=2&&i%2==0||i<2) ok=0;
+        else
+            for(int d=3;d*d<=i;d+=2)
+                if(i%d==0) ok=0;
+        if(ok)
+            if(y==-1) y=i;
+            else if(x==-1) x=i;
+        if(x!=-1&&y!=-1) break;
+    }
+}
+
+2.
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    int m,n,nr=0;
+    cin>>m>>n;
+    int a[15][15];
+    for(int i=m-1;i>=0;i--)
+        for(int j=n-1;j>=0;j--)
+        {a[i][j]=nr*nr;
+            nr+=2;}
+    
+    for(int i=0;i<m;i++,cout<<endl)
+        for(int j=0;j<n;j++) cout<<a[i][j]<<" ";
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int v[100]={0},mx=0,prodmx=0;
+    int x,y,z;
+    while(fin>>x>>y>>z)
+    {
+        v[x]=v[x]+y*z;
+        if(v[x]>mx) mx=v[x];
+        if(x>prodmx) prodmx=x;
+    }
+    int ct=0;
+    cout<<mx;
+    
+    for(int i=1;i<=prodmx;i++)
+    {
+        if(v[i]==mx) ct++;
+    }
+    cout<<" "<<ct;
+}

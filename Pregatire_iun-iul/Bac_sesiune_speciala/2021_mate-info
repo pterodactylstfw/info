@@ -1,0 +1,86 @@
+1.
+
+void imog(int x, int y, int &rez)
+{
+    int vx[10]={0};
+    int vy[10]={0};
+    int i=0,j=0;
+    while(x)
+    {
+        vx[i]=x%10;
+        x/=10;i++;
+    }
+    while(y)
+    {
+        vy[j]=y%10;
+        y/=10;j++;
+    }
+    int n1,n2;
+    n1=0,n2=0;
+    for(int a=0;a<i;a++)
+        if(vx[a]%2==1) n1=n1*10+vx[a];
+    for(int a=j-1;a>=0;a--)
+        if(vy[a]%2==1) n2=n2*10+vy[a];
+    
+    if(n1==n2) rez=1;
+    else rez=0;
+    
+    
+}
+
+2.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    int k;
+    cin>>n>>k;
+    int a[101][101];
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++) cin>>a[i][j];
+    k--;
+    for(int i=0;i<k;i++)
+        swap(a[i][k],a[k][i]);
+    
+    for(int i=0;i<n;i++,cout<<endl)
+        for(int j=0;j<n;j++) cout<<a[i][j]<<" ";
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+ofstream fout("numere.out");
+
+int main() {
+    int x, y;
+    fin >> x >> y;
+
+    // Inițializăm șirul
+    int k = 0;
+    int fk = 1;
+    
+    // Găsim poziția lui y în șir
+    while (fk != y) {
+        k++;
+        fk = fk + 2 * k;
+    }
+
+    // Scriem termenii în ordine inversă
+    while (k >= 0) {
+        fout << fk << " ";
+        fk = fk - 2 * k;
+        k--;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
