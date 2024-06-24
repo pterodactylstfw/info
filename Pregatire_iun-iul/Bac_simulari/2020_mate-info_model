@@ -1,0 +1,99 @@
+1.
+
+void duplicare(int n, int &d)
+{
+    int ok=0;
+    int a[9]={0};
+    int i=0;
+    while(n)
+    {
+        a[i]=n%10;
+        a[i+1]=-1;
+        if(n%2==1) ok=1;
+        i+=2;
+        n/=10;
+    }
+    
+    if(ok==0) {
+        d=-1;
+        return;
+    }
+    for(int j=1;j<i;j+=2)
+        if(a[j-1]%2==1) a[j]=a[j-1];
+            
+    d=0;
+    for(int j=i-1;j>=0;j--)
+        if(a[j]!=-1) d=d*10+a[j];
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    cin.get();
+    char s[101];
+    cin.getline(s,101);
+    char lg[10][10],sc[10][10];
+    int i=0,j=0;
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(strlen(p)>=n)
+        {
+            strcpy(lg[i],p);
+            i++;
+        }
+        else
+        {
+            strcpy(sc[j],p);
+            j++;
+        }
+        p=strtok(NULL," ");
+    }
+    if(i==0||j==0) cout<<"nu exista";
+    else
+    {for(int k=0;k<i;k++) cout<<lg[k]<<'\n';
+        for(int k=0;k<j;k++) cout<<sc[k]<<'\n';}
+    
+}
+
+
+3.
+
+#include    <iostream>
+#include    <fstream>
+
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    unsigned int total = 0;
+    unsigned int n;
+    unsigned int x, y;
+
+    fin >> n;
+    fin >> x;
+
+    y = x;
+    total = total + (n - x);
+    while(fin >> x)
+    {
+        if(x != y)
+            total = total + (y - x - 1);
+        y = x;
+    }
+    total = total + (x - 1);
+
+    if(total != 0)
+        cout << total;
+    else
+        cout << "NU";
+    return 0;
+}

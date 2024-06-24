@@ -1,0 +1,78 @@
+1.
+
+int suma(int a, int b)
+{
+    int s=0;
+    if(a>b) swap(a,b);
+    for(int i=1;i<=min(a,b);i++)
+        if(a%i==0&&b%i==0) s+=i;
+    return s;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+
+int main()
+{
+    char s[101];
+    cin.getline(s,101);
+    char aux[101];
+    int ok=0;
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(strlen(p)>2)
+        {
+            char l=p[0];
+            
+            char cuv[15];
+            strcpy(cuv,p);
+            
+            strcpy(cuv,cuv+1);
+            int len=strlen(cuv);
+            
+            cuv[len]=l;
+            cuv[len+1]='\0';
+            strcat(aux,cuv);
+            ok=1;
+        }
+        else strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    strcpy(s,aux);
+    if(ok==0) cout<<"nu exista";
+    else
+    cout<<s;
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int v[1001]={0};
+    int ok=0;
+    int x,mx=0,mn=1001;
+    while(fin>>x)
+    {
+        v[x]++;
+        if(x>mx) mx=x;
+        if(mn>x) mn=x;
+        
+    }
+    for(int i=mn;i<=mx;i++)
+    {if(v[i]%2==1) ok++;
+        if(ok==2) cout<<"NU";
+        
+    }
+    if(ok<2) cout<<"DA";
+    
+}
