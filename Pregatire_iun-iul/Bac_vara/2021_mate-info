@@ -1,0 +1,72 @@
+1.
+void divPrim(int n, int &s)
+{
+    int d=2,p=0; // d=divizor, p=putere
+    while(n%d==0)
+    {
+        n=n/d;
+        p=p+1;
+    }
+    if(p%2==1) s=s+d;
+    
+    for(d=3;d*d<=n&&n>1;d+=2)
+    {
+        p=0;
+        while(n%d==0)
+            n/=d,p++;
+        
+        if(p%2==1) s=+d;
+    }
+    
+    if(n>1) s+=n;
+    
+}
+
+
+2.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    int n,k;
+    char s[11],voc[]="aeiou";
+    cin>>n>>k;
+    cin.get(); // sau cin.ignore();
+    for(int i=0;i<n&&k!=0;i++)
+    {
+        cin.getline(s,11);
+        if(strchr(voc,s[strlen(s)-1])!=NULL) {k--;
+            cout<<s<<'\n';}
+        if(k==0) exit(0);
+    }
+    
+    if(k!=0) cout<<"nu exista";
+            
+        
+}
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+
+int main()
+{
+    int n;
+    fin>>n;
+    int x,y;
+    fin>>x;
+    int mx1=0,mx2=0; // mx2 si mx3 variabila de stocare
+    while(fin>>y)
+    {
+        if(x%1000==n&&y%1000==n) mx1=x,mx2=y;
+        x=y;
+    }
+    
+    cout<<mx1<<" "<<mx2;
+}
+
