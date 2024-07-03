@@ -1,0 +1,70 @@
+1.
+
+int duplicat(int n, int* a)
+{
+	int v[1000] = { 0 };
+	for (int i = 0; i < n; i++)
+	{
+		v[a[i]]++;
+		if (v[a[i]] == 2) return a[i];
+	}
+}
+
+2.
+
+
+#include <iostream>
+#include <cstring>
+#pragma warning(disable : 4996)
+using namespace std;
+int main()
+{
+	char s[256];
+	char aux[300]="";
+	cin.getline(s, 256);
+	for (int i = 0; i < strlen(s); i++)
+	{
+		if (strchr("aeiouAEIOUc", s[i]) != NULL)
+		{
+			strncat(aux, s + i, 1);
+			strcat(aux, "STOP");
+		}
+		else strncat(aux, s + i, 1);
+	}
+
+	strcpy(s, aux);
+	cout << s;
+}
+
+3.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+#pragma warning(disable : 4996)
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+	int a[100] = { 0 };
+	int x;
+	while (fin >> x)
+	{
+		int s = 0;
+		while (x != 0)
+		{
+			s += x % 10;
+			x /= 10;
+		}
+
+		a[s]++;
+	}
+	int ct = 0;
+	for (int i = 2; i <= 98; i++)
+		if (a[i] % 2 == 0&&a[i]!=0) ct++;
+
+	cout << ct;
+
+}
