@@ -1,0 +1,15 @@
+1.
+
+void NrImp(int x, int y, int &nr)
+{
+    for(int n=x;n<=y;n++)
+    {
+        int ct=0;
+        for(int i=1;i<=n;i+=2)
+            if(n%i==0) ct++;
+        if(ct==3) nr++;
+    }
+}
+
+2.
+
