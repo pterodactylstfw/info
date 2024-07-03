@@ -1,0 +1,62 @@
+1.
+
+void divX(int n, int x)
+{
+    for(int i=n;i>=1;i--) cout<<x*i<<" ";
+}
+
+
+2.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+    int a[101][101];
+    cin>>n;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++) cin>>a[i][j];
+    
+    for(int i=0;i<n;i++)
+        cout<<a[i][0]<<" ";
+    for(int i=0;i<n;i++)
+        cout<<a[n-1][i]<<" ";
+    for(int i=n-1;i>=0;i--)
+        cout<<a[n-1][i]<<" ";
+    for(int i=n-1;i>0;i--)
+        cout<<a[0][i]<<" ";
+}
+
+
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("numere.in");
+int main()
+{
+    int x;
+    int v[100]={0};
+    while(fin>>x)
+    {
+        v[x]++;
+    }
+    int ct=0;
+    for(int i=99;ct!=2&&i>=1;i--)
+        if(v[i]==0) {
+            int ok=1;
+            int og=0;
+            int aux=i;
+            while(aux)
+            {
+                og=og*10+aux%10;
+                aux/=10;
+            }
+            if(og==i) ok=0;
+            
+            if(ok){cout<<i<<" ";ct++;}}
+    if(ct<2) cout<<"nu exista";
+}
