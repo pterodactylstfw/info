@@ -1,0 +1,82 @@
+1.
+
+int nrmax(int a, int b)
+{
+	int v1[10] = { 0 }, v2[10] = { 0 };
+	while (a)
+	{
+		if (a % 10 % 2 == 1) v1[a % 10]++;
+		a /= 10;
+	}
+	while (b)
+	{
+		if (b % 10 % 2 == 1) v2[b % 10]++;
+		b /= 10;
+	}
+	int c = 0;
+	for (int i = 9; i >= 1; i -= 2)
+		if (v1[i] != 0 && v2[i] != 0) c = c * 10 + i;
+	return c;
+}
+
+2.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+#pragma warning(disable : 4996)
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+	char s[251], t[300], c[300], * p, z[251];
+	int ok = 0;
+	cin.get(s, 251);
+	z[0] = NULL;
+	p = strtok(s, " ");
+	while (p) {
+		if (strlen(p) % 2 == 0) {
+			strcpy(c, p);
+			strcpy(t, p + strlen(p) / 2);
+			p[strlen(p) / 2] = NULL;
+			strcat(t, p);
+			if (strcmp(c, t)) {
+				ok = 1;
+				strcpy(p, t);
+			}
+		}
+		strcat(z, p);
+		strcat(z, " ");
+		p = strtok(NULL, " ");
+	}
+	if (ok) cout << z;
+	else cout << "TEXT NEMODIFICAT";
+	return 0;
+}
+
+
+3.
+
+#include <iostream>
+#include <cstring>
+#include <fstream>
+#pragma warning(disable : 4996)
+using namespace std;
+
+ifstream f("numere.in");
+
+
+int main()
+{
+	long x, ok = 0, v[1000] = { 0 };
+	while (f >> x) if (x < 1000)v[x]++;
+	x = 999;
+	while (x >= 100 && ok == 0)
+		if (v[x] == 0 && v[1000 - x] != 0) ok = 1;
+		else x--;
+	if (ok) cout << x;
+	else cout << "NU EXISTA";
+	return 0;
+}
