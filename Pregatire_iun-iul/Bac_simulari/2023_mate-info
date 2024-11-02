@@ -12,4 +12,66 @@ void NrImp(int x, int y, int &nr)
 }
 
 2.
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{
+    char s[256],aux[256];
+    cin.getline(s,256);
+    char cuv[3][8]={"FAMILIA","SPECIA","GENUL"};
+    
+    char *p=strtok(s," ");
+    while(p)
+    {
+        if(strchr(p,'.')) //daca e prescurtat
+        {
+            char c[10]="";
+            strcpy(c,p);
+            c[strlen(c)-1]='\0';
+            cout<<c<<endl;
+            for(int i=0;i<3;i++)
+                if(strncmp(cuv[i],c,strlen(c))==0)
+                {
+                    strncpy(c,cuv[i],3);
+                }
+            for(int i=0;i<strlen(c);i++)
+                c[i]+=32;
+            strcpy(c+3,".");
+            
+            strncat(aux,c,4);
+        }
+        else strcat(aux,p);
+        strcat(aux," ");
+        p=strtok(NULL," ");
+    }
+    
+    strcpy(s,aux);
+    s[strlen(s)-1]='\0';
+    cout<<s;
+}
 
+3.
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream fin("numere.in");
+
+int main()
+{
+    int x,y,mx=0;
+    int i=0;
+    fin>>x;
+    mx=x;
+    i++;
+    cout<<i<<" ";
+    while(fin>>y)
+    { i++;
+        if(x<y&&y>=mx) {cout<<i<<" ";
+            mx=y;}
+        x=y;
+    }
+    if(x<y&&y>=mx) cout<<i+1;
+}
