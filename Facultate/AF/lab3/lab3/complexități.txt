@@ -1,0 +1,28 @@
+COMPLEXITĂȚI
+------------
+-> caut o modalitate de a măsura CALITATEA(eficiența) unui algoritm
+
+Algoritmii pot fi evaluați în raport cu:
+    -> eficiența în timp
+    -> cantitate de memorie consumată
+
+Complexitatea (eficiența) de timp estimează timpul de execuție în raport cu dimensiunea inputului
+
+1. 
+a) 5n+3 complexitate => O(n)=n;
+
+Nr.crt  Op elem  Nr rep  Cost
+c) 1. -> 1     -> 1    -> 1
+   2. -> 2     -> n-1  -> 2+(n-1)
+   3. -> 3     -> n-1  -> n-1
+   4. -> 1     -> ?alfa    -> ?alfa
+
+Total op: |                3n-2 + alfa 
+    T(n)  |
+    0 ≤ alfa ≤ n-1 => 3n-2 ≤ T(n) ≤ 4n-3
+
+Cazul cel mai favorabil: numar minim de operatii
+        -> minimul pe prima pozitie ( alfa = a[0])
+
+Cazul cel mai nefavorabil: numar maxim de operatii
+        -> minimul pe ultima pozitie (alfa=a[n-1])

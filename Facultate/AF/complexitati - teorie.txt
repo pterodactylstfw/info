@@ -1,0 +1,125 @@
+COMPLEXITATEA ALGORITMILOR
+
+Fisa seminar complexitati
+
+-> este o măsură a calității unui algoritm
+
+Complexitatea poate fi evaluata:
+
+	a) in timp (estimează nr de operații elementare executate)
+	b) de spatiu (estimează cantitatea de memorie necesară algoritmului) 
+
+-> se raportează ca funcție de dimensiunea inputului
+
+T(a) = nr de operații efectuate de algoritm
+
+1 op elementara - se executa intr-o unitate de timp
+
+astfel: pt ex 1a)
+
+linia ---- cost
+1			1
+2			1
+3			n+1
+4			n
+5			n  => T(n)=(5n+3) cost total
+
+
+
+ ex 2
+1 i <-1
+2 while (i ≤ n)
+3	j<-1
+4	while(j≤n)
+5		cout<< i+j;
+6		j++;
+	end while
+7	i++
+end while
+
+linia ---- cost
+1			1
+2			n+1
+3			n
+4			n(n+1)
+5			2n^2
+6			n^2
+7			n => T(n)=4n^2+4n+2 cost total
+
+
+ex 1c)
+
+linia ---- cost
+1			2
+2			2(n-1) pt ca sunt 2 op elementare si n-1 repetitii
+3			2(n-1) 2 op cu n-1 repetitii
+4			?α
+
+
+Cazul cel mai favorabil: nr operatiilor executate este minim => cel in care minimul e pe x[0]. => α=0
+Cazul cel mai defavorabil: nr operatiilor executate este maxim => cel in care vectorul e ord descr => α=n-1
+
+=> 0 ≤ α ≤ n => 0 ≤ 2α ≤ 2n |+4n-2 => 4n-2 ≤ T(n) ≤ 6n-2
+
+Pentru a estima complexitatea unui algoritm mai complex, se "cauta/determina" secventa cea mai costisitoare a algoritmului
+(si se numara de cate ori se executa aceasta).
+
+
+Pentru instructiuni repetitive imbracate, daca indecsii sunt independenti unul de celalalt,
+se numara de cate ori se executa fiecare instructiune repetitiva in parte si la final se face produs.
+
+for i<-1,m => se executa de m ori		|
+										|
+for j<-1,n => se executa de n ori		| => se executa de m*n*p ori
+										|
+for k<-1,p => se executa de p ori		|
+
+
+
+for(i=1;i<=n;i++)
+	for(j=1;j<=n;j+=2)
+		for(k=1;k<=n;k+=2)
+			bloc de instructiuni
+		end for
+	end for
+end for
+
+Care e complexitatea T(n)?
+
+primul for se exec de n ori
+for-ul nr 2 se exec de n/2 ori  => complexitatea este n*n/2*log_2(n)
+for ul nr 3 se exec de log n ori
+
+
+NOTATII DE COMPLEXITATE (O,Ω,θ)
+
+Def > spunem ca T(n) = O(g(n)) daca exista c apartine R_+ si n0 apartine N astfel incat
+		T(n) ≤ c*g(n), oricare ar fi n ≥ n0
+
+ECHIVALENT > spunem ca T(n) =O(g(n)) <=> lim n -> inft (T(n)/g(n)) = c apartine R
+
+!!! O (omicron) - COMPLEXITATEA IN CAZUL CEL MAI DEFAVORABIL !!!
+
+ne intereseaza sa precizam CEL MAI MIC MAJORANT !
+
+Def > spunem ca T(n) = Ω(g(n)) daca exista c apartine R_+ si n0 apartine N astfel incat
+		c*g(n) ≤ T(n), oricare ar fi n ≥ n0
+
+ECHIVALENT > spunem ca T(n) = Ω(g(n)) <=> lim n -> inft (T(n)/g(n)) = c≠0 sau infinit!
+
+!!! Notatia Ω este utilizata pentru a determina CAZUL CEL MAI FAVORABIL !!! 
+! in plus, se foloseste in general numai cand vrem sa demonstram ca un 
+algoritm nu e eficient nici macar in cel mai favorabil caz. !
+
+ne intereseaza sa cautam CEL MAI MARE MINORANT !!!
+
+
+Def > spunem ca T(n) = (θg(n)) daca exista A,B apartine R_+ si n0 natural astfel incat
+			A*g(n) ≤ T(n) ≤ B*g(n) oricare ar fi n ≥ n0
+
+ECHIVALENT > spunem ca T(n) = θ(g(n)) <=> lim n-> inft (T(n)/g(n)) = c ≠ 0 => cele 2 fct au acelasi ritm/rata de crestere
+
+!!! Notatia θ caracterizeaza complexitatea exacta a unui algoritm !!
+
+
+

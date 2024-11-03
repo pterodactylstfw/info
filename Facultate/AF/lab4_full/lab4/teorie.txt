@@ -1,0 +1,5 @@
+VECTORI
+-structuri de date pastrate in zone de memorie contigue
+-numele vectorului este o variabila care are asociata adresa de inceput a vectorului: v, v+1 (->v[1]) , v+2 (->v[2]) ...
+-v -> vectori statici
+   -> vectori alocati dinamic

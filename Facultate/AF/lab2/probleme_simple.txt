@@ -1,0 +1,393 @@
+1. afisare perechi numere 1-> n care au aceeasi suma a cifrelor
+#include <iostream>
+using namespace std;
+
+void citire(int &n)
+{
+    cin>>n;
+}
+
+int sumcif(int n)
+{
+    if(n==0) return 0;
+    return n%10+sumcif(n/10);
+}
+
+void perechi(int n)
+{
+    for(int i=1;i<=n;i++)
+        for(int j=n;j>i;j--)
+            if(sumcif(i)==sumcif(j)) cout<<"("<<i<<" "<<j<<")"<<" ";
+}
+
+int  main()
+{
+    int n;
+    citire(n);
+    perechi(n);
+}
+
+2. verificare care valori din vector sut egale cu rasturnatul primului numar
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void citire(int &x, vector<int>& numere)
+{   int n;
+    cin>>n;
+    
+    cin>>x;
+    
+    for(int i=0;i<n-1;i++)
+    {
+        int a;
+        cin>>a;
+        numere.push_back(a);
+    }
+    
+        
+}
+
+int rasturnat(int n)
+{
+    int og=0;
+    while(n)
+    {
+        og=og*10+n%10;
+        n/=10;
+    }
+    return og;
+    
+    
+}
+
+int verif(int x, vector <int> numere)
+{
+    int ct=0;
+    
+    for(int i=0;i<numere.size();i++)
+        if(x==rasturnat(numere[i])) ct++;
+    
+    return ct;
+}
+
+int  main()
+{
+    vector <int> numere;
+    int x;
+    citire(x,numere);
+    cout<<verif(x, numere);
+    
+}
+
+
+3.
+
+verificare in intervalul [a,b] ce valori sunt palindrom
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void citire(int &a, int &b)
+{
+    
+    cin>>a>>b;
+    
+        
+}
+
+int rasturnat(int n)
+{
+    int og=0,x=n;
+    while(n)
+    {
+        og=og*10+n%10;
+        n/=10;
+    }
+    return og==x;
+    
+    
+    
+}
+
+void verif(int a, int b)
+{
+    for (int i=a;i<=b;i++)
+        if(rasturnat(i)) cout<<i<<" ";
+}
+
+int  main()
+{
+    int a,b;
+    
+    citire(a,b);
+    verif(a,b);
+    
+}
+
+
+4.
+
+verificare cmmdc maxim
+
+#include <iostream>
+using namespace std;
+int cmmdc(int a, int b)
+{
+    if(b==0)  return a;
+    else return cmmdc(b,a%b);
+}
+
+void citire(int &amax, int &bmax)
+{
+    int n,cmmdcmx=0;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        int a,b;
+        cin>>a>>b;
+        int x=cmmdc(a,b);
+        if(x>cmmdcmx) {cmmdcmx=x;
+            amax=a,bmax=b;}
+        
+    }
+    
+    
+}
+
+int main()
+{
+    int a, b;
+    citire(a,b);
+    cout<<a<<" "<<b;
+}
+
+
+5.
+
+#include <iostream>
+using namespace std;
+
+int prim(int x, int d=3)
+{
+    if(x!=2&&x%2==0||x<2) return 0;
+    if(d*d>x) return 1;
+    if(x%d==0) return 0;
+    return prim(x,d+2);
+}
+
+void citire()
+{
+    int k;
+    cin>>k;
+    int ind=1;
+    for(int i=1;i<k;i++) ind*=10;
+    for(int i=ind+1;i<ind*10-1;i++)
+        if(prim(i-1)&&prim(i+1)) cout<<i<<" ";
+    
+}
+
+int main()
+{
+    citire();
+    return 0;
+}
+
+
+6. de refacut
+
+#include <iostream>
+using namespace std;
+
+void citire(int &n)
+{
+    cin>>n;
+    
+}
+
+void nr_aparitii(int *v)
+{
+    int n;
+    citire(n);
+    while(n)
+    {
+        v[n%10]++;
+        n/=10;
+    }
+}
+
+void nrmin(){
+    int v[9],nr=0;
+    nr_aparitii(v);
+    for(int i=1;i<=9;i++) cout<<v[i]<<" ";
+    for(int i=1;i<=9;i++)
+    {
+        while(v[i])
+        {
+            nr=nr*10+v[i];
+            v[i]--;
+        }
+    }
+    cout<<nr;
+}
+
+
+int main()
+{
+    nrmin();
+}
+
+
+7. cifre in prog arit
+#include <iostream>
+using namespace std;
+
+int verif(int n)
+{
+    int ratie=n%10-n/10%10;
+    
+    while(n>9)
+    {
+        n/=10;
+        if(n%10-n/10%10!=ratie) return 0;
+    }
+    return 1;
+}
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    cout<<verif(n);
+    
+}
+
+
+8. eliminarea cifrei c din n
+
+#include <iostream>
+using namespace std;
+
+int rasturnat(int n)
+{
+    int og=0,x=n;
+    while(n)
+    {
+        og=og*10+n%10;
+        n/=10;
+    }
+    return og;
+    
+    
+    
+}
+
+void transf(int n, int c)
+{
+    int nr=0;
+    while(n)
+    {
+        if(n%10!=c) nr=nr*10+n%10;
+        n/=10;
+    }
+    cout<<rasturnat(nr);
+}
+
+int main()
+{
+    int n;
+    int c;
+    cin>>n>>c;
+    transf(n, c);
+}
+
+
+9. interschimbare cifre 2 cate 2
+
+#include <iostream>
+using namespace std;
+
+int rasturnat(int n)
+{
+    int og=0,x=n;
+    while(n)
+    {
+        og=og*10+n%10;
+        n/=10;
+    }
+    return og;
+    
+    
+    
+}
+
+void transf(int n)
+{
+    
+    int v[9]={0};
+    int i=-1;
+    
+    while(n)
+    {   i++;
+        v[i]=n%10;
+        n/=10;
+    }
+    cout<<i<<endl;
+    for(int j=i;j>0;j-=2)
+        swap(v[j],v[j-1]);
+    for(int j=i;j>=0;j--)cout<<v[j];
+}
+
+int main()
+{
+    int n;
+    
+    cin>>n;
+    transf(n);
+}
+
+10.
+#include <iostream>
+using namespace std;
+ int nrcif(int n)
+{
+     if(n==0) return 0;
+     return 1+nrcif(n/10);
+}
+
+int maxim(int x)
+{
+    int v[9]={0};
+    int mx=0;
+    int n=nrcif(x);
+    for(int i=n-1;i>=0;i--)
+    {
+        v[i]=n%10;
+        n/=10;
+    }
+    
+    int k=n-1;
+    for(int k=n-1;k>=0;k--)
+    {
+        int nr=0;
+        for(int i=n-1;i>=0;i--)
+    {
+        
+        if(i!=k)
+            nr=nr*10+v[i];
+    }
+        if(mx<nr) mx=nr;}
+    
+    return mx;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    cout<<maxim(n);
+    
+}
+

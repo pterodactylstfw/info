@@ -1,0 +1,57 @@
+1. cate cifre impare
+#include <iostream>
+using namespace std;
+int cif_imp(int n)
+{
+    if(n==0) return 0;
+    if(n%2==0) return cif_imp(n/10);
+    return 1+cif_imp(n/10);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    cout<<cif_imp(n);
+}
+
+2.
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+
+int rezultat(vector <int> numere, int i)
+{
+    int sd;
+    int sp=0,si=0;
+    i=0;
+    int j=i+1;
+    
+    while(i<numere.size()-1)
+    {
+        sp+=numere[i];
+        si+=numere[j];
+        rezultat(numere, i+1);
+        
+    }
+    sd=sp-si;
+    
+    return sd;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector <int> valori;
+    
+    for(int i=0;i<n;i++)
+    {
+        int x;
+        cin>>x;
+        valori.push_back(x);
+    }
+    
+}

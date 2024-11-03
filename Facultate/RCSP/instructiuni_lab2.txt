@@ -1,0 +1,27 @@
+\documentclass[11pt]{article} - specific marime font si in ce lucrez
+
+\usepackage{amsmath} - pt mate simpla
+Amssymb - pt simboluri matematice
+Latexsym - pt simboluri latex
+Asmthm - pt a putea scrie demonstrații
+
+
+\usepackage{multirow} - pt mai multe rânduri in tabel
+
+\title{Laborator 2}
+\author{Constantin Raul-Nicolae} - evidente
+
+
+\begin{document} - început document
+    \maketitle. -afișare titlu, fără el nu funcționează
+    \section*{Exemplu tabel}. - daca nu pun *, îmi va afișa si inventare pt secțiune (1., 2. Etc)
+	\begin{tabular}{cols} - in cols spun câte coloane am 
+				- sub forma {|c|c|c|r|r|}, unde c si r sunt forma de așezare, iar | este pt diviziune
+         \hline\hline - pt linii orizontale
+	 \multicolumn{cate_col}{centrare+ diviziuni prin | |}{text}
+Aplicat> \multicolumn{2}{|c|}{Denumirea} & Cantitate & \multicolumn{2}{|c|}{Preț mii lei}\\ 
+\\- backslash folosit pt trecerea pe rândul următor
+	\cline - folosit pt linii intre multirows de obicei, pentru linii mai scurte
+	\multirow{}{}{} - folosit pt rowspan
+    \end{tabular}
+\end{document} - sfârșit document
