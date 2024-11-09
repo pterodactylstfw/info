@@ -9,6 +9,20 @@
         "bac-toamna2016": "c",
         "ostream": "c",
         "2020_mate-info": "c",
-        "test_2": "c"
+        "test_2": "c",
+        "sorting_algorithms": "cpp",
+        "__bit_reference": "cpp",
+        "__node_handle": "cpp",
+        "array": "cpp",
+        "memory": "cpp",
+        "ios": "cpp",
+        "istream": "cpp",
+        "optional": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "string_view": "cpp",
+        "tuple": "cpp",
+        "variant": "cpp",
+        "vector": "cpp"
     }
 }
