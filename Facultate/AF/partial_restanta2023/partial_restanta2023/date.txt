@@ -1,0 +1,6 @@
+5
+315 Ionescu 3 10.5
+316 Aurescu 2 9.25
+318 Apostol 1.5 7.9
+371 Valerica 5 2.7
+1000 Georgescu 2 7.8

@@ -61,3 +61,10 @@ int main()
 }
 
 
+QUICK Sort 
+    -> complexitate medie O(n log n)
+    -> Partitioneaza vectorul in 2 parti, nu neaparat egale, in functie de un element numit
+        PIVOT
+        Toate elementele mai mici decat pivotul vor fi in prima parte a sirului, toate 
+        elementele mai mari decat pivotul vor fi in a doua parte a sirului.
+        In urma partitionarii, pivotul ajunge pe pozitia corecta in sirul sortat
