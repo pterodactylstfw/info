@@ -1,0 +1,20 @@
+//ex 1
+
+/*
+ sortare apoi cautare cu pointeri de limite, st si dr.
+ 
+ sau vector de frecventa - doar pt numere mari
+ */
+
+
+//ex 2
+
+/*
+ greedy
+ 
+ caut profit maxim la fiecare element
+ */
+
+// ex 3
+
+
