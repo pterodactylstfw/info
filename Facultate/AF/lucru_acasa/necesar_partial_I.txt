@@ -1,0 +1,21 @@
+Necesar partial I
+
+Algoritmi fundamentali
+    - prim
+    - cmmdc
+    - suma div
+    - fibonacci
+    - rotund
+    - perfect
+    - radical / patrat perfect
+    - 
+
+Algoritmi de sortare
+    - QuickSort
+    - MergeSort
+    - ± alti algoritmi 
+
+Alti algoritmi 
+    - cautare binara
+    - divide et impera
+    - altii suplimentari

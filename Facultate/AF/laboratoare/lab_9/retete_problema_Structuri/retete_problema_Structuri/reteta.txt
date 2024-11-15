@@ -1,0 +1,5 @@
+4
+3 zahar 100 lapte 200 oua 3
+2 zahar 200 faina 100
+3 oua 400 lapte 200 faina 100
+3 sare 10 orez 100 oua 2
