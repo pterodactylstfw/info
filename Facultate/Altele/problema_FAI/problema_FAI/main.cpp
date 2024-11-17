@@ -91,6 +91,7 @@ int putereMod(int baza, int exp, int n) {
 // Functia pentru a gasi elementele nilpotente
 vector<int> calculeazaNil(int n) {
     vector<int> nilpot;
+    nilpot.push_back(0);
     for (int x = 1; x < n; ++x) {
         for (int k = 1; k < n; ++k) {
             if (putereMod(x, k, n) == 0) {
@@ -130,16 +131,13 @@ void afisareSol(vector<int>sol, int n, int m, int a)
 void afisareNil(vector<int> v, int n)
 {
     cout<<"Subpunctul d)"<<'\n';
-    if(v.size()==0) {
-        cout<<"Nu exista elemente Nilpotente in Z_"<<n<<" !";
-        return;
-    }
     
-    else {
+    
+    
         cout << "Nil(Z" << n << ") = { ";
         afisare(v);
         cout << "}" << endl;
-    }
+    
     cout<<'\n';
 }
 
@@ -158,6 +156,7 @@ int main()
     
     int result = teoremaEuler(a, m, n);
         cout <<"Subpunctul c)"<<'\n'<<"Rezultatul calculului a^m % n este: " << result << endl;
+
     
     vector<int> elem_Nil = calculeazaNil(n);
     afisareNil(elem_Nil,n);
