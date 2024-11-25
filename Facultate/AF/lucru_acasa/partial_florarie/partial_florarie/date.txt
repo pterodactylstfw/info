@@ -1,0 +1,7 @@
+5
+Rose Red 10.5
+Tulip Yellow 7.0
+Rose White 12.0
+Daisy White 5.5
+Tulip Red 8.0
+
