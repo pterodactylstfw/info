@@ -1,0 +1,7 @@
+ctype.h - antet functii pt prelucrare caractere
+
+string.h - antet fctii pt prelucrare siruri de caractere
+
+fgets(sir, dim, stdin)
+
+sir[strlen(sir)-1] ='\0'; - elimin enter-ul citit cand am folosit fgets
