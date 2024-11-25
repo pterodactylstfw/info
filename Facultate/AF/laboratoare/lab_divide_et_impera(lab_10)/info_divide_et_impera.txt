@@ -1,0 +1,11 @@
+Divide Et Impera
+~~~~~~~~~~~~~~~~
+-> se aplica problemelor care pot fi impartite in una sau mai multe subprobleme mai mici de acelasi tip cu problema data, si independente una de cealalta(rez uneia sa nu depinde sa solutia celeilalte)
+
+ETAPE
+~~~~~
+-> DIVIDE - impartirea problemei in subprobleme pana cand acestea ajung la dimensiunea minima(avem ~~~~         deja solutie)
+
+-> IMPERA - rezolvarea problemei de dimensiune minima
+   ~~~~~~
+! -> se combina, daca este nevoie, solutia subproblemelor pentru a ajunge la solutia probl. mari

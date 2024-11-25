@@ -1,0 +1,35 @@
+6
+
+101 250 3
+1 Flour 100
+2 Sugar 50
+3 Butter 200
+
+102 300 4
+4 Tomato 30
+5 Cheese 100
+6 Basil 5
+2 Sugar 50
+
+103 150 3
+8 Pasta 120
+9 Garlic 10
+2 Sugar 50
+
+104 500 4
+10 Chicken 250
+11 Salt 0
+12 Pepper 5
+5 Cheese 100
+
+105 400 4
+14 Rice 200
+15 Carrot 30
+16 Peas 25
+5 Cheese 100
+
+106 350 4
+17 Beef 300
+18 Onion 40
+4 Tomato 30
+19 TomatoPaste 20
