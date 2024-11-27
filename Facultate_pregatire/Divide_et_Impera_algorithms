@@ -1,0 +1,107 @@
+Cautare binara recursiva
+
+int cautBin(const std::vector<int>& a, int st, int dr, int x) {
+    // Explicații: efectuează o căutare binară pentru elementul x
+    if (st > dr) return 0; // Dacă intervalul este invalid, x nu este găsit
+    if (st == dr) {
+        if (a[st] == x) return 1; // Dacă elementul x este găsit la st, returnează 1
+        else return 0; // Dacă elementul x nu este găsit
+    }
+
+    int mij = (st + dr) / 2; // Găsim mijlocul intervalului
+    if (a[mij] == x) return 1; // Dacă elementul x este la mijloc, returnează 1
+    else if (a[mij] < x) return cautBin(a, mij + 1, dr, x); // Căutăm în partea dreaptă
+    else return cautBin(a, st, mij - 1, x); // Căutăm în partea stângă
+}
+
+
+Cautare binara clasica
+
+int cautBin(const std::vector<int>& a, int x) {
+    int st = 0;                // Indicele de început
+    int dr = a.size() - 1;     // Indicele de sfârșit
+
+    while (st <= dr) {
+        int mij = st + (dr - st) / 2;  // Găsim mijlocul intervalului
+        
+        if (a[mij] == x) {
+            return mij;  // Dacă elementul este găsit, returnăm indexul său
+        }
+        else if (a[mij] < x) {
+            st = mij + 1;  // Dacă elementul este mai mare, căutăm în partea dreaptă
+        }
+        else {
+            dr = mij - 1;  // Dacă elementul este mai mic, căutăm în partea stângă
+        }
+    }
+
+    return -1;  // Dacă nu găsim elementul, returnăm -1
+}
+
+Funcție recursivă pentru calcularea sumei elementelor unui 
+vector folosind divide et impera
+
+int suma(const std::vector<int>& a, int st, int dr) {
+    // Cazul de bază: dacă vectorul are un singur element
+    if (st == dr) {
+        return a[st];
+    }
+    
+    // Calculăm mijlocul intervalului
+    int mij = st + (dr - st) / 2;
+
+    // Divizăm problema în două părți: stânga și dreapta
+    int sumaStanga = suma(a, st, mij);
+    int sumaDreapta = suma(a, mij + 1, dr);
+
+    // Combina rezultatele din cele două jumătăți
+    return sumaStanga + sumaDreapta;
+}
+
+
+Sortare prima jumatate crescator, a doua jumatate descrescator
+
+bool comparatorCrescator(int a, int b) {
+    return a < b;
+}
+
+// Functie de comparator pentru sortare descrescatoare
+bool comparatorDescrescator(int a, int b) {
+    return a > b;
+}
+
+// Functie de pivotare pentru Quicksort
+int pivot(std::vector<int>& v, int st, int dr, bool (*comparator)(int, int)) {
+    int piv = v[dr];  // Alegem elementul din dreapta ca pivot
+    int i = st - 1;
+    
+    // Iteram prin vector si plasam elementele mai mici la stanga si cele mai mari la dreapta pivotului
+    for (int j = st; j < dr; ++j) {
+        if (comparator(v[j], piv)) {  // Comparam cu pivotul folosind comparatorul
+            ++i;
+            std::swap(v[i], v[j]);
+        }
+    }
+    std::swap(v[i + 1], v[dr]);
+    return i + 1;
+}
+
+// Functie de Quicksort
+void quicksort(std::vector<int>& v, int st, int dr, bool (*comparator)(int, int)) {
+    if (st < dr) {
+        int p = pivot(v, st, dr, comparator);  // Gasim pozitia pivotului
+        quicksort(v, st, p - 1, comparator);  // Sortam partea stanga
+        quicksort(v, p + 1, dr, comparator);  // Sortam partea dreapta
+    }
+}
+
+void sorteazaVector(std::vector<int>& v) {
+    int dim = v.size();
+    int mijloc = dim / 2;
+
+    // Sortează prima jumătate crescător
+    quicksort(v, 0, mijloc - 1, comparatorCrescator);
+
+    // Sortează a doua jumătate descrescător
+    quicksort(v, mijloc, dim - 1, comparatorDescrescator);
+}

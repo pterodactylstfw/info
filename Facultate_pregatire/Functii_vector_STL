@@ -1,0 +1,130 @@
+Citire vectori STL
+
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
+    
+    
+std::ifstream fin("date.txt");
+    
+std::vector<int> citire()
+{
+        std::vector<int> vect;
+        int n;
+        
+        std::cin>>n;
+        
+        vect.resize(n);
+        
+        for(int i=0;i<vect.size();i++)
+            std::cin>>vect[i];
+        
+        return vect;
+}
+
+
+Afisare vector STL 
+
+void afisare(std::vector<int> vect)
+{
+        for(const auto& elem: vect)
+            std::cout<<elem<<" ";
+        std::cout<<'\n';
+}
+
+
+Inserare pe pozitia k a elementului x in vector STL 
+
+void inserare(std::vector<int>& vect, int k, int x) {
+    // Verificăm dacă poziția k este validă
+    if (k < 0 || k > vect.size()) {
+        std::cout << "Pozitia nu este valida!\n";
+        return;
+    }
+
+    // Creștem dimensiunea vectorului pentru a face loc noului element
+    vect.push_back(0); // Adăugăm un element temporar la final
+
+    // Mutăm elementele de la poziția k în sus cu o poziție
+    for (int i = vect.size() - 1; i > k; --i) {
+        vect[i] = vect[i - 1];
+    }
+
+    // Inserăm elementul pe poziția k
+    vect[k] = x;
+}
+
+Stergerea elementului de pe pozitia k din vector STL 
+
+void stergere(std::vector<int>& vect, int k) {
+    // Verificăm dacă poziția k este validă
+    if (k < 0 || k >= vect.size()) {
+        std::cout << "Pozitia nu este valida!\n";
+        return;
+    }
+
+    // Mutăm elementele de la poziția k în jos cu o poziție
+    for (int i = k; i < vect.size() - 1; ++i) {
+        vect[i] = vect[i + 1];
+    }
+
+    // Reducem dimensiunea vectorului
+    vect.resize(vect.size() - 1);
+}
+
+Suma celor 2 numere cu suma cel mai aproape de 0
+
+void gasesteCeleMaiAproapeSume(std::vector<int>& nums) {
+    // 1. Sortăm șirul de numere
+    std::sort(nums.begin(), nums.end());
+    
+    int n = nums.size();
+    int left = 0, right = n - 1;
+    int sumaMinima = INT_MAX;  // Folosim INT_MAX pentru a semnala suma cea mai mare initial
+    int numar1 = 0, numar2 = 0;
+
+    // 2. Căutăm cele două numere cu suma cea mai apropiată de 0
+    while (left < right) {
+        int suma = nums[left] + nums[right];
+
+        // Dacă suma este mai apropiată de 0, o actualizăm
+        if (std::abs(suma) < std::abs(sumaMinima)) {
+            sumaMinima = suma;
+            numar1 = nums[left];
+            numar2 = nums[right];
+        }
+
+        // Mutați pointerii în funcție de suma obținută
+        if (suma < 0) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+
+    // 3. Afișăm rezultatul
+    std::cout << "Cele doua numere cu suma cea mai apropiata de 0 sunt: " << numar1 << " si " << numar2 << std::endl;
+    std::cout << "Suma lor este: " << sumaMinima << std::endl;
+}
+
+
+Verif a[i]+b[i] >= k
+
+
+bool reorganize(std::vector<int>& a, std::vector<int>& b, int k) {
+    // 1. Sortăm vectorul a în ordine crescătoare
+    std::sort(a.begin(), a.end());
+    
+    // 2. Sortăm vectorul b în ordine descrescătoare
+    std::sort(b.rbegin(), b.rend());
+
+    // 3. Verificăm dacă a[i] + b[i] >= k pentru toate i
+    for (size_t i = 0; i < a.size(); ++i) {
+        if (a[i] + b[i] < k) {
+            return false;  // Dacă pentru vreun i suma nu satisface condiția, returnează false
+        }
+    }
+    return true;  // Dacă toate perechile satisfac condiția, returnează true
+}
