@@ -64,4 +64,61 @@ int main() {
 
 2. Inserarea unui element pe pozitia i in tabloul unidimensional
 
+int v[1001], n, k, x;
+...
+for (int i=n-1; i>=k; --i) v[i+1]=v[i]; /* eliberăm poziția k */
+v[k]=x; // introducem valoarea în v[k]
+n++; /* creștem numărul de elemente întrucât am introdus o valoare nouă */
 
+
+3. Cautare binara recursiva 
+
+int cautBin(int a[], int st, int dr, int x) {
+    //Explicații: infoas.ro
+    if(st > dr) return 0;
+    if(st == dr) {
+        if(a[st] == x) return 1;
+        else return 0;
+    }
+    int mij = (st + dr) / 2;
+    if(a[mij] == x) return 1;
+    else if(a[mij] < x) return cautBin(a, mij + 1, dr, x);
+    else return cautBin(a, st, mij - 1, x);
+}
+
+
+4. Algoritmul lui Karatsuba
+
+
+int get_size(long);
+long karatsuba(long X, long Y){
+
+   // Base Case
+   if (X < 10 && Y < 10)
+      return X * Y;
+
+   // determine the size of X and Y
+   int size = fmax(get_size(X), get_size(Y));
+   if(size < 10)
+      return X * Y;
+
+   // rounding up the max length
+   size = (size/2) + (size%2);
+   long multiplier = pow(10, size);
+   long b = X/multiplier;
+   long a = X - (b * multiplier);
+   long d = Y / multiplier;
+   long c = Y - (d * size);
+   long u = karatsuba(a, c);
+   long z = karatsuba(a + b, c + d);
+   long v = karatsuba(b, d);
+   return u + ((z - u - v) * multiplier) + (v * (long)(pow(10, 2 * size)));
+}
+int get_size(long value){
+   int count = 0;
+   while (value > 0) {
+      count++;
+      value /= 10;
+   }
+   return count;
+}

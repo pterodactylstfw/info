@@ -1,0 +1,68 @@
+#include <vector>
+
+using namespace std;
+
+citire std::vector 
+
+std::vector<int> citire(){
+    std::vector<int> vect;
+    int n;
+    fin>>n;
+    for(int i=0;i<n=i++)
+    {
+        int x;
+        fin>>x;
+        vect.push_back(x);
+    }
+}
+
+
+afisare std::vector 
+
+void afisare1(std::vector<int> v)
+{
+    for(const auto & i: elem)
+        cout<<elem<<" ";
+}
+
+void afisare2(std::vector<int> v)
+{
+    for(int i=0;i<v.size();i++)
+    cout<<v[i]<<" ";
+}
+
+bool comparator(int x, int y)
+{
+    return x<y;
+}
+
+std::vector<std::vector<int>> citire_matrice()
+{   
+    int n, m;
+    fin>>n>>m;
+    std::vector<std::vector<int>> mat;
+
+
+    mat.resize(n);
+
+    for(int i = 0 ;i< n;i ++)
+        mat[i].resize(m);
+
+
+    for(int i = 0; i<n;i++)
+        for(int j = 0;j<m;j++)
+        fin>>mat[i][j];    
+
+        return mat;
+}
+
+
+void afisare( std::vector<std::vector<int>> mat)
+{
+    for(const auto & col: mat)
+        {for(const auto & elem: col)
+        cout<<elem<<" ";
+        cout<<'\n';
+        }
+
+}
