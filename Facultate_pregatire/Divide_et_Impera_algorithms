@@ -15,6 +15,23 @@ int cautBin(const std::vector<int>& a, int st, int dr, int x) {
 }
 
 
+DESCRESCATOR
+
+int cautBin(const std::vector<int>& a, int st, int dr, int x) {
+    // Explicații: efectuează o căutare binară pentru elementul x într-un vector descrescător
+    if (st > dr) return 0; // Dacă intervalul este invalid, x nu este găsit
+    if (st == dr) {
+        if (a[st] == x) return 1; // Dacă elementul x este găsit la st, returnează 1
+        else return 0; // Dacă elementul x nu este găsit
+    }
+
+    int mij = (st + dr) / 2; // Găsim mijlocul intervalului
+    if (a[mij] == x) return 1; // Dacă elementul x este la mijloc, returnează 1
+    else if (a[mij] > x) return cautBin(a, mij + 1, dr, x); // Căutăm în partea dreaptă
+    else return cautBin(a, st, mij - 1, x); // Căutăm în partea stângă
+}
+
+
 Cautare binara clasica
 
 int cautBin(const std::vector<int>& a, int x) {

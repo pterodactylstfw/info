@@ -212,3 +212,36 @@ void sorteazaPalindroame(std::vector<int>& v) {
         }
     }
 }
+
+
+Interclasarea a 2 vectori 
+
+std::vector<int> interclasare(const std::vector<int>& vec1, const std::vector<int>& vec2) {
+    std::vector<int> rezultat;
+    int i = 0, j = 0;
+
+    // Comparăm elementele din cei doi vectori și le adăugăm în vectorul rezultat
+    while (i < vec1.size() && j < vec2.size()) {
+        if (vec1[i] < vec2[j]) {
+            rezultat.push_back(vec1[i]);
+            i++;
+        } else {
+            rezultat.push_back(vec2[j]);
+            j++;
+        }
+    }
+
+    // Adăugăm elementele rămase din vec1 (dacă există)
+    while (i < vec1.size()) {
+        rezultat.push_back(vec1[i]);
+        i++;
+    }
+
+    // Adăugăm elementele rămase din vec2 (dacă există)
+    while (j < vec2.size()) {
+        rezultat.push_back(vec2[j]);
+        j++;
+    }
+
+    return rezultat;
+}
