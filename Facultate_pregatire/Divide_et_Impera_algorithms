@@ -105,3 +105,56 @@ void sorteazaVector(std::vector<int>& v) {
     // Sortează a doua jumătate descrescător
     quicksort(v, mijloc, dim - 1, comparatorDescrescator);
 }
+
+
+
+Maximul din vector convex (ordonat crescator pana la o pozitie apoi descrescator)
+
+// Funcție Divide et Impera pentru găsirea maximului
+int gasesteMaxim(const std::vector<int>& v, int st, int dr) {
+    if (st == dr) {
+        return v[st];  // Un singur element, acesta este maximul
+    }
+
+    int mij = st + (dr - st) / 2;
+
+    // Verificăm relația între elementul de mijloc și vecinul său
+    if (v[mij] > v[mij + 1]) {
+        // Maximul este în stânga (inclusiv mijlocul)
+        return gasesteMaxim(v, st, mij);
+    } else {
+        // Maximul este în dreapta
+        return gasesteMaxim(v, mij + 1, dr);
+    }
+}
+
+
+// Funcție recursivă Divide et Impera pentru căutarea lui k intr-o matrice
+bool cautaInMatrice(const std::vector<std::vector<int>>& matrice, int stRow, int drRow, int stCol, int drCol, int k) {
+    // Dacă submatricea este invalidă, returnăm false
+    if (stRow > drRow || stCol > drCol) {
+        return false;
+    }
+
+    // Determinăm elementul pivot
+    int midRow = stRow + (drRow - stRow) / 2;
+    int midCol = stCol + (drCol - stCol) / 2;
+    int pivot = matrice[midRow][midCol];
+
+    // Verificăm pivotul
+    if (pivot == k) {
+        return true; // Elementul a fost găsit
+    } else if (pivot < k) {
+        // Continuăm căutarea în 2 submatrice:
+        // 1. Dreapta pivotului
+        // 2. Jos de pivot
+        return cautaInMatrice(matrice, midRow + 1, drRow, stCol, drCol, k) ||
+               cautaInMatrice(matrice, stRow, drRow, midCol + 1, drCol, k);
+    } else {
+        // Continuăm căutarea în 2 submatrice:
+        // 1. Stânga pivotului
+        // 2. Sus de pivot
+        return cautaInMatrice(matrice, stRow, midRow - 1, stCol, drCol, k) ||
+               cautaInMatrice(matrice, midRow, drRow, stCol, midCol - 1, k);
+    }
+}

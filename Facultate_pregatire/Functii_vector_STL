@@ -128,3 +128,87 @@ bool reorganize(std::vector<int>& a, std::vector<int>& b, int k) {
     }
     return true;  // Dacă toate perechile satisfac condiția, returnează true
 }
+
+
+Verif daca vector contine subvector
+
+Construirea tabelului de failure:
+Tabelul de failure ne ajută să "sărim" pe elemente atunci când găsim o nepotrivire,
+economisind timp și evitând comparațiile inutile.
+
+Căutarea subsecvenței:
+Folosim două indicatoare: i pentru primul vector și j pentru al doilea vector. 
+Dacă găsim o potrivire, continuăm să comparăm elementele. Dacă găsim o neconcordanță, 
+folosim tabelul de failure pentru a sări la o poziție corespunzătoare.
+
+void construireTabelFailure(const std::vector<int>& b, std::vector<int>& failure) {
+    int m = b.size();
+    failure[0] = -1;
+    int k = -1;
+    
+    for (int i = 1; i < m; ++i) {
+        while (k >= 0 && b[k + 1] != b[i]) {
+            k = failure[k];
+        }
+        if (b[k + 1] == b[i]) {
+            k++;
+        }
+        failure[i] = k;
+    }
+}
+
+// Functie pentru verificarea daca b este subsecventa a lui a
+bool contineSubvector(const std::vector<int>& a, const std::vector<int>& b) {
+    int n = a.size();
+    int m = b.size();
+    std::vector<int> failure(m);
+    
+    // Construim tabelul de failure pentru b
+    construireTabelFailure(b, failure);
+    
+    int i = 0, j = 0;
+    
+    while (i < n) {
+        if (a[i] == b[j]) {
+            i++;
+            j++;
+            if (j == m) {
+                return true;  // Am gasit subsecventa
+            }
+        } else {
+            if (j > 0) {
+                j = failure[j - 1];
+            } else {
+                i++;
+            }
+        }
+    }
+    
+    return false;
+}
+
+
+
+Sortare numai palindroame din vector 
+
+void sorteazaPalindroame(std::vector<int>& v) {
+    std::vector<int> palindroame;
+    
+    // Extragem palindroamele
+    for (int i = 0; i < v.size(); ++i) {
+        if (estePalindrom(v[i])) {
+            palindroame.push_back(v[i]);
+        }
+    }
+    
+    // Sortam palindroamele
+    std::sort(palindroame.begin(), palindroame.end());
+    
+    // Reintroducem palindroamele in vectorul original
+    int j = 0;  // Index pentru palindroamele sortate
+    for (int i = 0; i < v.size(); ++i) {
+        if (estePalindrom(v[i])) {
+            v[i] = palindroame[j++];
+        }
+    }
+}

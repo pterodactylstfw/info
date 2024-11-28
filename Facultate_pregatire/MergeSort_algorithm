@@ -1,0 +1,59 @@
+void merge(std::vector<int>& arr, int left, int mid, int right) {
+    // Calculăm dimensiunea subvectorilor
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    // Creăm subvectorii temporari
+    std::vector<int> leftArr(n1), rightArr(n2);
+
+    // Copiem datele în subvectori temporari
+    for (int i = 0; i < n1; ++i)
+        leftArr[i] = arr[left + i];
+    for (int j = 0; j < n2; ++j)
+        rightArr[j] = arr[mid + 1 + j];
+
+    // Indici pentru subvectorii temporari
+    int i = 0, j = 0, k = left;
+
+    // Combinăm subvectorii în ordinea corectă
+    while (i < n1 && j < n2) {
+        if (leftArr[i] <= rightArr[j]) {
+            arr[k] = leftArr[i];
+            ++i;
+        } else {
+            arr[k] = rightArr[j];
+            ++j;
+        }
+        ++k;
+    }
+
+    // Copiem elementele rămase din leftArr (dacă există)
+    while (i < n1) {
+        arr[k] = leftArr[i];
+        ++i;
+        ++k;
+    }
+
+    // Copiem elementele rămase din rightArr (dacă există)
+    while (j < n2) {
+        arr[k] = rightArr[j];
+        ++j;
+        ++k;
+    }
+}
+
+// Funcție recursivă Merge Sort
+void mergeSort(std::vector<int>& arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2; // Găsim mijlocul
+
+        // Sortăm prima jumătate
+        mergeSort(arr, left, mid);
+
+        // Sortăm a doua jumătate
+        mergeSort(arr, mid + 1, right);
+
+        // Combinăm cele două jumătăți sortate
+        merge(arr, left, mid, right);
+    }
+}

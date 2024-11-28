@@ -35,3 +35,144 @@ void afisare_matr(std::vector<std::vector<int>> matr)
         cout<<elem<<" ";
         cout<<'\n';}
 }
+
+
+Inserare in matrice STL 
+
+void inserare(std::vector<std::vector<int>>& matr, int k, const std::vector<int>& x) {
+    // Verificăm dacă poziția k este validă
+    if (k < 0 || k > matr.size()) {
+        std::cout << "Pozitia nu este valida pentru inserare!\n";
+        return;
+    }
+
+    // Creștem dimensiunea vectorului exterior
+    matr.push_back({}); // Adăugăm o linie temporară
+
+    // Mutăm liniile de la poziția k în sus cu o poziție
+    for (int i = matr.size() - 1; i > k; --i) {
+        matr[i] = matr[i - 1];
+    }
+
+    // Inserăm noul vector pe poziția k
+    matr[k] = x;
+}
+
+
+Stergere la pozitia k din matrice
+
+void stergereElement(std::vector<std::vector<int>>& matr, int k, int j) {
+    // Verificăm dacă poziția liniei `k` și coloanei `j` este validă
+    if (k < 0 || k >= matr.size()) {
+        std::cout << "Linia " << k << " nu este valida!\n";
+        return;
+    }
+    if (j < 0 || j >= matr[k].size()) {
+        std::cout << "Coloana " << j << " nu este valida in linia " << k << "!\n";
+        return;
+    }
+
+    // Mutăm elementele din linia `k` de la poziția `j` în jos cu o poziție
+    for (int i = j; i < matr[k].size() - 1; ++i) {
+        matr[k][i] = matr[k][i + 1];
+    }
+
+    // Reducem dimensiunea liniei `k`
+    matr[k].resize(matr[k].size() - 1);
+}
+
+
+REGULI DIAGONALE MATRICE 
+
+for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) {
+        // Element pe diagonala principală
+        if (i == j) {
+            std::cout << "Elementul (" << i << ", " << j << ") 
+            este pe diagonala principală.\n";
+        }
+        
+        // Deasupra diagonalei principale
+        if (i < j) {
+            std::cout << "Elementul (" << i << ", " << j << ") 
+            este deasupra diagonalei principale.\n";
+        }
+
+        // Sub diagonalei principale
+        if (i > j) {
+            std::cout << "Elementul (" << i << ", " << j << ") 
+            este sub diagonalei principale.\n";
+        }
+        
+        // Element pe diagonala secundară
+        if (j == n - i - 1) {
+            std::cout << "Elementul (" << i << ", " << j << ") 
+            este pe diagonala secundară.\n";
+        }
+
+        // Deasupra diagonalei secundare
+        if (i < n - i - 1) {
+            std::cout << "Elementul (" << i << ", " << j << ") 
+            este deasupra diagonalei secundare.\n";
+        }
+
+        // Sub diagonalei secundare
+        if (i > n - i - 1) {
+            std::cout << "Elementul (" << i << ", " << j << ") 
+            este sub diagonalei secundare.\n";
+        }
+    }
+}
+
+
+Rotire 90 grade elemente matrice
+
+
+void rotire90grade(std::vector<std::vector<int>>& matrice) {
+    int n = matrice.size();
+    
+    // Transpunerea matricei
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            std::swap(matrice[i][j], matrice[j][i]);
+        }
+    }
+    
+    // Inversarea coloanelor
+    for (int i = 0; i < n; ++i) {
+        int left = 0, right = n - 1;
+        while (left < right) {
+            std::swap(matrice[i][left], matrice[i][right]);
+            ++left;
+            --right;
+        }
+    }
+}
+
+
+Cautare Nord Est Sud Vest
+
+bool cautaElement(std::vector<std::vector<int>>& matrice, int element, int iStart, int iEnd) {
+    // Dacă start este mai mare decât end, returnează false
+    if (iStart > iEnd) return false;
+    
+    // Calculează mijlocul secțiunii
+    int mid = (iStart + iEnd) / 2;
+    
+    // Căutare în linia de la mijloc
+    for (int j = 0; j < matrice[mid].size(); ++j) {
+        if (matrice[mid][j] == element) return true;
+    }
+    
+    // Dacă nu am găsit elementul în linia mijlocului, căutăm în subsecțiunile de sus sau de jos
+    if (element < matrice[mid][0]) {
+        // Căutăm în partea de sus
+        return cautaElement(matrice, element, iStart, mid - 1);
+    } else {
+        // Căutăm în partea de jos
+        return cautaElement(matrice, element, mid + 1, iEnd);
+    }
+}
+
+
+
