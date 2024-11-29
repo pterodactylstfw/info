@@ -1,0 +1,70 @@
+/*
+2. Consideram n puncte date prin coordonatele lor, coordonata x si coordonata y.
+Sa se determine distanta dintre cele mai apropiate doua puncte.
+*/
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <iomanip>
+
+struct punct {
+	float x, y;
+};
+
+int distantaPatrat(punct a, punct b) {
+	return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
+}
+
+bool comparator1(punct a, punct b) {
+	if (a.x < b.x)return 1;
+	if (a.x == b.x && a.y < b.y)return 1;
+	return 0;
+}
+
+bool comparator2(punct a, punct b) {
+	return (a.y < b.y);
+}
+
+std::vector<punct> citire() {
+	std::ifstream f("puncte.in");
+	int n;
+	f >> n;
+	std::vector<punct> v(n);
+	for (int i = 0; i < n; i++) {
+		f >> v[i].x >> v[i].y;
+	}
+	f.close();
+	return v;
+}
+
+float distantaMinima(std::vector<punct> v, int st, int dr) {
+	if (st == dr) return 1e9;
+
+	int m = (st + dr) / 2;
+	float distMin = std::min(distantaMinima(v, st, m), distantaMinima(v, m + 1, dr));
+
+	std::vector<punct> sirNou;
+	for (int i = st; i <= dr; i++) {
+			sirNou.push_back(v[i]);
+	}
+	std::sort(sirNou.begin(), sirNou.end(), comparator2);
+	
+	for (int i = 0; i < sirNou.size() - 1; i++) {
+		for (int j = i + 1; j < sirNou.size(); j++) {
+			float k = distantaPatrat(v[i], v[j]);
+			if (k > distMin) break;
+			if (k < distMin) distMin = k;
+			
+		}
+	}
+	return distMin;
+}
+
+int main() {
+	std::vector<punct> v = citire();
+	std::sort(v.begin(), v.end(), comparator1);
+	std::cout << std::fixed << std::setprecision(10) << sqrt(distantaMinima(v, 0, v.size() - 1));
+}

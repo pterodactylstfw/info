@@ -1,0 +1,102 @@
+/*
+9. Se citeste un numar natural n patrat perfect si apoi n numere naturale.Sa
+se creeze o matrice patratica care sa contina toate cele n numere citite, in
+care elementele sa fie completate : .
+a) in spirala in sens invers al acelor de ceas(in sens trigonometric) incepand
+din coltul stanga sus
+b) in spirala in sensul acelor de ceas incepand din interior / mijloc / pozitie
+centrala(pentru n = impar)
+Sa se afiseze matricea construita.
+Exemplu a):
+2 6 7 3 7 1 7 1 5
+2 1 7
+6 5 1
+7 3 7
+*/
+
+#include <iostream>
+#include <cmath>
+
+int* citire(int& n) {
+	std::cin >> n;
+	int* vect = new int[n];
+	for (int i = 0; i < n; i++) {
+		std::cin >> vect[i];
+	}
+	return vect;
+}
+
+int** alocare(int n) {
+	int** matrice = new int* [sqrt(n)];
+	for (int i = 0; i < sqrt(n); i++) {
+		matrice[i] = new int[sqrt(n)];
+	}
+	return matrice;
+}
+
+void afisare(int** matrice, int n) {
+	for (int i = 0; i < n; i++) {
+		std::cout << '\n';
+		for (int j = 0; j < n; j++) {
+			std::cout << matrice[i][j] << " ";
+		}
+	}
+}
+
+void cerintaA(int n, int* vect) {
+	int** matrice = alocare(n);
+	int dim = sqrt(n), k = 0; //cu variabila k parcurg vectorul vect
+	for (int i = 0; i < (dim + 1) / 2; i++) {
+		for (int j = i; j < dim - i; j++) {
+			matrice[j][i] = vect[k++]; //partea stanga
+		}
+		for (int j = i + 1; j < dim - i; j++) {
+			matrice[dim - i - 1][j] = vect[k++]; //partea de jos
+		}
+		for (int j = dim - i - 2; j >= i; j--) {
+			matrice[j][dim - i - 1] = vect[k++]; //partea dreapta
+		}
+		for (int j = dim - i - 2; j > i; j--) {
+			matrice[i][j] = vect[k++]; //partea de sus
+		}
+	}
+	afisare(matrice, dim);
+}
+
+void cerintaB(int n, int* vect) {
+	int** matrice = alocare(n);
+	int dim = sqrt(n), k = 0;
+	matrice[dim / 2][dim / 2] = vect[k++];
+	for (int i = dim / 2 - 1; i >= 0; i--) {
+		for (int j = i + 1; j <= dim - i - 1; j++) {
+			matrice[i][j] = vect[k++]; //partea de sus
+		}
+		for (int j = i + 1; j <= dim - i - 1; j++) {
+			matrice[j][dim - i - 1] = vect[k++]; //partea dreapta
+		}
+		for (int j = dim - i - 2; j >= i; j--) {
+			matrice[dim - i - 1][j] = vect[k++]; //partea de jos
+		}
+		for (int j = dim - i - 2; j >= i; j--) {
+			matrice[j][i] = vect[k++]; //partea stanga
+		}
+	}
+	afisare(matrice, dim);
+}
+
+bool patratPerfect(int x) {
+	for (int i = 0; i * i <= x; i++) {
+		if (i * i == x)return 1;
+	}
+	return 0;
+}
+
+int main() {
+	int n = 0;
+	int* vect = citire(n);
+	char cerinta;
+	std::cin >> cerinta;
+	if (cerinta == 'a' && patratPerfect(n)) cerintaA(n, vect);
+	else if (cerinta == 'b' && patratPerfect(n) && n % 2 == 1)cerintaB(n, vect);
+	else std::cout << "invalid!";
+}

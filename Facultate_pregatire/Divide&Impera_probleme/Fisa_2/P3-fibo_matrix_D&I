@@ -1,0 +1,38 @@
+/*
+3. Folosind o maniera D&I, sa se determine al n-lea termen din sirul Fibonacci
+*/
+
+#include <iostream>
+
+int* inmultire2mat(int* v1, int* v2) {
+	int* vf = new int[4];
+	vf[0] = v1[0] * v2[0] + v1[1] * v2[2];
+	vf[1] = v1[0] * v2[1] + v1[1] * v2[3];
+	vf[2] = v1[2] * v2[0] + v1[3] * v2[2];
+	vf[3] = v1[2] * v2[1] + v1[3] * v2[3];
+	return vf;
+}
+
+int* ridicareLaPutere(int* v, int n) {
+	if (n == 1)return v;
+	int* k = ridicareLaPutere(v, n / 2);
+	if (n % 2 == 1)return inmultire2mat(v, inmultire2mat(k, k));
+	return inmultire2mat(k, k);
+}
+
+int fibo(int n) {
+	if (n == 0)return 0;
+	int* v = new int[4];
+	v[0] = 1;
+	v[1] = 1;
+	v[2] = 1;
+	v[3] = 0;
+	int* vf = ridicareLaPutere(v, n);
+	return vf[1];
+}
+
+int main() {
+	int n;
+	std::cin >> n;
+	std::cout << fibo(n);
+}

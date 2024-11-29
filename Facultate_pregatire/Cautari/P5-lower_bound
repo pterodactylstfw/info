@@ -1,0 +1,56 @@
+/*
+5. Se citeste un vector (container) de n numere intregi ordonat descrescator dintr-un fisier.
+Se citeste un al doilea vector de m numere intregi din consola. Folosind std::binary_search
+sa se determine care elemente din al doilea vector apar in primul si afisati pozitiile acestor
+elemente utilizand std::lower_bound. Rezultatul se va scrie in fisier.
+*/
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+
+bool comparatorDescrescator(int a, int b) {
+	return (a > b);
+}
+
+std::vector<int> citireDinFisier() {
+	std::ifstream f("numere.in");
+	int dim;
+	f >> dim;
+	std::vector<int> v;
+	v.resize(dim);
+	for (int i = 0; i < v.size(); i++) {
+		f >> v[i];
+	}
+	f.close();
+	return v;
+}
+
+std::vector<int> citire() {
+	int dim;
+	std::cin >> dim;
+	std::vector<int> v;
+	v.resize(dim);
+	for (int i = 0; i < v.size(); i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+void parcurgere(std::vector<int> a, std::vector<int> b) {
+	std::ofstream g("numere.out");
+	for (int i = 0; i < b.size(); i++) {
+		if (std::binary_search(a.begin(), a.end(), b[i], comparatorDescrescator) == 1) {
+			auto gasire = std::lower_bound(a.begin(), a.end(), b[i], comparatorDescrescator);
+			int pozitie = gasire - a.begin() + 1;
+			g << pozitie << " ";
+		}
+	}
+}
+
+int main() {
+	std::vector<int> a = citireDinFisier();
+	std::vector<int> b = citire();
+	parcurgere(a, b);
+}

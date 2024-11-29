@@ -1,4 +1,4 @@
-Număr prim
+// Număr prim
 
 int prim(int x, int d=3)
 {
@@ -8,7 +8,7 @@ int prim(int x, int d=3)
     return prim(x,d+2);
 }
 
-Numar palindrom
+// Numar palindrom si rasturnat 
 int palindrom(int x)
 {
     int og=0;
@@ -21,16 +21,37 @@ int palindrom(int x)
     return x==og;
 }
 
-Numar rotund
+int rasturnat(int x) {
+	int nrNou = 0;
+	while (x) {
+		nrNou = nrNou * 10 + x % 10;
+		x /= 10;
+	}
+	return nrNou;
+}
+
+// Numar rotund
 
 int rotund(int x, int nr0=0, int nr1=0)
 {
-    if(n==0) return 0;
-    if(n%2==0) return rotund(x/10, nr0+1, nr1);
+    if(x==0) return 0;
+    if(x%2==0) return rotund(x/10, nr0+1, nr1);
     return rotund(x/10,nr0, nr0+1);
 }
 
-CMMDC-ul a doua numere
+//sau 
+
+int nrRotund(int x) {
+	int nr0 = 0, nr1 = 0;
+	while (x > 0) {
+		if (x % 2 == 0) nr0++;
+		else nr1++;
+		x /= 2;
+	}
+	return (nr0 == nr1);
+}
+
+// CMMDC-ul a doua numere
 
 int cmmdc(int a, int b)
 {
@@ -38,17 +59,41 @@ int cmmdc(int a, int b)
     return cmmdc(b,a%b);
 }
 
-Verificare daca x este termen Fibo
+// sau 
+
+int cmmdc(int a, int b) {
+	while (b) {
+		int r = a % b;
+		a = b;
+		b = r;
+	}
+	return a;
+}
+
+// Verificare daca x este termen Fibo
 
 int Fibo(int x, int f1=0, int f2=1)
 {
     if(f1+f2==x) return 1;
-    if(fi+f2>x) return 0;
+    if(f1+f2>x) return 0;
     return Fibo(x, f2, f1+f2);
 }
 
+// sau
 
-Generarea termenilor Fibo
+bool fibo(int x) {
+	int f1 = 0, f2 = 1, f3;
+	do {
+		f3 = f1 + f2;
+		f1 = f2;
+		f2 = f3;
+	} while (f3 < x);
+	return (f3 == x);
+}
+
+
+
+// Generarea termenilor Fibo
 
 int f1=0,f2=1;
 do
@@ -59,15 +104,82 @@ do
 } while (f3<n);
 
 
-Suma divizorilor numarului n 
+// Suma divizorilor numarului n 
 
-int suma_div(int n)
-{
-    int s=0;
-    for(int i=1;i*i<=n;i++)
-        if(n%i==0) s+=i;
-
-    s+=n; //daca e necesar.
-    return s;
+int sumaDivizori(int x) {
+	int s = 0;
+	for (int d = 1; d * d <= x; d++) {
+		if (x % d == 0) {
+			if (d * d == x) s += d;
+			else s = s + d + x / d;
+		}
+	}
+	return s;
 }
 
+// Descompunere in factori primi
+
+void descompunereFactoriPrimi(int x) {
+	if (x <= 1) {
+		std::cout << x;
+		return;
+	}
+	int d = 3, p = 0;
+	while (x % 2 == 0 && x > 1) {
+		p++;
+		x /= 2;
+	}
+	if (p) std::cout << 2 << "^" << p << '\n';
+	while (x > 1) {
+		p = 0;
+		while (x % d == 0) {
+			p++;
+			x /= d;
+		}
+		if (p) std::cout << d << "^" << p << '\n';
+		d += 2;
+	}
+}
+
+// eliminare cifre impare
+
+int eliminareCifreImpare(int x) {
+	int p = 1, nrNou = 0;
+	while (x) {
+		if (x % 2 == 0) {
+			nrNou = nrNou + p * (x % 10);
+			p *= 10;
+		}
+		x /= 10;
+	}
+	return nrNou;
+}
+
+
+// Patrat perfect
+
+bool patratPerfect(int x) {
+	if (x < 0) return 0;
+	if (x < 2) return 1;
+	int d = 2;
+	while (d * d < x) d++;
+	return (d * d == x);
+}
+
+// Suma cifrelor unui numar
+
+int sumaCifrelorRecursiv(int x) {
+	if (x < 10) return x;
+	return x % 10 + sumaCifrelorRecursiv(x / 10);
+}
+
+//sau
+
+int sumaCifrelorIterativ(int x) {
+	int s = 0;
+	while (x) {
+		s += x % 10;
+		x /= 10;
+	}
+	return s;
+}

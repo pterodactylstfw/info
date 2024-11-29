@@ -1,0 +1,97 @@
+/*
+6. (*) O biblioteca contine mai multe rafturi pe care se afla mai multe carti. Deoarece biblioteca
+este bine organizata, stim ca numarul de carti de pe acelasi raft este acelasi. Pentru fiecare carte
+stim anul publicarii (numar intreg) si titlul acesteia (sir caractere). Sa se scrie un program care
+folosind tehnica Divide & Impera determina cate rafturi contin cartile deja ordonate dupa:
+a) Anul publicarii cartilor
+b) Titlul cartilor
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <cstring>
+
+struct carte {
+	int an;
+	char titlu[50];
+};
+
+void egal(carte& a, carte b) {
+	a.an = b.an;
+	strcpy(a.titlu, b.titlu);
+}
+
+std::vector<std::vector<carte>> citire() {
+	std::ifstream f("biblioteca.in");
+	std::vector<std::vector<carte>> v;
+	int nrRafturi, nrCarti;
+	f >> nrRafturi >> nrCarti;
+	v.resize(nrRafturi);
+	for (int i = 0; i < v.size(); i++) {
+		v[i].resize(nrCarti);
+		for (int j = 0; j < v[i].size(); j++) {
+			carte x;
+			f >> x.an;
+			f.get();
+			f.getline(x.titlu, 50);
+			f.get();
+			egal(v[i][j], x);
+		}
+	}
+	return v;
+}
+
+bool verificareHelperAn(std::vector<carte> v, int st, int dr) {
+	if (st <= dr) {
+		int m = (st + dr) / 2;
+		if (m == 0) {
+			if (v[m].an <= v[m + 1].an) return 1;
+			return 0;
+		}
+		if (m == v.size() - 1) {
+			if (v[m - 1].an <= v[m].an) return 1;
+			return 0;
+		}
+		if (!(v[m - 1].an <= v[m].an && v[m].an <= v[m + 1].an))return 0;
+		return std::min(verificareHelperAn(v, st, m - 1), verificareHelperAn(v, m + 1, dr));
+	}
+	return 1;
+}
+
+bool verificareHelperTitlu(std::vector<carte> v, int st, int dr) {
+	int m = (st + dr) / 2;
+	if (m == 0) {
+		if (strcmp(v[m].titlu, v[m + 1].titlu) <= 0) return 1;
+		return 0;
+	}
+	if (m == v.size() - 1) {
+		if (strcmp(v[m - 1].titlu, v[m].titlu) <= 0) return 1;
+		return 0;
+	}
+	if (!(strcmp(v[m - 1].titlu, v[m].titlu) <= 0 && strcmp(v[m].titlu, v[m + 1].titlu) <= 0))return 0;
+	return std::min(verificareHelperTitlu(v, st, m - 1), verificareHelperTitlu(v, m + 1, dr));
+}
+
+void verificareDejaOrdonat(std::vector<std::vector<carte>> mat) {
+	std::cout << "Dupa anul aparitiei: ";
+	int ct1 = 0, ct2 = 0;
+	for (int i = 0; i < mat.size(); i++) {
+		int n = mat[i].size();
+		if (verificareHelperAn(mat[i], 0, n - 1))ct1++;
+	}
+	std::cout << ct1;
+	std::cout << "\nDupa titlu: ";
+	for (int i = 0; i < mat.size(); i++) {
+		int n = mat[i].size();
+		if (verificareHelperTitlu(mat[i], 0, n - 1))ct2++;
+	}
+	std::cout << ct2;
+}
+
+int main() {
+	std::vector<std::vector<carte>> biblioteca = citire();
+	verificareDejaOrdonat(biblioteca);
+}

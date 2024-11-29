@@ -1,0 +1,79 @@
+/*
+3. Fiind dati doi vectori de dimensiune n si o valoare k, sa se reorganizeze elementele din
+vectori, astfel a[i] + b[i] >= k. Daca cei doi vectori nu se pot reorganiza astfel incat sa se
+poata, atunci se afiseaza ìNuî.
+*/
+
+#include <iostream>
+#include <vector>
+
+bool comparatorCrescator(int a, int b) {
+	return (a < b);
+}
+
+bool comparatorDescrescator(int a, int b) {
+	return (a > b);
+}
+
+void citire(std::vector<int>& a, std::vector<int>& b, int& k) {
+	int n;
+	std::cin >> n >> k;
+	a.resize(n);
+	b.resize(n);
+	for (int i = 0; i < n; i++) {
+		std::cin >> a[i];
+	}
+	for (int i = 0; i < n; i++) {
+		std::cin >> b[i];
+	}
+}
+
+void afisare(std::vector<int> v) {
+	for (int i = 0; i < v.size(); i++) {
+		std::cout << v[i] << " ";
+	}
+	std::cout << '\n';
+}
+
+void quicksort(std::vector<int>& v, int st, int dr, bool comparator(int, int)) {
+	if (st < dr) {
+		int piv = v[(st + dr) / 2];
+		int i = st, j = dr;
+		while (i <= j) {
+			while (comparator(v[i], piv))i++;
+			while (comparator(piv, v[j]))j--;
+			if (i <= j) {
+				int aux = v[i];
+				v[i] = v[j];
+				v[j] = aux;
+				i++;
+				j--;
+			}
+		}
+		quicksort(v, st, j, comparator);
+		quicksort(v, i, dr, comparator);
+	}
+}
+
+void verificare(std::vector<int> a, std::vector<int> b, int k) {
+	bool gasit = 1;
+	for (int i = 0; i < a.size() && gasit == 1; i++) {
+		if (a[i] + b[i] < k) {
+			gasit == 0;
+		}
+	}
+	if (gasit == 0)std::cout << "Nu";
+	else {
+		afisare(a);
+		afisare(b);
+	}
+}
+
+int main() {
+	std::vector<int> a, b;
+	int k;
+	citire(a, b, k);
+	quicksort(a, 0, a.size() - 1, comparatorCrescator);
+	quicksort(b, 0, b.size() - 1, comparatorDescrescator);
+	verificare(a, b, k);
+}

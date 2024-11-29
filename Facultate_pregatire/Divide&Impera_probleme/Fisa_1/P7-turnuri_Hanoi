@@ -1,0 +1,34 @@
+/*
+7. (*) Problema Turnurilor din Hanoi (link1 & link2)
+Se dau 3 tije numerotate cu literele A,B,C. Stim ca pe tija A se afla N discuri de dimensiuni
+diferite, aranjate de la baza spre varf de la cea mai mare la cea mai mica dimensiune
+Sa se scrie un program care folosind tehnica Divide & Impera muta discurile de pe tija A, unul
+cate unul, pe restul tijelor ca suport ajutator, astfel incat tija B sa contina la final discurile 
+initiale din tija A (aranjate de la baza spre varf de la cea mai mare la cea mai mica dimensiune).
+Observatie: nu se poate muta un disc de dimensiune mai mare peste un disc de mai mic
+*/
+
+#include <iostream>
+#include <vector>
+
+void hanoiTowers(int n, char tijaInitiala, char tijaFinala, char aux) {
+	if (n == 1) {
+		std::cout << "Mutam discul 1 de pe tija " << tijaInitiala << " pe tija " << tijaFinala << ".\n";
+		return;
+	}
+
+	// mutam n - 1 discuri de pe tijaInitiala pe aux folosind tijaFinala ca aux
+	hanoiTowers(n - 1, tijaInitiala, aux, tijaFinala);
+
+	// mutam discul n de pe tijaInitiala pe tijaFinala
+	std::cout << "Mutam discul " << n << " de pe tija " << tijaInitiala << " pe tija " << tijaFinala << ".\n";
+	
+	// mutam n - 1 discuri de pe aux pe tijaFinala folosind tijaFinala ca aux
+	hanoiTowers(n - 1, aux, tijaFinala, tijaInitiala);
+}
+
+int main() {
+	int n;
+	std::cin >> n;
+	hanoiTowers(n, 'A', 'B', 'C');
+}

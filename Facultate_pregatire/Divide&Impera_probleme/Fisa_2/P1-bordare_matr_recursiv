@@ -1,0 +1,53 @@
+/*
+1. Fie o matrice de dimensiuni n * m. Sa se bordeze matricea recursiv din exterior catre interior ca
+in exemplul urmator
+0 0 0 0 0 0 0
+0 1 1 1 1 1 0
+0 1 2 2 2 1 0
+0 1 2 3 2 1 0
+0 1 2 2 2 1 0
+0 1 1 1 1 1 0
+0 0 0 0 0 0 0
+*/
+
+#include <iostream>
+#include <vector>
+
+std::vector<std::vector<int>> alocare() {
+	int n, m;
+	std::cin >> n >> m;
+	std::vector<std::vector<int>> mat(n);
+	for (int i = 0; i < n; i++) {
+		mat[i].resize(m);
+	}
+	return mat;
+}
+
+void construire(std::vector<std::vector<int>>& mat, int sus, int jos, int st, int dr, int nr) {
+	if (sus <= jos && st <= dr) {
+		for (int i = st; i <= dr; i++) {
+			mat[sus][i] = mat[jos][i] = nr;
+		}
+		for (int i = sus + 1; i <= jos - 1; i++) {
+			mat[i][st] = mat[i][dr] = nr;
+		}
+		construire(mat, sus + 1, jos - 1, st + 1, dr - 1, nr + 1);
+	}
+}
+
+void afisare(std::vector<std::vector<int>> mat) {
+	for (int i = 0; i < mat.size(); i++) {
+		std::cout << '\n';
+		for (int j = 0; j < mat[i].size(); j++) {
+			std::cout << mat[i][j] << " ";
+		}
+	}
+}
+
+int main() {
+	std::vector<std::vector<int>> mat = alocare();
+	int n = mat.size();
+	int m = mat[0].size();
+	construire(mat, 0, n - 1, 0, m - 1, 0);
+	afisare(mat);
+}

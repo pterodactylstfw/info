@@ -1,0 +1,40 @@
+/*
+4. A) Se considera un sir de caractere, doar cu valori de 0 si 1. Se stie faptul ca sirul contine 
+prima oara toti de 0, apoi toti de 1. Numarati cu ajutorul unui algoritm de tip Ñdivide et imperaî 
+cati de 1 sunt in sirul dat
+B) Se considera un sir de caractere, doar cu caractere de ëaí si ëbí. Se stie faptul ca sirul 
+contineprima oara toti de ëaí, apoi toti de ëbí. Numarati cu ajutorul unui algoritm de tip 
+divide et impera cati de ëbí sunt in sirul dat,
+*/
+
+#include <iostream>
+#include <cstring>
+
+char* citire() {
+	char* s = new char[50];
+	std::cin.getline(s, 50);
+	return s;
+}
+
+int numarare(char* s, int st, int dr, char c1, char c2) {
+	int m = (st + dr) / 2;
+	if (m == 0) {
+		if (s[m] == c2) return strlen(s);
+		return numarare(s, m + 1, dr, c1, c2);
+	}
+	if (s[m] == c1) {
+		return numarare(s, m + 1, dr, c1, c2);
+	}
+	if (s[m - 1] == c2) {
+		return numarare(s, st, m - 1, c1, c2);
+	}
+	return strlen(s) - m;
+}
+
+int main() {
+	char* s1 = citire(), * s2 = citire();
+	std::cout << "A) " << numarare(s1, 0, strlen(s1) - 1, '0', '1') << '\n';
+	delete[] s1;
+	std::cout << "B) " << numarare(s2, 0, strlen(s2) - 1, 'a', 'b') << '\n';
+	delete[] s2;
+}

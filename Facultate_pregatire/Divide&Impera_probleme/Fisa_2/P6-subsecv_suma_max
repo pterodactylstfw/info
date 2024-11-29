@@ -1,0 +1,54 @@
+/*
+6. Fie un sir de numere reale de dimensiune n. Se cere sa se determine subsecventa de suma
+maxima.
+*/
+
+#include <iostream>
+#include <vector>
+
+struct secventa {
+	int prim, ultim;
+};
+
+std::vector<float> citire() {
+	int n;
+	std::cin >> n;
+	std::vector<float> v;
+	v.resize(n);
+	for (int i = 0; i < n; i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+secventa secventaMaxima(std::vector<float> v) {
+	int st, dr, start;
+	float smax = -10000000, s = -1;
+	for (int i = 0; i < v.size(); i++)
+	{
+		if (s < 0) {
+			s = 0;
+			start = i;
+		}
+		s += v[i];
+		if (s > smax) {
+			smax = s;
+			st = start;
+			dr = i;
+		}
+	}
+	return { st,dr };
+}
+
+void afisare(std::vector<float> v, int st, int dr) {
+	for (int i = st; i <= dr; i++) {
+		std::cout << v[i] << " ";
+	}
+	std::cout << '\n';
+}
+
+int main() {
+	std::vector<float> v = citire();
+	secventa k = secventaMaxima(v);
+	afisare(v, k.prim, k.ultim);
+}

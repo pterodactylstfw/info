@@ -1,0 +1,98 @@
+/*
+5. Se considera 2 polinoame (fiecare polinom dat prin coeficienti si grad). Sa se efectueze
+inmultirea celor doua polinoame.
+
+2
+5 1 2
+3
+1 0 5 3
+*/
+
+#include <iostream>
+#include <vector>
+
+std::vector<int> citire() {
+	int grad;
+	std::cin >> grad;
+	std::vector<int> v;
+	v.resize(grad + 1);
+	for (int i = 0; i <= grad; i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+void afisare(std::vector<int> v) {
+	for (int i = 0; i < v.size(); i++) {
+		std::cout << v[i] << " ";
+	}
+	std::cout << '\n';
+}
+
+std::vector<int> adunare(std::vector<int> p1, std::vector<int> p2) {
+	int n = std::max(p1.size(), p2.size());
+	std::vector<int> total(n, 0);
+
+	for (int i = 0; i < p1.size(); i++) {
+		total[i] += p1[i];
+	}
+
+	for (int i = 0; i < p2.size(); i++) {
+		total[i] += p2[i];
+	}
+
+	return total;
+}
+
+std::vector<int> opus(std::vector<int> p) {
+	std::vector<int> total(p.size(), 0);
+	for (int i = 0; i < p.size(); i++) {
+		total[i] = 0 - p[i];
+	}
+	return total;
+}
+
+std::vector<int> inmultire(std::vector<int> p1, std::vector<int> p2) {
+	int n = std::max(p1.size(), p2.size());
+	if (n == 1) {
+		std::vector<int> v;
+		v.push_back(p1[0] * p2[0]);
+		return v;
+	}
+	std::vector<int> total(2 * n - 1, 0);
+	int m = n / 2;
+
+	p1.resize(n);
+	p2.resize(n);
+	std::vector<int> x0(p1.begin(), p1.begin() + m);
+	std::vector<int> x1(p1.begin() + m, p1.end());
+	std::vector<int> y0(p2.begin(), p2.begin() + m);
+	std::vector<int> y1(p2.begin() + m, p2.end());
+	
+	std::vector<int> z2 = inmultire(x1, y1);
+	std::vector<int> z0 = inmultire(x0, y0);
+	std::vector<int> z1aux = inmultire(adunare(x1, x0), adunare(y1, y0));
+	std::vector<int> z1 = adunare(z1aux, adunare(opus(z2), opus(z0)));
+	
+	for (int i = 0; i < z0.size(); i++) {
+		total[i] += z0[i];
+	}
+	for (int i = 0; i < z1.size(); i++) {
+		total[i + m] += z1[i];
+	}
+	for (int i = 0; i < z2.size(); i++) {
+		total[i + 2 * m] += z2[i];
+	}
+
+	while (total.size() > 1 && total.back() == 0) {
+		total.pop_back();
+	}
+	return total;
+}
+
+int main() {
+	std::vector<int> p1 = citire();
+	std::vector<int> p2 = citire();
+	std::vector<int> produs = inmultire(p1, p2);
+	afisare(produs);
+}

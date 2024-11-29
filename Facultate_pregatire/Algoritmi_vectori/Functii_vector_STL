@@ -130,16 +130,34 @@ bool reorganize(std::vector<int>& a, std::vector<int>& b, int k) {
 }
 
 
-Verif daca vector contine subvector
+// Verif daca vector contine subvector
 
-Construirea tabelului de failure:
-Tabelul de failure ne ajută să "sărim" pe elemente atunci când găsim o nepotrivire,
-economisind timp și evitând comparațiile inutile.
+// Construirea tabelului de failure:
+// Tabelul de failure ne ajută să "sărim" pe elemente atunci când găsim o nepotrivire,
+// economisind timp și evitând comparațiile inutile.
 
-Căutarea subsecvenței:
-Folosim două indicatoare: i pentru primul vector și j pentru al doilea vector. 
-Dacă găsim o potrivire, continuăm să comparăm elementele. Dacă găsim o neconcordanță, 
-folosim tabelul de failure pentru a sări la o poziție corespunzătoare.
+// Căutarea subsecvenței:
+// Folosim două indicatoare: i pentru primul vector și j pentru al doilea vector. 
+// Dacă găsim o potrivire, continuăm să comparăm elementele. Dacă găsim o neconcordanță, 
+// folosim tabelul de failure pentru a sări la o poziție corespunzătoare.
+
+
+/*
+4. Fiind da?i 2 vectori, s? se verifice dac? primul vector con?ine al doilea vector sau nu (De
+discutat variante pentru complexitate ceruta O(m*n) sau O(m+n) unde m este num?rul de
+elemente din al doilea vector iar n este dimensiunea pentru primul vector).
+
+v1 = {2, 1, 4, 8, -3, 7, 6, 5, 4}
+v2 = { 1, -3, 5} / { -3, 1, 5}
+
+a) Fiecare element din v2 sa se regaseasca in v1 indiferent de pozitie.
+b) Fiecare element v2 sa se regaseasca in v1 dar sa se pastreze ordinea din secventa v2.
+
+a) Var1: Fiecare element din v2 este cautat (liniar) in v1 -> O(m * n)
+Var2 : Sortarea lui v1 + cautare binara a fiecarui element din v2 -> O(n * log n) + O (m * log n)
+
+b) Se parcurg cu indici diferiti v1 si v2 se verifica daca v[i] = v[j] -> O(m + n)
+*/
 
 void construireTabelFailure(const std::vector<int>& b, std::vector<int>& failure) {
     int m = b.size();
