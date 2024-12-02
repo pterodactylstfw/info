@@ -1,0 +1,66 @@
+#include <iostream>
+#include <vector>
+
+std::vector<int> citire() {
+	int dim;
+	std::cin >> dim;
+	std::vector<int> v(dim);
+	for (int i = 0; i < dim; i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+void afisare(std::vector<int> v) {
+	for (int i = 0; i < v.size(); i++) {
+		std::cout << v[i] << " ";
+	}
+	std::cout << '\n';
+}
+
+std::vector<int> interclasare(std::vector<int> a, std::vector<int> b) {
+	int n = a.size();
+	int m = b.size();
+	std::vector<int> c;
+	int i = 0, j = 0;
+	while (i < n && j < m) {
+		if (a[i] <= b[j]) {
+			c.push_back(a[i++]);
+		}
+		else c.push_back(b[j++]);
+	}
+	while (i < n) {
+		c.push_back(a[i++]);
+	}
+	while (j < m) {
+		c.push_back(b[j++]);
+	}
+	return c;
+}
+
+void mergesort(std::vector<int>& v, int n) {
+	if (n > 1) {
+		int m = n / 2;
+		int l1 = m, l2 = n - m;
+		std::vector<int> t1;
+		std::vector<int> t2;
+		for (int i = 0; i < l1; i++) {
+			t1.push_back(v[i]);
+		}
+		for (int i = 0; i < l2; i++) {
+			t2.push_back(v[i + l1]);
+		}
+		mergesort(t1, l1);
+		mergesort(t2, l2);
+		std::vector<int> vfinal = interclasare(t1, t2);
+		for (int i = 0; i < n; i++) {
+			v[i] = vfinal[i];
+		}
+	}
+}
+
+int main() {
+	std::vector<int> v = citire();
+	mergesort(v, v.size());
+	afisare(v);
+}

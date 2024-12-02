@@ -1,0 +1,42 @@
+/*
+5. Se citeste un numar natural n<=15. Sa se afiseze pe ecran, folosind functii recursive:
+A) un desen format din caracterul "*" ca in exemplul urmator:
+Exemplu: n=3
+  *
+ ***
+*****
+ ***
+  *
+B) un desen format ca in exemplul urmator:
+1
+1 2
+1 2 3
+..............
+1 2 3 4 ... n
+*/
+
+#include <iostream>
+
+void afisareCerintaA(int n, int i = 1) {
+	if (i <= n) {
+		for (int j = 1; j <= n - i; j++)std::cout << " ";
+		for (int j = 1; j <= 2 * i - 1; j++)std::cout << "*";
+		for (int j = 1; j <= n - i; j++)std::cout << " ";
+		std::cout << '\n';
+		afisareCerintaA(n, i + 1);
+		if (i < n) {
+			for (int j = 1; j <= n - i; j++)std::cout << " ";
+			for (int j = 1; j <= 2 * i - 1; j++)std::cout << "*";
+			for (int j = 1; j <= n - i; j++)std::cout << " ";
+			std::cout << '\n';
+		}
+	}
+}
+
+void afisareCerintaB(int n, int i = 1) {
+	if (i <= n) {
+		for (int j = 1; j <= i; j++)std::cout << j << " ";
+		std::cout << '\n';
+		afisareCerintaB(n, i + 1);
+	}
+}

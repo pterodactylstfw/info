@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+
+std::vector<int> citire() {
+	int dim;
+	std::cin >> dim;
+	std::vector<int> v(dim);
+	for (int i = 0; i < dim; i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+void afisare(std::vector<int> v) {
+	for (int i = 0; i < v.size(); i++) {
+		std::cout << v[i] << " ";
+	}
+	std::cout << '\n';
+}
+
+int maxim(std::vector<int> v) { // int minim(std::vector<int> v)
+	int mx = v[0]; // int mn = v[0];
+	for (int i = 1; i < v.size(); i++) {
+		if (v[i] > mx) mx = v[i];
+		// if (v[i] < mn) mn = v[i];
+	}
+	return mx; // return mn;
+}
+
+int main() {
+	std::vector<int> v = citire();
+	// afisare(v);
+	std::cout << maxim(v); // std::cout << minim(v);
+} 

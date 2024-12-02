@@ -61,6 +61,8 @@
         "string": "cpp",
         "typeinfo": "cpp",
         "unordered_map": "cpp",
-        "algorithm": "cpp"
-    }
+        "algorithm": "cpp",
+        "funcții_simple_liceu": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

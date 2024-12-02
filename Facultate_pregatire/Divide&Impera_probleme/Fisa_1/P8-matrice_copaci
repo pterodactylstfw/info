@@ -1,0 +1,53 @@
+/*
+8. (*) Se considera o livada care are terenul sub forma unei parcele dreptunghiulare de latime N si
+lungime M. Pe fiecare rand si coloana se afla cate un copac care contine mai multe fructe. Sa se
+calculeze suma fructelor doar pentru copacii care au un numar prim de fructe. O varianta
+posibila de rezolvare: apelati recursiv pe cele 4 colturi / pe oricare 2 jumatati ale terenului.
+*/
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+std::vector<std::vector<int>> citire() {
+	std::ifstream f("livada.in");
+	std::vector<std::vector<int>> v;
+	int n, m;
+	f >> n >> m;
+	v.resize(n);
+	for (int i = 0; i < v.size(); i++) {
+		v[i].resize(m);
+		for (int j = 0; j < v[i].size(); j++) {
+			f >> v[i][j];
+		}
+	}
+	f.close();
+	return v;
+}
+
+bool prim(int x, int d = 3) {
+	if (x % 2 == 0 && x != 2 || x < 2)return 0;
+	if (d * d > x)return 1;
+	if (x % d == 0)return 0;
+	return prim(x, d + 2);
+}
+
+int suma(std::vector<std::vector<int>> v, int sus, int jos, int st, int dr) {
+	if (sus > jos || st > dr) return 0;
+	if (sus == jos && st == dr) {
+		if (prim(v[sus][st])) return v[sus][st];
+		return 0;
+	}
+	int mv = (sus + jos) / 2;
+	int mo = (st + dr) / 2;
+	int s1 = suma(v, sus, mv, st, mo);
+	int s2 = suma(v, sus, mv, mo + 1, dr);
+	int s3 = suma(v, mv + 1, jos, st, mo);
+	int s4 = suma(v, mv + 1, jos, mo + 1, dr);
+	return s1 + s2 + s3 + s4;
+}
+
+int main() {
+	std::vector<std::vector<int>> livada = citire();
+	std::cout << suma(livada, 0, livada.size() - 1, 0, livada[0].size() - 1);
+}

@@ -1,0 +1,68 @@
+/*
+3. Se da o matrice sortata crescator complet. Sa se determine daca exista elementul k dat in
+matrice, cu ajutorul unui algoritm de tip D & I
+
+4 5
+2 5 7 13 15
+16 20 21 24 27
+30 32 35 41 47
+50 71 74 75 80
+*/
+
+#include <iostream>
+#include <vector>
+
+std::vector<std::vector<int>> citire() {
+	int n, m;
+	std::cin >> n >> m;
+	std::vector<std::vector<int>> matrice;
+	matrice.resize(n);
+	for (int i = 0; i < matrice.size(); i++) {
+		matrice[i].resize(m);
+		for (int j = 0; j < matrice[i].size(); j++) {
+			std::cin >> matrice[i][j];
+		}
+	}
+	return matrice;
+}
+
+int cautareLinie(std::vector<std::vector<int>> mat, int sus, int jos, int x) {
+	if (sus <= jos) {
+		int m = (sus + jos) / 2;
+		if (x < mat[m][0]) {
+			return cautareLinie(mat, sus, m - 1, x);
+		}
+		else if (x > mat[m][mat[m].size() - 1]) {
+			return cautareLinie(mat, m + 1, jos, x);
+		}
+		else return m;
+	}
+	return -1;
+}
+
+int cautareBinara(std::vector<int> v, int st, int dr, int x) {
+	while (st <= dr) {
+		int m = (st + dr) / 2;
+		if (v[m] == x) return m;
+		else if (v[m] < x) st = m + 1;
+		else dr = m - 1;
+	}
+	return -1;
+}
+
+void afisare(std::vector<std::vector<int>> mat, int x) {
+	int k = cautareLinie(mat, 0, mat.size() - 1, x);
+	if (k == -1)std::cout << "nu";
+	else {
+		int poz = cautareBinara(mat[k], 0, mat[k].size() - 1, x);
+		if (poz == -1)std::cout << "nu";
+		else std::cout << k * mat[k].size() + poz;
+	}
+}
+
+int main() {
+	std::vector<std::vector<int>> mat = citire();
+	int x;
+	std::cin >> x;
+	afisare(mat, x);
+}

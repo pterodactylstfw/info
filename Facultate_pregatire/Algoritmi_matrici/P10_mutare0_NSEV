@@ -1,0 +1,159 @@
+/*
+10. Se da o matrice patratica de dimensiune n, matrice care trebuie sa contina
+toate numerele intre 0 si n^2-1.
+a. sa se verifice daca matricea data respecta conditia ceruta
+b. sa se localizeze punctul cu valoarea 0 (pentru matricile valide) si sa se scrie o
+functie care returneaza toate cele maxim 4 matrici care se pot forma mutand 0
+N, S, E V.
+*/
+
+#include <iostream>
+
+int** alocare(int m, int n) {
+	int** mat = new int* [m];
+	for (int i = 0; i < m; i++) {
+		mat[i] = new int[n];
+	}
+	return mat;
+}
+
+void dealocare(int**& mat, int m, int n) {
+	if (mat) {
+		for (int i = 0; i < m; i++) {
+			delete[] mat[i];
+		}
+		delete[] mat;
+		mat = nullptr;
+	}
+}
+
+void citire(int**& mat, int& m, int& n) {
+	int linii, col;
+	std::cin >> linii >> col;
+	if (!mat || linii != m || col != n) {
+		dealocare(mat, m, n);
+		m = linii;
+		n = col;
+		mat = alocare(m, n);
+	}
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			std::cin >> mat[i][j];
+		}
+	}
+}
+
+bool valid(int** mat, int m, int n) {
+	int* fr = new int[m * n] {0};
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (mat[i][j] > m * n - 1 || mat[i][j] < 0) {
+				return 0;
+			}
+			fr[mat[i][j]]++;
+			if (fr[mat[i][j]] == 2) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+struct pozitie {
+	int linie, col;
+};
+
+pozitie pozitiaLuiZero(int** mat, int m, int n) {
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (mat[i][j] == 0) {
+				pozitie p = { i,j };
+				return p;
+			}
+		}
+	}
+}
+
+struct matrici {
+	int** matN = nullptr, ** matS = nullptr, ** matV = nullptr, ** matE = nullptr;
+};
+
+int** copiere(int** mat, int m, int n) {
+	int** nou = alocare(m, n);
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			nou[i][j] = mat[i][j];
+		}
+	}
+	return nou;
+}
+
+matrici generareMatrici(int** mat, int m, int n) {
+	pozitie p = pozitiaLuiZero(mat, m, n);
+	matrici matr;
+	if (p.linie > 0) {
+		matr.matN = copiere(mat, m, n);
+		std::swap(matr.matN[p.linie - 1][p.col], matr.matN[p.linie][p.col]);
+	}
+	if (p.col > 0) {
+		matr.matV = copiere(mat, m, n);
+		std::swap(matr.matV[p.linie][p.col], matr.matV[p.linie][p.col - 1]);
+	}
+	if (p.col < n - 1) {
+		matr.matE = copiere(mat, m, n);
+		std::swap(matr.matE[p.linie][p.col], matr.matE[p.linie][p.col + 1]);
+	}
+	if (p.linie < m - 1) {
+		matr.matS = copiere(mat, m, n);
+		std::swap(matr.matS[p.linie + 1][p.col], matr.matS[p.linie][p.col]);
+	}
+	return matr;
+}
+
+void afisare(matrici matr, int m, int n) {
+	if (matr.matN) {
+		for (int i = 0; i < m; i++) {
+			std::cout << std::endl;
+			for (int j = 0; j < n; j++) {
+				std::cout << matr.matN[i][j] << " ";
+			}
+		}
+	}
+	std::cout << std::endl;
+	if (matr.matS) {
+		for (int i = 0; i < m; i++) {
+			std::cout << std::endl;
+			for (int j = 0; j < n; j++) {
+				std::cout << matr.matS[i][j] << " ";
+			}
+		}
+	}
+	std::cout << std::endl;
+	if (matr.matE) {
+		for (int i = 0; i < m; i++) {
+			std::cout << std::endl;
+			for (int j = 0; j < n; j++) {
+				std::cout << matr.matE[i][j] << " ";
+			}
+		}
+	}
+	std::cout << std::endl;
+	if (matr.matV) {
+		for (int i = 0; i < m; i++) {
+			std::cout << std::endl;
+			for (int j = 0; j < n; j++) {
+				std::cout << matr.matV[i][j] << " ";
+			}
+		}
+	}
+}
+
+int main() {
+	int m = 0, n = 0, ** mat = nullptr;
+	citire(mat, m, n);
+	if (valid(mat, m, n)) {
+		matrici toateMatricile = generareMatrici(mat, m, n);
+		afisare(toateMatricile, m, n);
+	}
+	else std::cout << "invalid!";
+}

@@ -1,0 +1,73 @@
+/*
+* 1. Fie un vector unidimensional de N elemente. Sa se determine:
+a) Suma tuturor elementelor sale
+b) Elementul maxim din vector
+c) Al X-lea cel mai mic element din sir
+*/
+
+#include <iostream>
+#include <vector>
+
+std::vector<int> citire() {
+	int dim;
+	std::cin >> dim;
+	std::vector<int> v;
+	v.resize(dim);
+	for (int i = 0; i < v.size(); i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+int suma(std::vector<int> v, int st, int dr) {
+	if (st > dr)return 0;
+	int m = (st + dr) / 2;
+	return suma(v, st, m - 1) + v[m] + suma(v, m + 1, dr);
+}
+
+int maxim(int a, int b) {
+	if (a > b)return a;
+	return b;
+}
+
+int maximVector(std::vector<int> v, int st, int dr) {
+	if (st == dr)return v[st];
+	int m = (st + dr) / 2;
+	return maxim(maximVector(v, st, m), maximVector(v, m + 1, dr));
+}
+
+int partitionare (std::vector<int>& v, int st, int dr) {
+	int i = st - 1, pivot = v[dr];
+	for (int j = st; j < dr; j++) {
+		if (v[j] <= pivot) {
+			i++;
+			std::swap(v[i], v[j]);
+		}
+	}
+	i++;
+	std::swap(v[i], v[dr]);
+	return i;
+}
+
+int cautare(std::vector<int> v, int st, int dr, int x) {
+	if (st <= dr) {
+		int pozPivot = partitionare(v, st, dr);
+		if (pozPivot + 1 == x) {
+			return v[pozPivot];
+		}
+		if (pozPivot + 1 > x) {
+			return cautare(v, st, pozPivot - 1, x);
+		}
+		else return cautare(v, pozPivot + 1, dr, x);
+	}
+	return INT_MIN;
+}
+
+int main() {
+	std::vector<int> v = citire();
+	std::cout << suma(v, 0, v.size() - 1) << '\n';
+	std::cout << maximVector(v, 0, v.size() - 1) << '\n';
+	int x;
+	std::cin >> x;
+	std::cout<< cautare(v, 0, v.size() - 1, x);
+}

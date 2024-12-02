@@ -1,0 +1,59 @@
+#include <algorithm>
+#include <iostream>
+
+struct Eveniment
+{
+	int durata;
+	float probabilitate;
+};
+
+bool comparaEvenimente(Eveniment& e1, Eveniment& e2)
+{
+	return (e1.probabilitate / e1.durata < e2.probabilitate / e2.durata);
+}
+
+void egal(Eveniment & e1, Eveniment & e2)
+{
+	e1.durata = e2.durata;
+	e1.probabilitate = e2.probabilitate;
+}
+
+void quickSort(Eveniment array[100], int st, int dr)
+{
+	int indexStg = st, indexDr = dr;
+	Eveniment aux;
+	Eveniment mij = array[(st + dr) / 2];
+	while (indexStg <= indexDr)
+	{
+		while (comparaEvenimente(array[indexStg], mij))
+			indexStg++;
+		while (comparaEvenimente(mij, array[indexDr]))
+			indexDr--;
+		if (indexStg <= indexDr)
+		{
+			egal(aux, array[indexStg]);
+			egal(array[indexStg], array[indexDr]);
+			egal(array[indexDr], aux);
+			indexStg++;
+			indexDr--;
+		}
+	}
+	if (st < indexDr)
+		quickSort(array, st, indexDr);
+	if (indexStg < dr)
+		quickSort(array, indexStg, dr);
+}
+
+int main()
+{
+	Eveniment arr[] = { {6,0.3}, {1,0.2}, {2,0.4}, {4,0.7} };
+	int dim = sizeof(arr) / sizeof(arr[0]);
+
+	quickSort(arr, 0, dim-1);
+
+	std::cout << "Evenimente sort : \n";
+	for (int index = 0; index < dim; index++)
+		std::cout << "[" << arr[index].durata << "," << arr[index].probabilitate << "] ";
+
+	return 0;
+}

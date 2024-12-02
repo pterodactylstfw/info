@@ -1,0 +1,80 @@
+/* 8. Se citeste o matrice patratica de ordin n.Parcurgeti si afisati elementele
+din matrice incepand cu elementul din coltul stanga sus, mergand paralel
+cu diagonala secundara, ca in exemplu.
+Exemplu
+n = 4,
+matricea:
+1 3 4 10
+2 5 9 11
+6 8 12 15
+7 13 14 16
+In urma parcurgerii se vor afisa numerele : 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+*/
+
+#include <iostream>
+#include <vector>
+
+std::vector<std::vector<int>> citire() {
+	int n;
+	std::cin >> n;
+	std::vector<std::vector<int>> matrice;
+	matrice.resize(n);
+	for (int i = 0; i < matrice.size(); i++) {
+		matrice[i].resize(n);
+		for (int j = 0; j < matrice[i].size(); j++) {
+			std::cin >> matrice[i][j];
+		}
+	}
+	return matrice;
+}
+
+void parcurgere(std::vector<std::vector<int>> matrice) {
+	int sumaindicilor = 1, prag = 0;
+	bool directie = 0;
+	std::cout << matrice[0][0] << " ";
+	while (sumaindicilor <= 2 * (matrice.size() - 1)) {
+		if (sumaindicilor <= matrice.size() - 1) {
+			if (directie == 0) {
+				int i = sumaindicilor;
+				while (i >= 0) {
+					std::cout << matrice[i][sumaindicilor - i] << " ";
+					i--;
+				}
+				directie = 1;
+			}
+			else {
+				int i = 0;
+				while (i <= sumaindicilor) {
+					std::cout << matrice[i][sumaindicilor - i] << " ";
+					i++;
+				}
+				directie = 0;
+			}
+		}
+		else {
+			prag++;
+			if (directie == 0) {
+				int i = matrice.size() - 1;
+				while (i >= prag) {
+					std::cout << matrice[i][sumaindicilor - i] << " ";
+					i--;
+				}
+				directie = 1;
+			}
+			else {
+				int i = prag;
+				while (i <= matrice.size() - 1) {
+					std::cout << matrice[i][sumaindicilor - i] << " ";
+					i++;
+				}
+				directie = 0;
+			}
+		}
+		sumaindicilor++;
+	}
+}
+
+int main() {
+	std::vector<std::vector<int>> matrice = citire();
+	parcurgere(matrice);
+}

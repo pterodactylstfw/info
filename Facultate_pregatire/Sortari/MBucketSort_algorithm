@@ -1,0 +1,70 @@
+/*
+7. Se doreste sortarea unui vector v de n numere subunitare cu o distributie uniforma in intervalul 
+[0,1). Idee: se divide intervalul [0,1) in n subintervale de aceeasi lungime (buckets). Pentru 
+fiecare astfel de subinterval se va considera o lista in care se plaseaza toate elementele din v 
+aflate in subintervalul considerat. (Bucket-sort ñ sortare eficienta pentru numere subunitare.)
+*/
+
+#include <iostream>
+#include <vector>
+
+std::vector<float> citire() {
+	std::vector<float> v;
+	int dim;
+	std::cin >> dim;
+	v.resize(dim);
+	for (int i = 0; i < v.size(); i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+void afisare(std::vector<float> v) {
+	for (int i = 0; i < v.size(); i++) {
+		std::cout << v[i] << " ";
+	}
+	std::cout << '\n';
+}
+
+void quicksort(std::vector<float>& v, int st, int dr) {
+	if (st < dr) {
+		float piv = v[(st + dr) / 2];
+		int i = st, j = dr;
+		while (i <= j) {
+			while (v[i] < piv)i++;
+			while (piv < v[j])j--;
+			if (i <= j) {
+				float aux = v[i];
+				v[i] = v[j];
+				v[j] = aux;
+				i++;
+				j--;
+			}
+		}
+		quicksort(v, st, j);
+		quicksort(v, i, dr);
+	}
+}
+
+void bucketsort(std::vector<float>& v) {
+	std::vector<std::vector<float>> subintervale(v.size());
+	for (int i = 0; i < v.size(); i++) {
+		int index = v[i] * v.size();
+		subintervale[index].push_back(v[i]);
+	}
+	for (int i = 0; i < subintervale.size(); i++) {
+		quicksort(subintervale[i], 0, subintervale[i].size() - 1);
+	}
+	v.clear();
+	for (int i = 0; i < subintervale.size(); i++) {
+		for (int j = 0; j < subintervale[i].size(); j++) {
+			v.push_back(subintervale[i][j]);
+		}
+	}
+}
+
+int main() {
+	std::vector<float> v = citire();
+	bucketsort(v);
+	afisare(v);
+}

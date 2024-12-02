@@ -1,0 +1,82 @@
+/*
+6. (*) O biblioteca contine mai multe rafturi pe care se afla mai multe carti. Deoarece biblioteca
+este bine organizata, stim ca numarul de carti de pe acelasi raft este acelasi. Pentru fiecare carte
+stim anul publicarii (numar intreg) si titlul acesteia (sir caractere). Sa se scrie un program care
+folosind tehnica Divide & Impera determina cate rafturi contin cartile deja ordonate dupa:
+a) Anul publicarii cartilor
+b) Titlul cartilor
+*/
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+struct carte {
+	std::string titlu;
+	int an_aparitie;
+};
+
+std::vector<std::vector<carte>> citire() {
+	std::ifstream f("biblioteca.in");
+	std::vector<std::vector<carte>> biblioteca;
+
+	std::string raft;
+	while (getline(f, raft)) {
+		std::vector<carte> raft_biblioteca;
+		std::istringstream is(raft); // raft este vazut ca flux de intrare
+		std::string s_carte;
+		while (getline(is, s_carte, ';')) {
+			std::istringstream iss(s_carte);
+			carte c;
+			getline(iss, c.titlu, ',');
+			iss >> c.an_aparitie;
+			raft_biblioteca.push_back(c);
+		}
+		biblioteca.push_back(raft_biblioteca);
+	}
+
+	return biblioteca;
+}
+
+bool comparatorCrescAn(carte a, carte b) {
+	return (a.an_aparitie <= b.an_aparitie);
+}
+
+bool comparatorAlfabeticTitlu(carte a, carte b) {
+	return (a.titlu <= b.titlu);
+}
+
+bool comparatorCrescAnTitlu(carte a, carte b) {
+	if (a.an_aparitie < b.an_aparitie) return true;
+	if (a.an_aparitie == b.an_aparitie) {
+		return (a.titlu <= b.titlu);
+	}
+	return false;
+}
+
+// verificarea sortarii
+bool raft_sortat(std::vector<carte> raft, int st, int dr, bool comparator(carte, carte)) {
+	if (st >= dr) return true;
+	int m = (st + dr) / 2;
+	return (raft_sortat(raft, st, m, comparator)
+		&& raft_sortat(raft, m + 1, dr, comparator)
+		&& comparator(raft[m], raft[m + 1]));
+}
+
+// numararea rafurilor sortate
+int numarare(std::vector<std::vector<carte>> biblioteca, int st, int dr, bool comparator(carte, carte)) {
+	if (st > dr) return 0;
+	if (st == dr) return raft_sortat(biblioteca[st], 0, biblioteca[st].size() - 1, comparator);
+	int m = (st + dr) / 2;
+	return numarare(biblioteca, st, m, comparator) + numarare(biblioteca, m + 1, dr, comparator);
+
+}
+
+int main() {
+	std::vector<std::vector<carte>> biblioteca = citire();
+	std::cout << numarare(biblioteca, 0, biblioteca.size() - 1, comparatorCrescAn) << '\n';
+	std::cout << numarare(biblioteca, 0, biblioteca.size() - 1, comparatorAlfabeticTitlu) << '\n';
+	std::cout << numarare(biblioteca, 0, biblioteca.size() - 1, comparatorCrescAnTitlu) << '\n';
+}

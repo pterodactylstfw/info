@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+
+std::vector<std::vector<int>> citire() {
+	int n, m;
+	std::cin >> n >> m;
+	std::vector<std::vector<int>> mat(n);
+	for (int i = 0; i < mat.size(); i++) {
+		mat[i].resize(m);
+		for (int j = 0; j < mat[i].size(); j++) {
+			std::cin >> mat[i][j];
+		}
+	}
+	return mat;
+}
+
+void afisare(std::vector<std::vector<int>> mat) {
+	for (int i = 0; i < mat.size(); i++) {
+		for (int j = 0; j < mat[i].size(); j++) {
+			std::cout << mat[i][j] << " ";
+		}
+		std::cout << '\n';
+	}
+}
+
+std::vector<std::vector<int>> rotire(std::vector<std::vector<int>> mat) {
+	int n = mat.size(), m = mat[0].size();
+	std::vector<std::vector<int>> matrice(m);
+	for (int i = 0; i < m; i++) {
+		matrice[i].resize(n);
+		for (int j = 0; j < n; j++) {
+			matrice[i][j] = mat[n - j - 1][i];
+		}
+	}
+	return matrice;
+}
+
+int main() {
+	std::vector<std::vector<int>> mat = citire();
+	mat = rotire(mat);
+	afisare(mat);
+}

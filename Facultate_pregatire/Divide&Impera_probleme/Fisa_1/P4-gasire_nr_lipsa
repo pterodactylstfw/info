@@ -1,0 +1,30 @@
+/*
+4. Se dau n−1 numere naturale distincte intre 1 si n. Scriind o functie de D & I, determinati
+numarul lipsa.
+*/
+
+#include <iostream>
+#include <vector>
+
+std::vector<int> citire() {
+	int dim;
+	std::cin >> dim;
+	std::vector<int> v;
+	v.resize(dim - 1);
+	for (int i = 0; i < v.size(); i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+int suma(std::vector<int> v, int st, int dr) {
+	if (st > dr)return 0;
+	int m = (st + dr) / 2;
+	return suma(v, st, m - 1) + v[m] + suma(v, m + 1, dr);
+}
+
+int main() {
+	std::vector<int> v = citire();
+	int n = v.size();
+	std::cout << suma(v, 0, n - 1) - n * (n + 1) / 2;
+}

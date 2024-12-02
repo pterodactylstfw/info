@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+std::vector<std::vector<int>> citire() {
+	int n, m;
+	std::cin >> n >> m;
+	std::vector<std::vector<int>> mat(n);
+	for (int i = 0; i < mat.size(); i++) {
+		mat[i].resize(m);
+		for (int j = 0; j < mat[i].size(); j++) {
+			std::cin >> mat[i][j];
+		}
+	}
+	return mat;
+}
+
+void afisare(std::vector<std::vector<int>> mat) {
+	for (int i = 0; i < mat.size(); i++) {
+		for (int j = 0; j < mat[i].size(); j++) {
+			std::cout << mat[i][j] << " ";
+		}
+		std::cout << '\n';
+	}
+}
+
+void atribuire(std::vector<std::vector<int>>& mat, int l1, int l2) {
+	for (int j = 0; j < mat[l1].size(); j++) {
+		mat[l1][j] = mat[l2][j];
+	}
+}
+
+void stergere(std::vector<std::vector<int>>& mat, int linie) {
+	for (int i = linie; i < mat.size() - 1; i++) {
+		atribuire(mat, i, i + 1);
+	}
+	mat.resize(mat.size() - 1);
+}
+
+int main() {
+	std::vector<std::vector<int>> mat = citire();
+	int linie;
+	std::cin >> linie;
+	stergere(mat, linie);
+	afisare(mat);
+}

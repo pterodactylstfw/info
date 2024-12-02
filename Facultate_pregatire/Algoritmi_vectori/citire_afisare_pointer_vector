@@ -1,0 +1,23 @@
+#include <iostream>
+
+int* citire(int& n) {
+	std::cin >> n;
+	int* v = new int[n];
+	for (int i = 0; i < n; i++) {
+		std::cin >> v[i];
+	}
+	return v;
+}
+
+void afisare(int n, int* v) {
+	for (int i = 0; i < n; i++) {
+		std::cout << v[i] << " ";
+	}
+	std::cout << '\n';
+}
+
+int main() {
+	int n, * v = citire(n);
+	afisare(n, v);
+	delete[] v;
+}
