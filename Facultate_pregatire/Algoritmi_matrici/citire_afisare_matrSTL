@@ -23,6 +23,15 @@ void afisare(std::vector<std::vector<int>> mat) {
 	}
 }
 
+void afisare(std::vector<std::vector<int>> mat)
+{
+	for(const auto & row: mat)
+		{for(const auto & elem: row)
+			std::cout<<elem<<" ";
+			cout<<'\n';
+		}
+}
+
 int main() {
 	std::vector<std::vector<int>> mat = citire();
 	afisare(mat);

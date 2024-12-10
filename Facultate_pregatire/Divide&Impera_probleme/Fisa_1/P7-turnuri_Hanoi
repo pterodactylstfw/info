@@ -32,3 +32,4 @@ int main() {
 	std::cin >> n;
 	hanoiTowers(n, 'A', 'B', 'C');
 }
+
