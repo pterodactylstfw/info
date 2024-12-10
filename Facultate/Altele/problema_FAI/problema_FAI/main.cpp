@@ -5,6 +5,7 @@ using namespace std;
 
 void citire(unsigned &n,unsigned &a,unsigned &m)
 {
+    cout<<'\t'<<"Introduceti datele necesare (n, a, m): ";
     cin>>n>>a>>m;
 }
 
@@ -108,13 +109,14 @@ void afisare(vector<int> v)
     for(const auto & elem: v)
         cout<<elem<<" ";
     
+    
 }
 
 void afisareSol(vector<int>sol, int n, int m, int a)
 {
-    cout<<"Subpunctul b)"<<'\n';
+    cout<<'\t'<<"Subpunctul b)"<<'\n';
     if(sol.size()==0) {
-        cout<<"Nu exista solutii pentru ecuatia a*x=m in Zn!";
+        cout<<"Nu exista solutii pentru ecuatia a*x=m in Zn!"<<'\n';
         return;
         
     }
@@ -125,7 +127,7 @@ void afisareSol(vector<int>sol, int n, int m, int a)
         cout << "}" << endl;
     }
     cout<<'\n';
-    cout<<'\n';
+    
 }
 
 void afisareNil(vector<int> v, int n)
@@ -143,21 +145,25 @@ void afisareNil(vector<int> v, int n)
 
 int main()
 {
-    unsigned n,a,m;
-    citire(n,a,m);
-    vector<int> mdl_vect = modulo_vect(n);
-    cout<<"Subpunctul a)"<<'\n';
-    afisare(mdl_vect);
-    
-    
-    vector<int> sol_b = rezolvaEc(a, m, n);
-    
+unsigned n,a,m;
+citire(n,a,m);
+    cout<<'\n';
+vector<int> mdl_vect = modulo_vect(n);
+cout<<'\t'<<"Subpunctul a)"<<'\n'<<"Elementele inversabile in Z_"<<n<<" sunt: ";
+afisare(mdl_vect);
+    cout<<'\n'<<'\n';
+
+
+vector<int> sol_b = rezolvaEc(a, m, n);
+
     afisareSol(sol_b, n, m, a);
     
-    int result = teoremaEuler(a, m, n);
-        cout <<"Subpunctul c)"<<'\n'<<"Rezultatul calculului a^m % n este: " << result << endl;
 
+int result = teoremaEuler(a, m, n);
+    cout <<'\t'<<"Subpunctul c)"<<'\n'<<"Rezultatul calculului a^m % n este: " << result << '\n'<<'\n';
+
+
+vector<int> elem_Nil = calculeazaNil(n);
+    cout<<'\t';afisareNil(elem_Nil,n);
     
-    vector<int> elem_Nil = calculeazaNil(n);
-    afisareNil(elem_Nil,n);
 }
